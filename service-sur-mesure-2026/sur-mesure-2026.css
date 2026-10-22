@@ -1,0 +1,429 @@
+/* HWS Agency 2026 — page service « Sites web sur-mesure ».
+   Ne contient que ce qui est propre à la page : tout le reste vient du socle ../systeme-2026/systeme-2026.css
+   (couleurs, polices, espacements, titres, labels, boutons, colonnes à filets).
+   Préfixe .sm26. */
+
+/* ══ 1. Héro : texte à gauche, patron de couture à droite ══ */
+.sm26-hero { min-height: 100vh; min-height: 100svh; }
+.sm26-patron {
+  position: absolute;
+  z-index: 0;
+  top: calc(76px + 2vh);
+  right: max(calc(var(--gouttiere) * 0.75), (100% - 1720px) / 2);
+  width: 55%;
+  height: calc(100% - 76px - 5vh);   /* un canvas ne s'étire pas entre top et bottom : hauteur explicite */
+  display: block;
+  pointer-events: none;
+}
+.sm26-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: calc(var(--largeur) + 2 * var(--gouttiere));
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: calc(76px + clamp(40px, 8vh, 96px)) var(--gouttiere) clamp(64px, 10vh, 120px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.sm26-hero-inner > * { max-width: min(46%, 640px); }
+.sm26-h1 {
+  margin-top: var(--ecart-label);
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: clamp(46px, 5.6vw, 92px);
+  line-height: 0.98;
+  letter-spacing: -0.028em;
+  color: var(--c-nuit);
+  text-wrap: balance;
+}
+.sm26-h1 em { white-space: nowrap; font-style: italic; color: var(--c-bleu); letter-spacing: -0.015em; }
+.sm26-h1::after { content: "."; color: var(--c-corail); }
+.sm26-hero-texte {
+  margin-top: clamp(22px, 3.4vh, 34px);
+  max-width: 42ch;
+  font-size: var(--t-chapo);
+  line-height: 1.6;
+  color: var(--c-nuit-doux);
+  text-wrap: pretty;
+}
+.sm26-hero-actions { margin-top: clamp(28px, 4.6vh, 44px); }
+
+/* ══ 2. Chiffres ══ */
+.sm26-chiffres-liste { margin-top: var(--ecart-contenu); padding-top: clamp(24px, 2.4vw, 32px); border-top: 1px solid var(--c-filet); }
+.sm26-chiffres-liste > div { display: flex; flex-direction: column; }
+.sm26-chiffres-liste dd { order: -1; }
+/* Libellés en texte courant (ils sont souvent des phrases) : même traitement sur toutes les pages services */
+.sm26-chiffres-liste dt {
+  max-width: 26ch;
+  margin-top: 18px;
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--c-nuit-doux);
+  text-wrap: pretty;
+}
+
+/* Filet qui ouvre une section enchaînée à la précédente (même fond, pas de double vide) */
+.sm26-filet-entree { border-top: 1px solid var(--c-filet); margin-bottom: calc(var(--air) * 0.7); }
+
+/* ══ 3. Vision : quatre piliers ══ */
+.sm26-piliers { margin-top: calc(var(--ecart-contenu) * 1.5); }
+
+/* ══ 4. Pour qui : onglets, chaque type avec un vrai projet ══ */
+.sm26-types {
+  margin-top: var(--ecart-contenu);
+  padding-top: clamp(28px, 3vw, 44px);
+  border-top: 1px solid var(--c-filet);
+  display: grid;
+  grid-template-columns: minmax(220px, 25%) minmax(0, 1fr);
+  column-gap: clamp(32px, 5vw, 88px);
+  align-items: start;
+}
+.sm26-types-liste { display: flex; flex-direction: column; }
+.sm26-types-liste [role="tab"] {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  width: 100%;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--c-sep);
+  text-align: left;
+  font-size: 15.5px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--c-gris);
+  transition: color 0.25s var(--ease);
+}
+.sm26-types-liste [role="tab"]:first-child { padding-top: 0; }
+.sm26-types-num { font-size: 12px; letter-spacing: 0.1em; color: var(--c-bleu-texte); font-variant-numeric: tabular-nums; }
+.sm26-types-sep { color: var(--c-filet-fort); }
+.sm26-types-nom { position: relative; }
+.sm26-types-liste [role="tab"]:hover { color: var(--c-nuit); }
+.sm26-types-liste [aria-selected="true"] { color: var(--c-nuit); }
+/* Le type ouvert : un filet bleu se dessine sous son nom */
+.sm26-types-nom::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 1px;
+  background: var(--c-bleu);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease);
+}
+[aria-selected="true"] > .sm26-types-nom::after { transform: scaleX(1); }
+
+.sm26-types-panneau {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  column-gap: clamp(32px, 4.4vw, 80px);
+  align-items: start;
+}
+.sm26-types-panneau[hidden] { display: none; }
+.sm26-types-panneau:focus-visible { outline: 2px solid var(--c-bleu); outline-offset: 12px; border-radius: 4px; }
+.sm26-types-texte .s26-texte { margin-top: 20px; max-width: 40ch; }
+.sm26-tags { margin-top: 26px; display: flex; flex-wrap: wrap; }
+.sm26-tags li { font-size: var(--t-meta); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-gris); }
+.sm26-tags { row-gap: 8px; }
+/* Le point séparateur suit le mot : au retour à la ligne, il ne commence jamais une ligne */
+.sm26-tags li:not(:last-child)::after { content: ""; display: inline-block; width: 4px; height: 4px; margin: 0 12px 2px; border-radius: 50%; background: var(--c-bleu); vertical-align: middle; }
+
+.sm26-projet-visuel {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #E8ECF6;
+}
+.sm26-projet-visuel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
+.sm26-projet:hover .sm26-projet-visuel img { transform: scale(1.025); }
+.sm26-projet-legende { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 24px; align-items: end; margin-top: 20px; }
+.sm26-projet-legende .s26-meta { grid-column: 1 / -1; }
+.sm26-projet-cat { margin-top: 10px; grid-column: 1; font-size: 13.5px; color: var(--c-gris); }
+.sm26-projet-nom { grid-column: 1; font-family: var(--f-serif); font-size: clamp(26px, 2.2vw, 34px); line-height: 1.1; color: var(--c-nuit); }
+.sm26-projet { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 24px; }
+.sm26-projet-visuel, .sm26-projet-legende { grid-column: 1 / -1; }
+.sm26-projet-legende { grid-column: 1; }
+.sm26-projet-lien { grid-column: 2; align-self: end; margin-bottom: 4px; }
+.sm26-projet:hover .sm26-projet-lien { color: var(--c-bleu); background-size: 0% 1px; background-position: 100% 100%; }
+.sm26-projet:hover .sm26-projet-lien .s26-fleche { transform: translateX(5px); }
+.sm26-projet:focus-visible { outline: 2px solid var(--c-bleu); outline-offset: 6px; border-radius: 6px; }
+.s26-js .sm26-types-panneau.is-in > * { animation: sm26-entree 0.6s var(--ease) both; }
+.s26-js .sm26-types-panneau.is-in > :nth-child(2) { animation-delay: 70ms; }
+@keyframes sm26-entree { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* ══ 5. Expertises : cinq colonnes, chacune avec un schéma au trait ══ */
+.sm26-disciplines-liste { margin-top: calc(var(--ecart-contenu) * 1.5); }
+/* Une seule trame pour la rangée : le canvas couvre la liste, chaque figure se dessine dans son emplacement */
+.sm26-disciplines-zone { position: relative; }
+.sm26-disciplines-trame { position: absolute; inset: 0; z-index: 0; display: block; width: 100%; height: 100%; pointer-events: none; }
+.sm26-disciplines-liste { position: relative; z-index: 1; }
+.sm26-figure { display: block; width: 100%; max-width: 180px; height: 104px; margin-bottom: 26px; }
+.sm26-disciplines-liste .s26-sous-titre { font-size: clamp(24px, 1.9vw, 30px); }
+
+.sm26-maillage {
+  margin-top: calc(var(--ecart-contenu) * 1.3);
+  padding-top: 28px;
+  border-top: 1px solid var(--c-filet);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 22px;
+  font-size: var(--t-chapo);
+  color: var(--c-nuit-doux);
+}
+
+/* ══ 6. Outils : bande de logos en bleu nuit entre deux filets ══ */
+.sm26-outils .s26-inner { padding-bottom: var(--ecart-contenu); }
+.sm26-bande {
+  position: relative;
+  margin: 0 max(var(--gouttiere), (100% - var(--largeur)) / 2) var(--air);
+  padding: clamp(28px, 3vw, 44px) 0;
+  border-top: 1px solid var(--c-filet-fort);
+  border-bottom: 1px solid var(--c-filet-fort);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.sm26-piste { display: flex; width: max-content; animation: sm26-defile 38s linear infinite; }
+.sm26-bande:hover .sm26-piste { animation-play-state: paused; }
+.sm26-logos { display: flex; align-items: center; flex: none; }
+.sm26-logos li { flex: none; padding: 0 clamp(26px, 3.2vw, 52px); }
+.sm26-logo {
+  display: block;
+  width: clamp(40px, 3.6vw, 54px);
+  height: clamp(40px, 3.6vw, 54px);
+  background-color: var(--c-nuit);
+  opacity: 0.82;
+  -webkit-mask: var(--logo) center / contain no-repeat;
+          mask: var(--logo) center / contain no-repeat;
+  transition: background-color 0.3s, opacity 0.3s;
+}
+.sm26-logo:hover { background-color: var(--c-bleu); opacity: 1; }
+@keyframes sm26-defile { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .sm26-bande { -webkit-mask-image: none; mask-image: none; }
+  .sm26-piste { animation: none; width: auto; }
+  .sm26-logos { flex-wrap: wrap; justify-content: center; row-gap: 28px; }
+  .sm26-logos[aria-hidden] { display: none; }
+}
+
+/* ══ 7. Méthode : huit étapes qui défilent à l'horizontale pendant le défilement vertical ══ */
+.sm26-methode-collant { padding: var(--air) 0; }
+.sm26-methode-haut {
+  width: 100%;
+  max-width: calc(var(--largeur) + 2 * var(--gouttiere));
+  margin: 0 auto;
+  padding: 0 var(--gouttiere);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 32%);
+  column-gap: 6%;
+  align-items: end;
+}
+.sm26-methode-sous-titre { padding-bottom: 10px; }
+.sm26-methode-fenetre {
+  margin-top: var(--ecart-contenu);
+  padding: 0 max(var(--gouttiere), (100% - var(--largeur)) / 2);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.sm26-etapes { display: flex; width: max-content; padding-top: 6px; }
+.sm26-etapes li {
+  position: relative;
+  width: clamp(280px, 25vw, 380px);
+  padding: 46px clamp(28px, 3vw, 52px) 0 0;
+  border-top: 1px solid var(--c-filet-fort);
+}
+.sm26-etapes li:last-child { border-top-color: transparent; background: linear-gradient(var(--c-filet-fort), var(--c-filet-fort)) 0 0 / 24px 1px no-repeat; }
+/* Repère de chaque étape sur la ligne ; l'étape en cours est la seule en corail */
+.sm26-etapes li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -6px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1.5px solid var(--c-bleu);
+  background: var(--c-ivoire);
+  transition: background-color 0.35s, border-color 0.35s, transform 0.35s var(--ease);
+}
+.sm26-etapes li.is-passe::before { background: var(--c-bleu); }
+.sm26-etapes li.is-actif::before { background: var(--c-corail); border-color: var(--c-corail); transform: scale(1.25); }
+.sm26-etapes .s26-sous-titre { margin-top: 14px; }
+.sm26-etapes .s26-texte { margin-top: 14px; max-width: 32ch; }
+.sm26-filigrane {
+  margin-top: clamp(20px, 3vh, 36px);
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: clamp(96px, 11vw, 176px);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: rgba(57, 116, 247, 0.1);
+  user-select: none;
+}
+.sm26-methode-pied {
+  width: 100%;
+  max-width: calc(var(--largeur) + 2 * var(--gouttiere));
+  margin: clamp(24px, 4vh, 48px) auto 0;
+  padding: 0 var(--gouttiere);
+  display: none;
+  align-items: center;
+  gap: 22px;
+}
+.sm26-compteur { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; color: var(--c-gris); font-variant-numeric: tabular-nums; }
+.sm26-courant { color: var(--c-nuit); }
+.sm26-progression { position: relative; width: min(280px, 40vw); height: 1px; background: var(--c-filet); }
+.sm26-progression span { position: absolute; inset: 0; background: var(--c-bleu); transform: scaleX(var(--p, 0.125)); transform-origin: left; }
+
+/* Avec le script : la section se fige à l'écran et les étapes glissent */
+.sm26-methode--js .sm26-methode-collant {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  padding: calc(76px + clamp(20px, 5vh, 56px)) 0 clamp(20px, 4vh, 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+.sm26-methode--js .sm26-methode-fenetre { overflow: visible; }
+.sm26-methode--js .sm26-etapes { will-change: transform; }
+.sm26-methode--js .sm26-methode-pied { display: flex; }
+@media (max-height: 760px) {
+  .sm26-methode--js .sm26-filigrane { font-size: clamp(72px, 8vw, 120px); }
+  .sm26-methode--js .s26-titre { font-size: clamp(44px, 5vw, 76px); }
+}
+
+/* ══ 8. Pourquoi HWS ══ */
+.sm26-arguments { margin-top: calc(var(--ecart-contenu) * 1.5); }
+
+/* ══ 9. Témoignages (composant de la home) : ponctuation corail dans l'italique ══ */
+.hav-titre.s26-titre--point::after { content: none; }
+.hav-titre em::after { content: "."; color: var(--c-corail); font-style: normal; }
+.hav-label.s26-label--num { font-weight: 500; }
+
+/* ══ 10. Appel final ══ */
+.sm26-cta .s26-inner { padding-bottom: calc(var(--air) * 0.5); }
+.sm26-cta-cadre {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(64px, 8vw, 128px) clamp(20px, 5vw, 80px);
+  border-top: 1px solid var(--c-filet-fort);
+  border-bottom: 1px solid var(--c-filet-fort);
+}
+.sm26-cta-cadre .s26-chapo { margin-top: var(--ecart-chapo); }
+.sm26-cta-actions { margin-top: clamp(30px, 3.4vw, 44px); display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 16px 32px; }
+
+/* ══ 11. FAQ ══ */
+.sm26-faq-grille { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr); column-gap: 7%; align-items: start; }
+.sm26-faq-tete { position: sticky; top: 120px; }
+.sm26-faq-liste { counter-reset: sm26-faq; border-bottom: 1px solid var(--c-filet); }
+.sm26-faq-item { counter-increment: sm26-faq; border-top: 1px solid var(--c-filet); }
+.sm26-faq-item summary {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 30px;
+  align-items: center;
+  column-gap: 8px;
+  padding: 26px 0;
+  cursor: pointer;
+  list-style: none;
+}
+.sm26-faq-item summary::-webkit-details-marker { display: none; }
+.sm26-faq-item summary::before {
+  content: counter(sm26-faq, decimal-leading-zero);
+  align-self: start;
+  padding-top: 0.55em;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--c-bleu-texte);
+  font-variant-numeric: tabular-nums;
+}
+/* Icône « + » qui devient « − » à l'ouverture */
+.sm26-faq-item summary::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--c-filet-fort);
+  background:
+    linear-gradient(var(--c-bleu), var(--c-bleu)) center / 11px 1.5px no-repeat,
+    linear-gradient(var(--c-bleu), var(--c-bleu)) center / 1.5px 11px no-repeat;
+  transition: background-size 0.35s var(--ease), background-color 0.3s, border-color 0.3s;
+}
+.sm26-faq-item[open] summary::after {
+  background:
+    linear-gradient(var(--c-blanc), var(--c-blanc)) center / 11px 1.5px no-repeat,
+    linear-gradient(var(--c-blanc), var(--c-blanc)) center / 1.5px 0 no-repeat,
+    var(--c-bleu);
+  border-color: var(--c-bleu);
+}
+.sm26-faq-q { font-family: var(--f-serif); font-weight: 400; font-size: clamp(22px, 1.75vw, 28px); line-height: 1.16; letter-spacing: -0.01em; color: var(--c-nuit); transition: color 0.25s; text-wrap: balance; }
+.sm26-faq-item summary:hover .sm26-faq-q { color: var(--c-bleu); }
+.sm26-faq-r { padding: 0 38px 30px 56px; }
+.sm26-faq-r .s26-texte { max-width: 62ch; }
+.sm26-faq-item[open] .sm26-faq-r { animation: sm26-entree 0.45s var(--ease) both; }
+
+/* ══ Tablette ══ */
+@media (max-width: 1100px) {
+  .sm26-hero, .sm26-hero-inner { min-height: 0; }
+  .sm26-hero-inner { padding-top: calc(76px + 64px); padding-bottom: 0; }
+  .sm26-hero-inner > * { max-width: 680px; }
+  .sm26-patron { position: relative; top: auto; bottom: auto; right: auto; width: 100%; height: clamp(320px, 62vw, 620px); margin: 24px 0 0; }
+  .sm26-hero { display: flex; flex-direction: column-reverse; }
+  .sm26-types { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
+  .sm26-types-liste { flex-direction: row; overflow-x: auto; gap: 28px; scrollbar-width: none; border-bottom: 1px solid var(--c-sep); }
+  .sm26-types-liste::-webkit-scrollbar { display: none; }
+  .sm26-types-liste [role="tab"] { width: auto; flex: none; padding: 0 0 16px; border-bottom: 0; white-space: nowrap; }
+  .sm26-methode-haut { grid-template-columns: minmax(0, 1fr); row-gap: 18px; }
+  .sm26-faq-grille { grid-template-columns: minmax(0, 1fr); row-gap: var(--ecart-contenu); }
+  .sm26-faq-tete { position: static; }
+}
+@media (max-width: 1100px) and (min-width: 641px) {
+  .sm26-chiffres-liste { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .sm26-chiffres-liste > :nth-child(odd) { padding-left: clamp(20px, 2.4vw, 40px); border-left: 1px solid var(--c-filet); }
+  .sm26-chiffres-liste > :nth-child(3n + 1) { padding-left: 0; border-left: 0; }
+}
+
+/* ══ Mobile ══ */
+@media (max-width: 900px) {
+  .sm26-types-panneau { grid-template-columns: minmax(0, 1fr); row-gap: 36px; }
+  /* Méthode : les étapes se lisent en colonne, le long d'une ligne verticale */
+  .sm26-methode--js .sm26-methode-collant { position: static; height: auto; display: block; overflow: visible; padding: var(--air) 0; }
+  .sm26-methode-fenetre { overflow: visible; }
+  .sm26-etapes { flex-direction: column; width: auto; transform: none !important; padding-top: 0; }
+  .sm26-etapes li, .sm26-etapes li:last-child { width: auto; padding: 0 0 44px 32px; border-top: 0; border-left: 1px solid var(--c-filet-fort); background: none; }
+  .sm26-etapes li:last-child { border-left-color: transparent; }
+  .sm26-etapes li::before { left: -6px; top: 3px; }
+  .sm26-etapes .s26-texte { max-width: 52ch; }
+  .sm26-filigrane { display: none; }
+  .sm26-methode--js .sm26-methode-pied { display: none; }
+}
+@media (max-width: 640px) {
+  .sm26-hero-inner { padding-top: calc(72px + 44px); }
+  .sm26-h1 { font-size: clamp(40px, 11vw, 52px); }
+  .sm26-patron { height: 86vw; margin-top: 8px; }
+  .sm26-chiffres-liste { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; row-gap: 36px; }
+  .sm26-chiffres-liste > *, .sm26-chiffres-liste > :nth-child(odd) { padding: 0; border: 0; }
+  .sm26-chiffres-liste > :first-child { padding-top: 0; }
+  .sm26-chiffres-liste dt { margin-top: 10px; font-size: 12.5px; }
+  .sm26-projet { grid-template-columns: minmax(0, 1fr); }
+  .sm26-projet-lien { grid-column: 1; justify-self: start; margin-top: 14px; }
+  .sm26-faq-item summary { grid-template-columns: 34px minmax(0, 1fr) 28px; padding: 22px 0; }
+  .sm26-faq-item summary::after { width: 28px; height: 28px; }
+  .sm26-faq-r { padding: 0 0 26px 42px; }
+  .sm26-cta-cadre { padding: 56px 4px; }
+  .sm26-cta-actions { flex-direction: column; gap: 18px; }
+  .sm26-types-section > .s26-croix, .sm26-pourquoi > .s26-croix { display: none; }
+}

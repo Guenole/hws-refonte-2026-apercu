@@ -1,0 +1,279 @@
+/* HWS Agency — section « Notre vision » 2026
+   Fond blanc cassé, photo de l'équipe en dither bleu, poulpe tramé derrière la photo, corail rare.
+   Tout est préfixé .hv26 pour ne rien toucher au reste du site. */
+
+.hv26 {
+  --hv-bleu: #3974F7;
+  --hv-corail: #FF5A36;
+  --hv-casse: #F7F7F4;
+  --hv-blanc: #FFFFFF;
+  --hv-nuit: #171B49;
+  --hv-nuit-doux: rgba(23, 27, 73, 0.76);
+  --hv-filet: rgba(57, 116, 247, 0.2);
+  --hv-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --hv-sans: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hv-gutter: clamp(20px, 6vw, 96px);
+  --hv-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+  background: var(--hv-casse);
+  color: var(--hv-nuit);
+  font-family: var(--hv-sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+.hv26, .hv26 *, .hv26 *::before, .hv26 *::after { box-sizing: border-box; }
+.hv26 :where(h2, h3, p, ol, li, dl, dt, dd, figure) { margin: 0; padding: 0; }
+.hv26 :where(ol) { list-style: none; }
+.hv26 :where(a) { color: inherit; text-decoration: none; }
+.hv26 :is(a, button):focus-visible { outline: 2px solid var(--hv-bleu); outline-offset: 4px; border-radius: 2px; }
+
+.hv26-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(88px, 10vw, 152px) var(--hv-gutter) clamp(72px, 8vw, 120px);
+}
+
+.hv26-label {
+  font-family: var(--hv-sans);
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hv-bleu);
+}
+.hv26-fleche { width: 14px; height: 14px; flex: none; color: var(--hv-corail); transition: transform 0.35s var(--hv-ease); }
+
+/* Petits repères en croix corail */
+.hv26-croix {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--hv-corail), var(--hv-corail)) center / 100% 1.5px no-repeat,
+    linear-gradient(var(--hv-corail), var(--hv-corail)) center / 1.5px 100% no-repeat;
+}
+
+/* ── A. Titre et photographie ── */
+.hv26-haut {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  column-gap: clamp(40px, 6vw, 112px);
+  align-items: center;
+}
+.hv26-texte .hv26-label { margin-bottom: clamp(18px, 2vw, 28px); }
+.hv26-titre {
+  font-family: var(--hv-serif);
+  font-weight: 400;
+  font-size: clamp(50px, 6.4vw, 100px);
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  color: var(--hv-nuit);
+  text-wrap: balance;
+}
+.hv26-titre em { font-style: italic; color: var(--hv-bleu); letter-spacing: -0.01em; }
+.hv26-intro {
+  margin-top: clamp(24px, 2.6vw, 36px);
+  max-width: 44ch;
+  font-size: clamp(15.5px, 1.2vw, 17.5px);
+  line-height: 1.6;
+  color: var(--hv-nuit-doux);
+  text-wrap: pretty;
+}
+.hv26-lien {
+  margin-top: clamp(24px, 2.6vw, 36px);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--hv-bleu);
+}
+.hv26-lien { background: linear-gradient(currentColor, currentColor) 0 100% / calc(100% - 26px) 1px no-repeat; padding-bottom: 4px; transition: color 0.25s; }
+.hv26-lien:hover { color: var(--hv-nuit); }
+.hv26-lien:hover .hv26-fleche, .hv26-lien:focus-visible .hv26-fleche { transform: translateX(5px); }
+
+.hv26-media { position: relative; }
+/* La trame déborde largement de la photo : elle passe derrière et autour. */
+.hv26-trame {
+  position: absolute;
+  z-index: 0;
+  left: -22%;
+  top: -36%;
+  width: 144%;
+  height: 168%;
+  pointer-events: none;
+}
+.hv26-photo {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 8 / 5;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--hv-bleu);
+}
+.hv26-photo img,
+.hv26-photo canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.hv26-photo img { object-fit: cover; object-position: 50% 50%; }
+/* Inclinaison 3D au survol (pilotée en JS) : la photo garde sa place et ses coins arrondis. */
+.hv26-photo { transform-origin: 50% 50%; will-change: transform; backface-visibility: hidden; }
+@media (hover: none), (prefers-reduced-motion: reduce) { .hv26-photo { will-change: auto; } }
+/* Reflet « verre » : une lueur blanche sous le curseur, un léger voile en diagonale et un filet
+   de lumière sur le bord, qui n'apparaissent qu'au survol (--go de 0 à 1). */
+.hv26-reflet {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: var(--go, 0);
+  background:
+    radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0) 55%),
+    linear-gradient(115deg, rgba(255, 255, 255, 0) 32%, rgba(255, 255, 255, 0.08) 47%, rgba(255, 255, 255, 0) 62%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.hv26-photo canvas { opacity: 0; transition: opacity 0.8s var(--hv-ease); }
+.hv26-photo.is-dither canvas { opacity: 1; }
+.hv26-photo.is-dither img { visibility: hidden; }
+
+/* ── B. Les quatre arguments ── */
+.hv26-args {
+  margin-top: clamp(96px, 10vw, 150px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.hv26-args li {
+  position: relative;
+  padding: 4px clamp(20px, 2.4vw, 40px) 8px;
+  border-left: 1px solid var(--hv-filet);
+}
+.hv26-args li:first-child { padding-left: 0; border-left: 0; }
+.hv26-num {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--hv-sans);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--hv-bleu);
+}
+.hv26-num::after { content: ""; width: 24px; height: 1px; background: var(--hv-bleu); }
+.hv26-args h3 {
+  margin-top: 18px;
+  font-family: var(--hv-serif);
+  font-weight: 400;
+  font-size: clamp(27px, 2.3vw, 34px);
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+  color: var(--hv-bleu);
+  text-wrap: balance;
+}
+.hv26-args h3 + p {
+  margin-top: 18px;
+  max-width: 34ch;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--hv-nuit-doux);
+}
+
+/* ── C. Les chiffres ── */
+.hv26-chiffres {
+  margin-top: clamp(64px, 7vw, 104px);
+  padding-top: clamp(24px, 2.4vw, 32px);
+  border-top: 1px solid var(--hv-filet);
+}
+.hv26-chiffres dl {
+  margin-top: clamp(20px, 2vw, 28px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.hv26-chiffres dl > div {
+  display: flex;
+  flex-direction: column;
+  padding: 4px clamp(20px, 2.4vw, 40px) 6px;
+  border-left: 1px solid var(--hv-filet);
+}
+.hv26-chiffres dl > div:first-child { padding-left: 0; border-left: 0; }
+.hv26-chiffres dd {
+  order: -1;
+  font-family: var(--hv-serif);
+  font-size: clamp(58px, 6.6vw, 104px);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: var(--hv-bleu);
+  font-variant-numeric: tabular-nums;
+}
+.hv26-chiffres dt {
+  margin-top: 16px;
+  font-family: var(--hv-sans);
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hv-nuit);
+}
+.hv26-chiffres dt .hv26-fleche { display: inline-block; vertical-align: -3px; margin-left: 10px; }
+
+/* ── Apparition à l'entrée dans l'écran ── */
+.hv26--js [data-hv26-apparition] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.9s var(--hv-ease), transform 1s var(--hv-ease);
+  transition-delay: calc(var(--d, 0) * 90ms);
+}
+.hv26--js [data-hv26-apparition].is-in { opacity: 1; transform: none; }
+/* Le script d'animations du site (data-anim-fade) ne doit pas doubler nos apparitions. */
+.hv26 [data-anim-fade] { opacity: 1 !important; transform: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hv26 [data-hv26-apparition] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .hv26 * { transition-duration: 0.01ms !important; }
+}
+
+/* ── Tablette ── */
+@media (max-width: 1024px) {
+  .hv26-haut { grid-template-columns: minmax(0, 1fr); row-gap: clamp(72px, 10vw, 104px); }
+  .hv26-texte { max-width: 640px; }
+  .hv26-media { width: min(84%, 640px); justify-self: end; margin-right: 4%; }
+  .hv26-args { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 56px; }
+  .hv26-args li:nth-child(3) { padding-left: 0; border-left: 0; }
+  .hv26-args .hv26-croix { display: none; }
+  .hv26-chiffres dl { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; }
+  .hv26-chiffres dl > div:nth-child(3) { padding-left: 0; border-left: 0; }
+}
+
+/* ── Mobile ── */
+@media (max-width: 640px) {
+  .hv26-inner { padding-top: 80px; padding-bottom: 72px; }
+  .hv26-titre { font-size: clamp(44px, 12.4vw, 56px); }
+  .hv26-media { width: 100%; margin-right: 0; }
+  .hv26-trame { left: -14%; top: -26%; width: 128%; height: 152%; }
+  .hv26-media .hv26-croix { display: none; }
+  .hv26-args { margin-top: 96px; grid-template-columns: minmax(0, 1fr); row-gap: 0; }
+  .hv26-args li,
+  .hv26-args li:nth-child(3) { padding: 28px 0; border-left: 0; border-top: 1px solid var(--hv-filet); }
+  .hv26-args li:first-child { border-top: 0; padding-top: 0; }
+  .hv26-args h3 { margin-top: 14px; }
+  .hv26-args h3 + p { margin-top: 12px; max-width: none; }
+  .hv26-chiffres { margin-top: 40px; }
+  .hv26-chiffres dl { column-gap: 20px; row-gap: 36px; }
+  .hv26-chiffres dl > div { padding: 0; border-left: 0; }
+  .hv26-chiffres dd { font-size: clamp(50px, 15vw, 64px); }
+  .hv26-chiffres dt { margin-top: 10px; font-size: 10px; letter-spacing: 0.12em; }
+  .hv26-chiffres dt .hv26-fleche { margin-left: 6px; }
+}
+@media (min-width: 480px) and (max-width: 640px) {
+  .hv26-args { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px; }
+  .hv26-args li:nth-child(2) { border-top: 0; padding-top: 0; }
+}

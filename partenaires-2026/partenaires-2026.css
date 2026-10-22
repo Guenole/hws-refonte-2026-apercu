@@ -1,0 +1,116 @@
+/* HWS Agency — section « Nos partenaires & clients » 2026
+   Même grammaire que les autres sections 2026 : label numéroté, titre Instrument Serif
+   avec italique bleu et point corail, introduction à droite, filets bleus fins.
+   Les logos deviennent des silhouettes bleu nuit (masque CSS sur l'image d'origine) :
+   même couleur et même poids pour tous, bleu HWS au survol. Défilement en CSS, sans script.
+   Tout est préfixé .hpa. */
+
+.hpa {
+  --hpa-bleu: #3974F7;
+  --hpa-corail: #FF5A36;
+  --hpa-casse: #F7F7F4;
+  --hpa-nuit: #171B49;
+  --hpa-gris: #6B7094;
+  --hpa-filet: rgba(57, 116, 247, 0.4);
+  --hpa-gutter: clamp(20px, 6vw, 96px);
+
+  position: relative;
+  overflow: clip;
+  background: var(--hpa-casse);
+  color: var(--hpa-nuit);
+  font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  padding: clamp(80px, 8vw, 128px) 0 clamp(80px, 8vw, 128px);
+}
+.hpa, .hpa *, .hpa *::before, .hpa *::after { box-sizing: border-box; }
+.hpa :where(h2, p, ul, li) { margin: 0; padding: 0; }
+.hpa :where(ul) { list-style: none; }
+.hpa [data-anim-fade] { opacity: 1 !important; transform: none !important; }
+
+.hpa-croix {
+  position: absolute;
+  right: 2.6%;
+  bottom: clamp(36px, 4vw, 64px);
+  width: 22px;
+  height: 22px;
+  background:
+    linear-gradient(var(--hpa-corail), var(--hpa-corail)) center / 100% 1.5px no-repeat,
+    linear-gradient(var(--hpa-corail), var(--hpa-corail)) center / 1.5px 100% no-repeat;
+}
+
+/* ── En-tête ── */
+.hpa-haut {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--hpa-gutter);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 30%);
+  column-gap: 6%;
+  align-items: end;
+}
+.hpa-label {
+  font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hpa-bleu);
+}
+.hpa-titre {
+  margin-top: 18px;
+  font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: clamp(46px, 5.6vw, 92px);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  color: var(--hpa-nuit);
+}
+.hpa-titre em { white-space: nowrap; font-style: italic; color: var(--hpa-bleu); letter-spacing: -0.015em; }
+.hpa-point { color: var(--hpa-corail); }
+.hpa-intro { padding-bottom: 10px; max-width: 34ch; font-size: clamp(15px, 1.2vw, 18px); line-height: 1.55; color: var(--hpa-gris); }
+
+/* ── Bande de logos, entre deux filets bleus ── */
+.hpa-bande {
+  position: relative;
+  margin: clamp(48px, 5vw, 80px) var(--hpa-gutter) 0;
+  padding: clamp(28px, 3vw, 44px) 0;
+  border-top: 1px solid var(--hpa-filet);
+  border-bottom: 1px solid var(--hpa-filet);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.hpa-piste { display: flex; width: max-content; animation: hpa-defile 46s linear infinite; }
+.hpa-bande:hover .hpa-piste { animation-play-state: paused; }
+.hpa-logos { display: flex; align-items: center; flex: none; }
+.hpa-logos li { flex: none; padding: 0 clamp(22px, 2.6vw, 40px); }
+.hpa-logo {
+  display: block;
+  width: clamp(112px, 10vw, 156px);
+  height: clamp(44px, 4vw, 60px);
+  background-color: var(--hpa-nuit);
+  opacity: 0.8;
+  -webkit-mask: var(--logo) center / contain no-repeat;
+          mask: var(--logo) center / contain no-repeat;
+  transition: background-color 0.3s, opacity 0.3s;
+}
+.hpa-logo:hover { background-color: var(--hpa-bleu); opacity: 1; }
+@keyframes hpa-defile { to { transform: translateX(-50%); } }
+
+/* Mouvement réduit : pas de défilement, les logos se rangent en grille. */
+@media (prefers-reduced-motion: reduce) {
+  .hpa-bande { -webkit-mask-image: none; mask-image: none; }
+  .hpa-piste { animation: none; width: auto; }
+  .hpa-logos { flex-wrap: wrap; justify-content: center; row-gap: 28px; }
+  .hpa-logos[aria-hidden] { display: none; }
+}
+
+@media (max-width: 900px) {
+  .hpa-haut { grid-template-columns: minmax(0, 1fr); row-gap: 22px; }
+  .hpa-intro { padding-bottom: 0; }
+  .hpa-croix { bottom: 28px; right: 6%; }
+}
+@media (max-width: 520px) {
+  .hpa-titre { font-size: clamp(42px, 12vw, 54px); }
+  .hpa-bande { margin-left: 0; margin-right: 0; }
+  .hpa-piste { animation-duration: 34s; }
+}

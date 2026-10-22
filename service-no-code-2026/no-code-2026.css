@@ -1,0 +1,58 @@
+/* HWS Agency 2026 — page service « Sites No-Code & Webflow ».
+   Ne contient que ce qui est propre à la page. Le reste vient :
+   - du socle ../systeme-2026/systeme-2026.css (couleurs, polices, espacements, titres, labels, boutons, colonnes) ;
+   - des composants des pages services ../service-sur-mesure-2026/sur-mesure-2026.css (héro, chiffres, onglets,
+     disciplines, bande d'outils, méthode, appel final, FAQ), repris tels quels.
+   Préfixe .nc26. */
+
+/* ══ 1. Héro : le titre porte déjà son point (corail via .s26-point) ; l'emplacement de l'illustration
+   est celui du patron de la page sur-mesure (.sm26-patron), occupé ici par le tampon (tampon-2026.js). ══ */
+.nc26-hero .sm26-h1::after { content: none; }
+
+/* Passages en gras du texte d'origine : graisse 500 et bleu nuit (règle des deux graisses) */
+.nc26-autonomie .s26-chapo strong, .sm26-outils .s26-chapo strong { font-weight: 500; color: var(--c-nuit); }
+
+/* ══ 2. Chiffres : libellés en texte courant, règle commune dans ../service-sur-mesure-2026/sur-mesure-2026.css ══ */
+
+/* ══ 3. Disciplines : sous l'en-tête, une ligne « sous-titre | chapô » sur un filet, comme en ligne ══ */
+.nc26-disc-intro { margin-top: var(--ecart-contenu); padding-top: clamp(24px, 2.4vw, 32px); border-top: 1px solid var(--c-filet); align-items: start; }
+.nc26-disc-intro .s26-sous-titre { max-width: 16em; }
+.nc26-disciplines .sm26-disciplines-liste { margin-top: calc(var(--ecart-contenu) * 1.2); }
+
+/* ══ 4. Autonomie client : trois colonnes, puis trois chiffres sous un filet ══ */
+.nc26-autonomie-liste { margin-top: calc(var(--ecart-contenu) * 1.5); }
+.nc26-autonomie-chiffres { margin-top: calc(var(--ecart-contenu) * 1.2); }
+
+/* ══ 5. Outils : mention de la certification, logo sans dessin disponible écrit en toutes lettres ══ */
+.nc26-certif {
+  margin-top: clamp(28px, 3vw, 40px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--c-nuit);
+}
+.nc26-certif .nc26-certif-logo { flex: none; width: 22px; height: 22px; background-color: var(--c-bleu); opacity: 1; }
+.nc26-logo-mot {
+  display: block;
+  height: clamp(40px, 3.6vw, 54px);
+  font-size: clamp(16px, 1.3vw, 20px);
+  font-weight: 500;
+  line-height: clamp(40px, 3.6vw, 54px);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: var(--c-nuit);
+  opacity: 0.82;
+}
+
+@media (max-width: 1100px) {
+  .nc26-hero .nc26-tampon { margin-top: 48px; }   /* le tampon levé ne touche pas le bouton */
+}
+@media (max-width: 640px) {
+  .nc26-certif { align-items: flex-start; }
+  /* Les trois chiffres de l'autonomie tiennent sur une ligne */
+  .nc26-autonomie-chiffres { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 14px; }
+  .nc26-autonomie-chiffres .s26-chiffre { font-size: clamp(38px, 11vw, 48px); }
+}

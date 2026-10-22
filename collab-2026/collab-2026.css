@@ -1,0 +1,157 @@
+/* HWS Agency — section « Collaboration » 2026
+   Titre monumental centré, curseurs nominatifs de l'équipe autour du texte, curseur « Vous »
+   corail qui suit la souris, cadre de sélection sur « à vous », ruban tramé en bas.
+   Tout est préfixé .hco. Le calque des curseurs laisse passer tous les clics. */
+
+.hco {
+  --hco-bleu: #3974F7;
+  --hco-corail: #FF5A36;
+  --hco-casse: #F7F7F4;
+  --hco-nuit: #171B49;
+  --hco-gris: #5D6290;
+  --hco-sans: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hco-ease: cubic-bezier(0.22, 0.7, 0.2, 1);
+
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+  background: var(--hco-casse);
+  color: var(--hco-nuit);
+  font-family: var(--hco-sans);
+  -webkit-font-smoothing: antialiased;
+}
+.hco, .hco *, .hco *::before, .hco *::after { box-sizing: border-box; }
+.hco :where(h2, p) { margin: 0; padding: 0; }
+.hco [data-anim-fade] { opacity: 1 !important; transform: none !important; }
+.hco-trame { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none; }
+
+/* ── Contenu centré ── */
+.hco-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(88px, 7vw, 112px) clamp(20px, 6vw, 96px) clamp(160px, 15vw, 240px);
+  text-align: center;
+}
+.hco-label {
+  font-family: var(--hco-sans);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--hco-bleu);
+}
+.hco-titre {
+  margin-top: clamp(28px, 3vw, 48px);
+  font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: clamp(64px, 10.4vw, 178px);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  color: var(--hco-nuit);
+}
+.hco-l1, .hco-l2 { display: block; }
+.hco-l2 { margin-top: 0.06em; }
+.hco-vous { font-style: italic; color: var(--hco-bleu); letter-spacing: -0.02em; }
+.hco-l2 .hco-point { margin-left: -0.04em; }
+.hco-point { color: var(--hco-corail); }
+.hco-texte {
+  margin: clamp(40px, 4.4vw, 72px) auto 0;
+  max-width: 59ch;
+  font-size: clamp(16px, 1.45vw, 23px);
+  line-height: 1.55;
+  color: var(--hco-gris);
+  text-wrap: balance;
+}
+.hco-btn {
+  margin-top: clamp(32px, 3.4vw, 52px);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: clamp(16px, 1.5vw, 22px) clamp(36px, 4.6vw, 80px);
+  border-radius: 999px;
+  background: var(--hco-bleu);
+  color: #fff;
+  font-size: clamp(14px, 1.15vw, 18px);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.3s var(--hco-ease), transform 0.3s var(--hco-ease);
+}
+.hco-btn svg { width: 16px; height: 16px; transition: transform 0.3s var(--hco-ease); }
+.hco-btn:hover { background: var(--hco-nuit); }
+.hco-btn:hover svg { transform: translate(2px, -2px); }
+.hco-btn:focus-visible { outline: 2px solid var(--hco-nuit); outline-offset: 4px; }
+
+/* ── Calque des curseurs : purement décoratif, laisse passer les clics ── */
+.hco-calque { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.hco-calque > * { position: absolute; left: 0; top: 0; }
+.hco:not(.hco--js) .hco-calque { display: none; }
+
+.hco-trait { height: 2px; border-radius: 2px; background: var(--hco-bleu); transform-origin: left; }
+.hco-trait--echanges { height: 1.5px; }
+
+.hco-cadre { border: 1px solid var(--hco-corail); }
+.hco-cadre i { position: absolute; width: 8px; height: 8px; border: 1px solid var(--hco-corail); background: var(--hco-casse); }
+.hco-cadre i:nth-child(1) { left: -4.5px; top: -4.5px; }
+.hco-cadre i:nth-child(2) { right: -4.5px; top: -4.5px; }
+.hco-cadre i:nth-child(3) { left: -4.5px; bottom: -4.5px; }
+.hco-cadre i:nth-child(4) { right: -4.5px; bottom: -4.5px; }
+
+.hco-cur { --c: var(--hco-bleu); color: var(--c); will-change: transform; }
+.hco-cur--bruno { --c: var(--hco-nuit); }
+.hco-cur--vous { --c: var(--hco-corail); z-index: 2; }
+.hco-cur > svg { display: block; width: clamp(22px, 1.7vw, 28px); height: auto; aspect-ratio: 22 / 26; filter: drop-shadow(0 1px 1px rgba(23, 27, 73, 0.18)); }
+.hco-nom {
+  position: absolute;
+  left: 20px;
+  top: 22px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: var(--c);
+  color: #fff;
+  font-size: clamp(13px, 1vw, 16px);
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+.hco-cur--vous .hco-nom { font-size: clamp(14px, 1.15vw, 18px); padding: 5px 12px; }
+.hco-cur--maxime .hco-nom { top: 28px; left: 18px; }
+.hco-cur--guenole .hco-nom { top: -26px; left: 22px; }
+/* Annotations : un mot en capitales, relié au curseur par un trait fin */
+.hco-note {
+  position: absolute;
+  font-family: var(--hco-sans);
+  font-size: clamp(11px, 0.85vw, 14px);
+  letter-spacing: 0.04em;
+  color: var(--hco-nuit);
+  white-space: nowrap;
+  transition: opacity 0.4s;
+}
+.hco-note i { position: absolute; width: 1.2px; background: var(--hco-nuit); transform-origin: 0 0; }
+.hco-cur--guenole .hco-note { left: -86px; top: -70px; }
+.hco-cur--guenole .hco-note i { left: 52px; top: 20px; height: 44px; transform: rotate(-24deg); background: var(--hco-bleu); }
+.hco-cur--bruno .hco-note { left: 34px; top: -66px; }
+.hco-cur--bruno .hco-note i { left: -10px; top: 18px; height: 40px; transform: rotate(36deg); }
+.hco-cur--vous .hco-note { left: 64px; top: -32px; }
+.hco-cur--vous .hco-note i { left: -10px; top: 14px; height: 34px; transform: rotate(60deg); background: var(--hco-corail); }
+.hco.is-suivi .hco-cur--vous .hco-note { opacity: 0; }
+/* Dans la section, à la souris, le curseur « Vous » remplace la flèche du système. */
+.hco.is-suivi, .hco.is-suivi * { cursor: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hco * { transition-duration: 0.01ms !important; }
+}
+
+/* ── Mobile et tablette tactile : composition resserrée, curseurs fixes ── */
+@media (max-width: 760px) {
+  .hco-inner { padding-top: 88px; padding-bottom: 150px; }
+  .hco-titre { font-size: clamp(54px, 15.5vw, 84px); }
+  .hco-texte { font-size: 16px; text-wrap: pretty; }
+  .hco-btn { padding: 16px 30px; }
+  .hco-note { font-size: 11px; }
+  .hco-texte { margin-top: 64px; }
+  /* Disposition simplifiée : les noms seuls, sans annotations ; Maxime et Bruno s'étiquettent vers l'intérieur. */
+  .hco-note { display: none; }
+  .hco-cur--maxime .hco-nom { left: auto; right: 4px; }
+  .hco-cur--bruno .hco-nom { left: auto; right: 4px; top: -26px; }
+}

@@ -1,0 +1,559 @@
+<!DOCTYPE html><!-- This site was created in Webflow. https://webflow.com --><!-- Last Published: Mon Oct 19 2026 07:32:14 GMT+0000 (Coordinated Universal Time) --><html data-wf-domain="www.hws.pm" data-wf-page="69dcdc0d20ab5f37ce8bfe10" data-wf-site="69dcdc0620ab5f37ce8bfd2c" lang="fr"><head><meta name="robots" content="noindex"><meta charset="utf-8"/><link href="https://cdn.prod.website-files.com" rel="preconnect" crossorigin="anonymous"/><title>HWS Agency · Agence digitale web &amp; mobile à Toulouse</title><meta content="HWS Agency, agence digitale basée à Toulouse. Sites, applications, outils internes : produits digitaux solides pour entreprises ambitieuses." name="description"/><meta content="HWS Agency · Agence digitale web &amp; mobile à Toulouse" property="og:title"/><meta content="HWS Agency, agence digitale basée à Toulouse. Sites, applications, outils internes : produits digitaux solides pour entreprises ambitieuses." property="og:description"/><meta content="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/69f21365a625fa5f82d243cf_og-home-1200x630.jpg" property="og:image"/><meta content="HWS Agency · Agence digitale web &amp; mobile à Toulouse" name="twitter:title"/><meta content="HWS Agency, agence digitale basée à Toulouse. Sites, applications, outils internes : produits digitaux solides pour entreprises ambitieuses." name="twitter:description"/><meta property="og:type" content="website"/><meta content="summary_large_image" name="twitter:card"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="ic7UgtaZCsvFo0FzsHVyGvWYt0fra6kv9tv55vS_bpA" name="google-site-verification"/><meta content="Webflow" name="generator"/><link href="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/css/hws-agency-2-0.webflow.shared.4a36962f1.css" rel="stylesheet" type="text/css" integrity="sha384-SjaWLx6NztwSTkZGbgDvuVQ341Hsm7KYbaf2wVZO7K7CMA1oZScL0phfKZPndxuN" crossorigin="anonymous"/><script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script><link href="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/69ea1d351a05c6524ab8f9e9_FavIcon%20HWS.png" rel="shortcut icon" type="image/x-icon"/><link href="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/69ea1d38f57dd8e8d5abacff_Webclip%20HWS.png" rel="apple-touch-icon"/><link href="https://www.hws.pm" rel="canonical"/><!-- HWS Preloader v2 — « on entre dans le logo » (oct. 2026)
+     Site Settings > Custom Code > Head. Joue à chaque affichage de page, y compris au retour arrière (bfcache).
+     Écran bleu HWS + logo blanc (version 2026) → le logo devient une fenêtre sur la page → zoom dans la barre centrale.
+     Remplace l'ancien préchargeur v1 (scripts « preloader » + « preloader_js » et div #pt), supprimé le 6 oct. 2026 : sauvegarde dans webflow-paste/ancien-preloader-v1-backup/. -->
+<style>
+#hws-pl{position:fixed;inset:0;z-index:2147483000;animation:hws-pl-failsafe .4s 5s forwards}
+#hws-pl svg{display:block;width:100%;height:100%}
+/* Bandeau cookies masqué pendant l'intro seulement : la classe est retirée à la fin, et l'animation expire seule au bout de 2,5 s si le script plantait. */
+html.hws-pl-on #consentos-banner-host{animation:hws-pl-hold 2.5s}
+@keyframes hws-pl-hold{0%,100%{visibility:hidden}}
+@keyframes hws-pl-failsafe{to{opacity:0;visibility:hidden}}
+</style>
+<script>
+(function(){
+  var d=document,w=window;
+  if(w.self!==w.top)return;
+  var reduce=w.matchMedia&&w.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var P=['M129.757 0.1875H42.2191H20.0031C4.49217 0.1875 -4.64224 17.6008 4.17444 30.3622L58.8265 109.467C66.4574 120.512 82.7685 120.543 90.4417 109.527L145.544 30.4229C154.429 17.6678 145.302 0.1875 129.757 0.1875Z','M215.306 0H201.104C194.821 0 188.933 3.06858 185.334 8.21936L96.7281 135.026C87.8172 147.778 96.9411 165.284 112.498 165.284H127.039C133.334 165.284 139.232 162.204 142.829 157.037L231.096 30.2301C239.975 17.4745 230.847 0 215.306 0Z','M301.078 0H286.882C280.598 0 274.71 3.06891 271.111 8.22015L182.514 135.027C173.604 147.779 182.728 165.284 198.285 165.284H212.82C219.117 165.284 225.014 162.203 228.611 157.036L316.869 30.2294C325.747 17.4736 316.62 0 301.078 0Z'];
+  // Point visé par le zoom : milieu de la barre centrale du logo (unités du viewBox 321×166).
+  // Viser le centre d'une forme garantit qu'on finit DANS le logo (donc sur la page), pas dans un vide blanc.
+  var OX=163.72,OY=83,HALF=25;
+  // Chronologie (ms) : apparition du logo, ouverture (le noir devient transparent), zoom, fin.
+  var APPEAR=450,OPEN0=450,OPEN1=750,ZOOM0=600,ZOOM1=1500,FADE0=1470,END=1560;
+  var el=d.createElement('div');el.id='hws-pl';el.setAttribute('aria-hidden','true');
+  el.innerHTML='<svg xmlns="http://www.w3.org/2000/svg"><defs><g id="hws-pl-l">'+P.map(function(p){return '<path d="'+p+'"/>';}).join('')+'</g><mask id="hws-pl-m" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%"><rect width="100%" height="100%" fill="#fff"/><use id="hws-pl-hole" href="#hws-pl-l" fill="#000" opacity="0"/></mask></defs><rect width="100%" height="100%" fill="#3974F7" mask="url(#hws-pl-m)"/><use id="hws-pl-ink" href="#hws-pl-l" fill="#fff"/></svg>';
+  var logo=el.querySelector('#hws-pl-l'),ink=el.querySelector('#hws-pl-ink'),hole=el.querySelector('#hws-pl-hole'),t0=0;
+  function c(x){return x<0?0:x>1?1:x;}
+  function outBack(x){var s=1.6;x-=1;return 1+x*x*((s+1)*x+s);}
+  function inOut(x){return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;}
+  function render(t){
+    var W=w.innerWidth,H=w.innerHeight;
+    var k0=Math.min(120,W*.28)/321;
+    var kEnd=1.25*Math.sqrt(W*W+H*H)/2/HALF;
+    var a=c(t/APPEAR),k,o,f;
+    if(reduce){k=k0;o=1;f=1-c((t-400)/400);}
+    else{
+      var z=c((t-ZOOM0)/(ZOOM1-ZOOM0));
+      k=k0*(.82+.18*outBack(a))*Math.exp(Math.log(kEnd/k0)*Math.pow(z,2.5));
+      o=t<OPEN0?a:1-inOut(c((t-OPEN0)/(OPEN1-OPEN0)));
+      f=1-c((t-FADE0)/(END-FADE0));
+    }
+    logo.setAttribute('transform','translate('+W/2+' '+H/2+') scale('+k+') translate('+(-OX)+' '+(-OY)+')');
+    ink.setAttribute('opacity',o);
+    // Le trou n'existe qu'une fois le logo noir opaque : sinon on verrait la page avant l'ouverture.
+    hole.setAttribute('opacity',!reduce&&t>=OPEN0?1:0);
+    el.style.opacity=f;
+  }
+  function done(){d.documentElement.classList.remove('hws-pl-on');if(el.parentNode)el.parentNode.removeChild(el);}
+  function frame(){
+    try{
+      var t=performance.now()-t0;
+      if(t>=(reduce?800:END))return done();
+      render(t);requestAnimationFrame(frame);
+    }catch(e){done();}
+  }
+  function mount(){
+    d.documentElement.classList.add('hws-pl-on');
+    el.style.animation='';el.style.opacity='';
+    d.body.insertBefore(el,d.body.firstChild);
+    render(0);
+    requestAnimationFrame(function(){el.style.animation='none';t0=performance.now();frame();});
+  }
+  // Retour arrière servi depuis le cache du navigateur : les scripts ne se relancent pas, on rejoue l'intro à la main.
+  w.addEventListener('pageshow',function(e){if(e.persisted&&!el.parentNode)mount();});
+  if(d.body)mount();
+  else{var mo=new MutationObserver(function(){if(d.body){mo.disconnect();mount();}});mo.observe(d.documentElement,{childList:true});}
+})();
+</script>
+
+<style>
+  html .nav-link.w--current,
+  html .nav-mobile-link.w--current,
+  html .nav-dropdown-link.w--current,
+  html .nav-dropdown-link-mobile.w--current {
+    color: #ffffff !important;
+  }
+  
+  html .nav-link.w--current:hover,
+  html .nav-mobile-link.w--current:hover {
+    color: #3974f7 !important;
+  }
+
+  /* ── Gouttière fluide desktop — carousel #projects (les scripts projects_css_* injectent
+     un padding 2.5rem après le CSS Webflow, on reprend la main ici) ── */
+  #projects .ps-top,
+  #projects .ps-bottom {
+    padding-left: clamp(40px, 6vw, 96px) !important;
+    padding-right: clamp(40px, 6vw, 96px) !important;
+  }
+  @media (max-width: 991px) {
+    #projects .ps-top,
+    #projects .ps-bottom {
+      padding-left: 40px !important;
+      padding-right: 40px !important;
+    }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://www.hws.pm/#organization",
+  "name": "HWS Agency",
+  "url": "https://www.hws.pm/",
+  "logo": "https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/69ea1d38f57dd8e8d5abacff_Webclip%20HWS.png",
+  "image": "https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/69ea1d38f57dd8e8d5abacff_Webclip%20HWS.png",
+  "description": "Agence de développement web & mobile sur-mesure basée à Toulouse. Nous transformons vos idées en produits digitaux performants.",
+  "email": "contact@hws.pm",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "50 rue de Metz",
+    "postalCode": "31000",
+    "addressLocality": "Toulouse",
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 43.6005218,
+    "longitude": 1.4493936
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Toulouse" },
+    { "@type": "Country", "name": "France" }
+  ],
+  "foundingDate": "2024",
+  "sameAs": [
+    "https://www.linkedin.com/company/hws-agency"
+  ]
+}
+</script>
+
+<!--
+  ORDRE DES 3 BLOCS CI-DESSOUS : NE PAS MODIFIER.
+  1. Consent Mode  — doit être le premier script Google de la page (exigence Google).
+  2. Snippet GTM.
+  3. Loader Consentos — DOIT rester APRÈS le snippet GTM. Le loader patche
+     document.createElement et met type="text/blocked" sur tout script matchant
+     googletagmanager.com. Le snippet GTM n'y échappe que parce qu'il s'exécute avant.
+     Le remonter au-dessus tuerait GTM entièrement.
+-->
+
+<!-- 1. Google Consent Mode -->
+
+
+<!-- 2. Google Tag Manager -->
+
+<!-- End Google Tag Manager -->
+
+<!-- 3. CMP Consentos — émet le gtag('consent','update') après choix du visiteur -->
+<script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F69ea13e371f8c352d56bd645%2Fburger_css-2.0.3.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F69eb7fbbe92001ded472bfa0%2Fhws_scroll_animations-1.1.0.js" type="text/javascript"></script><!-- hws_collab_bundle-1.0.0.js retiré : remplacé par collab-2026 --><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F69ef10ef19271dfac65317ef%2Fhws_blog_richtext_styles-1.2.0.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F6a9ed01c44a101a7fbd1c1c5%2Fhws_overflow_sticky_fix-1.0.0.js" type="text/javascript"></script><!-- hws_collab_bundle-1.0.0.js retiré : remplacé par collab-2026 --><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F69dcf8dde50ce812bad2925e%2Fprojects_css_3-1.0.0.js" type="text/javascript"></script><link rel="stylesheet" href="../polices-2026/polices-2026.css">
+<script>document.write('<link rel="stylesheet" href="../footer-2026/footer-2026.css?v=' + Date.now() + '">');</script>
+<script>document.write('<link rel="stylesheet" href="../hero-2026/hero-2026.css?v=' + Date.now() + '">');</script>
+<script>document.write('<link rel="stylesheet" href="../hero-equipe-2026/hero-equipe.css?v=' + Date.now() + '">');</script>
+<script>document.write('<link rel="stylesheet" href="../hero-equipe-bas-2026/hero-equipe-bas.css?v=' + Date.now() + '">');</script>
+<script>document.write('<link rel="stylesheet" href="../hero-equipe-immersion-2026/hero-equipe-immersion.css?v=' + Date.now() + '">');</script>
+<script>document.write('<link rel="stylesheet" href="../hero-equipe-particules-2026/hero-equipe-particules.css?v=' + Date.now() + '">');</script>
+<style>
+  /* Footer « puzzle » : la zone de trame couvre toute la moitié droite, le puzzle y est centré par le script. */
+  @media (min-width: 641px) { .hf26 .hf26-trame { top: 0; right: -4vw; width: min(64vw, 1150px); } }
+</style>
+<script>document.write('<link rel="stylesheet" href="../vision-2026/vision-2026.css?v=' + Date.now() + '">');</script>
+<script>document.write('<link rel="stylesheet" href="../projets-2026/projets-2026.css?v=' + Date.now() + '">');</script>
+<script>document.write('<link rel="stylesheet" href="../methode-2026/methode-2026.css?v=' + Date.now() + '">');</script>
+<script>document.write('<link rel="stylesheet" href="../partenaires-2026/partenaires-2026.css?v=' + Date.now() + '">');</script>
+<script>document.write('<link rel="stylesheet" href="../avis-2026/avis-2026.css?v=' + Date.now() + '">');</script>
+<script>document.write('<link rel="stylesheet" href="../journal-2026/journal-2026.css?v=' + Date.now() + '">');</script>
+<script>document.write('<link rel="stylesheet" href="../collab-2026/collab-2026.css?v=' + Date.now() + '">');</script>
+<script>document.write('<link rel="stylesheet" href="home-2026-systeme.css?v=' + Date.now() + '">');</script>
+<script>document.write('<link rel="stylesheet" href="../avis-2026/avis-2026-deck.css?v=' + Date.now() + '">');</script>
+<script>document.write('<link rel="stylesheet" href="../nav-2026/nav-2026.css?v=' + Date.now() + '">');</script>
+<link rel="stylesheet" href="home-air.css">
+</head><body><div class="nav-section"><a href="https://www.hws.pm/" aria-current="page" class="nav-logo-wrap w-inline-block w--current"><svg width="80" height="42" viewBox="0 0 321 166" fill="none" xmlns="http://www.w3.org/2000/svg" class="nav-logo-svg"><path d="M129.757 0.1875H42.2191H20.0031C4.49217 0.1875 -4.64224 17.6008 4.17444 30.3622L58.8265 109.467C66.4574 120.512 82.7685 120.543 90.4417 109.527L145.544 30.4229C154.429 17.6678 145.302 0.1875 129.757 0.1875Z" fill="white"></path><path d="M215.306 0H201.104C194.821 0 188.933 3.06858 185.334 8.21936L96.7281 135.026C87.8172 147.778 96.9411 165.284 112.498 165.284H127.039C133.334 165.284 139.232 162.204 142.829 157.037L231.096 30.2301C239.975 17.4745 230.847 0 215.306 0Z" fill="white"></path><path d="M301.078 0H286.882C280.598 0 274.71 3.06891 271.111 8.22015L182.514 135.027C173.604 147.779 182.728 165.284 198.285 165.284H212.82C219.117 165.284 225.014 162.203 228.611 157.036L316.869 30.2294C325.747 17.4736 316.62 0 301.078 0Z" fill="white"></path></svg></a><div class="nav-links"><a href="https://www.hws.pm/" aria-current="page" class="nav-link w--current">Accueil</a><div class="nv-mega"><button type="button" class="nav-link nv-mega-toggle" aria-expanded="false" aria-controls="nv-mega-panel">Nos services <svg class="nv-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="nv-mega-panel" id="nv-mega-panel" role="region" aria-label="Nos services" hidden><div class="nv-mega-inner"><div class="nv-intro"><p class="nv-label">Expertises</p><p class="nv-titre">Ce qu’on construit <em>ensemble.</em></p><p class="nv-texte">Huit expertises pour concevoir, reprendre et faire grandir vos produits digitaux, à Toulouse et à distance.</p><a class="nv-cta" href="#">Un projet en tête ? Réserver une visio <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="nv-second" href="https://www.hws.pm/projets-realises">Voir nos projets réalisés <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><div class="nv-catalogue"><div class="nv-groupe"><p class="nv-groupe-titre" id="nv-g01"><span>01</span> Concevoir &amp; développer</p><ul aria-labelledby="nv-g01"><li><a class="nv-lien" href="https://www.hws.pm/services/sites-web-sur-mesure"><span class="nv-lien-nom">Sites web sur-mesure <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="nv-lien-desc">Des sites performants et évolutifs, développés pour vous.</span></a></li><li><a class="nv-lien" href="https://www.hws.pm/services/sites-no-code-webflow"><span class="nv-lien-nom">Sites No-Code &amp; Webflow <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="nv-lien-desc">Des sites modernes, rapides et modifiables par vos équipes.</span></a></li><li><a class="nv-lien" href="https://www.hws.pm/services/applications-mobiles-saas"><span class="nv-lien-nom">Applications mobiles &amp; SaaS <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="nv-lien-desc">Des applications mobiles et SaaS sur-mesure, évolutives.</span></a></li></ul></div><div class="nv-groupe"><p class="nv-groupe-titre" id="nv-g02"><span>02</span> Reprendre &amp; faire évoluer</p><ul aria-labelledby="nv-g02"><li><a class="nv-lien" href="https://www.hws.pm/services/refonte-site-web"><span class="nv-lien-nom">Refonte de site web <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="nv-lien-desc">Design, UX, performances et SEO, repris de A à Z.</span></a></li><li><a class="nv-lien" href="https://www.hws.pm/services/reprise-projet-web"><span class="nv-lien-nom">Reprise de projet web <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="nv-lien-desc">On reprend votre code, on le stabilise, on le fait avancer.</span></a></li><li><a class="nv-lien" href="https://www.hws.pm/services/maintenance-site-web"><span class="nv-lien-nom">Maintenance <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="nv-lien-desc">Mises à jour, sécurité, monitoring et évolutions.</span></a></li></ul></div><div class="nv-groupe"><p class="nv-groupe-titre" id="nv-g03"><span>03</span> Cadrer &amp; renforcer</p><ul aria-labelledby="nv-g03"><li><a class="nv-lien" href="https://www.hws.pm/services/audit-de-site-web"><span class="nv-lien-nom">Audit &amp; Cadrage <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="nv-lien-desc">Technique, UX, SEO, sécurité : un rapport concret et priorisé.</span></a></li><li><a class="nv-lien" href="https://www.hws.pm/services/regie-sous-traitance"><span class="nv-lien-nom">Régie &amp; Sous-traitance <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="nv-lien-desc">Des développeurs salariés HWS intégrés à vos équipes.</span></a></li></ul></div></div><button type="button" class="nv-fermer" aria-label="Fermer le menu Nos services">Fermer <span aria-hidden="true">×</span></button></div></div></div><a href="https://www.hws.pm/projets-realises" class="nav-link">Projets réalisés</a><a href="https://www.hws.pm/blog" class="nav-link">Journal</a></div><a href="#" class="btn-primary w-button">Réserver une visio</a><a id="nav-burger-btn" href="#" class="nav-burger w-button"><span class="nav-burger-line"></span><span class="nav-burger-line"></span><span class="nav-burger-line"></span></a><div id="nav-mobile-menu" class="nav-mobile-menu"><div class="nav-mobile-links"><a href="https://www.hws.pm/" aria-current="page" class="nav-mobile-link w--current">Accueil</a><details class="nv-m-services"><summary class="nav-mobile-link">Nos services <svg class="nv-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="nv-m-groupes"><details class="nv-m-groupe"><summary><span>01</span> Concevoir &amp; développer <svg class="nv-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><ul><li><a class="nav-dropdown-link-mobile" href="https://www.hws.pm/services/sites-web-sur-mesure">Sites web sur-mesure</a></li><li><a class="nav-dropdown-link-mobile" href="https://www.hws.pm/services/sites-no-code-webflow">Sites No-Code &amp; Webflow</a></li><li><a class="nav-dropdown-link-mobile" href="https://www.hws.pm/services/applications-mobiles-saas">Applications mobiles &amp; SaaS</a></li></ul></details><details class="nv-m-groupe"><summary><span>02</span> Reprendre &amp; faire évoluer <svg class="nv-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><ul><li><a class="nav-dropdown-link-mobile" href="https://www.hws.pm/services/refonte-site-web">Refonte de site web</a></li><li><a class="nav-dropdown-link-mobile" href="https://www.hws.pm/services/reprise-projet-web">Reprise de projet web</a></li><li><a class="nav-dropdown-link-mobile" href="https://www.hws.pm/services/maintenance-site-web">Maintenance</a></li></ul></details><details class="nv-m-groupe"><summary><span>03</span> Cadrer &amp; renforcer <svg class="nv-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><ul><li><a class="nav-dropdown-link-mobile" href="https://www.hws.pm/services/audit-de-site-web">Audit &amp; Cadrage</a></li><li><a class="nav-dropdown-link-mobile" href="https://www.hws.pm/services/regie-sous-traitance">Régie &amp; Sous-traitance</a></li></ul></details></div></details><a href="https://www.hws.pm/projets-realises" class="nav-mobile-link">Projets réalisés</a><a href="https://www.hws.pm/blog" class="nav-mobile-link">Journal</a><a href="#contact" class="nav-mobile-cta">Réserver une visio</a></div></div></div><!-- ░░ HÉRO HWS 2026 ░░ (styles : hero-2026.css · trame : hero-2026.js) -->
+<section class="hh26 hh26--equipe hh26--bas hh26--immersion hh26--particules" aria-labelledby="hh26-titre">
+  <div class="hh26-inner">
+    <div class="hh26-logo" data-hh26-apparition><svg viewBox="0 0 321 166" role="img" aria-label="HWS Agency"><path d="M129.757 0.1875H42.2191H20.0031C4.49217 0.1875 -4.64224 17.6008 4.17444 30.3622L58.8265 109.467C66.4574 120.512 82.7685 120.543 90.4417 109.527L145.544 30.4229C154.429 17.6678 145.302 0.1875 129.757 0.1875Z" fill="#3974F7"/><path d="M215.306 0H201.104C194.821 0 188.933 3.06858 185.334 8.21936L96.7281 135.026C87.8172 147.778 96.9411 165.284 112.498 165.284H127.039C133.334 165.284 139.232 162.204 142.829 157.037L231.096 30.2301C239.975 17.4745 230.847 0 215.306 0Z" fill="#3974F7"/><path d="M301.078 0H286.882C280.598 0 274.71 3.06891 271.111 8.22015L182.514 135.027C173.604 147.779 182.728 165.284 198.285 165.284H212.82C219.117 165.284 225.014 162.203 228.611 157.036L316.869 30.2294C325.747 17.4736 316.62 0 301.078 0Z" fill="#3974F7"/></svg></div>
+    <h1 class="hh26-titre" id="hh26-titre" data-hh26-calme="0.9">
+      <span class="hh26-kicker" data-hh26-apparition style="--d:1">Agence de développement web &amp; mobile à Toulouse</span>
+      <span class="hh26-accroche" data-hh26-apparition style="--d:2">Des expériences digitales <br class="hh26-br">qui <em>font la différence</em><span class="hh26-point">.</span></span>
+    </h1>
+    <p class="hh26-desc" data-hh26-apparition data-hh26-calme="0.97" style="--d:3">HWS Agency conçoit des sites internet et des applications pour les entreprises qui veulent un outil digital solide, évolutif et aligné sur leurs objectifs métier.</p>
+    <div class="hh26-actions" data-hh26-apparition data-hh26-calme="0.97" style="--d:4">
+      <a class="hh26-btn" href="mailto:contact@hws.pm">Réserver une visio <svg class="hh26-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="hh26-link" href="https://www.hws.pm/projets-realises">Voir nos projets <svg class="hh26-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  <div class="hh26-bas" data-hh26-apparition style="--d:6">
+    <p data-hh26-calme="0.9">Depuis 2024 <span class="hh26-dot">·</span> +100 projets livrés</p>
+    <a class="hh26-defiler" href="#about" data-hh26-calme="0.9">Défiler</a>
+  </div>
+  </div>
+  <svg class="hh26-decor" viewBox="0 0 1600 1000" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="hh26-immersion-doux" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter>
+      <mask id="hh26-immersion-reserve" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="1000" style="mask-type:luminance">
+        <rect class="hh26-decor-papier" width="1600" height="1000" fill="white"/>
+        <g class="hh26-decor-reserves" fill="black" filter="url(#hh26-immersion-doux)">
+          <path d="M180 1000V850Q230 680 370 670Q380 570 530 550Q650 410 820 450Q940 410 1080 560L1270 690Q1410 720 1450 1000Z"/>
+        </g>
+      </mask>
+    </defs>
+    <image data-src="../hero-equipe-particules-2026/decor-particules-repli.webp" x="0" y="0" width="1600" height="1000" preserveAspectRatio="xMidYMid slice" mask="url(#hh26-immersion-reserve)"/>
+  </svg>
+  <noscript>  <svg class="hh26-decor" viewBox="0 0 1600 1000" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="hh26-particules-sansjs-doux" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter>
+      <mask id="hh26-particules-sansjs-reserve" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="1000" style="mask-type:luminance">
+        <rect class="hh26-decor-papier" width="1600" height="1000" fill="white"/>
+        <g class="hh26-decor-reserves" fill="black" filter="url(#hh26-particules-sansjs-doux)">
+          <path d="M180 1000V850Q230 680 370 670Q380 570 530 550Q650 410 820 450Q940 410 1080 560L1270 690Q1410 720 1450 1000Z"/>
+        </g>
+      </mask>
+    </defs>
+    <image href="../hero-equipe-particules-2026/decor-particules-repli.webp" x="0" y="0" width="1600" height="1000" preserveAspectRatio="xMidYMid slice" mask="url(#hh26-particules-sansjs-reserve)"/>
+  </svg></noscript>
+  <div class="hh26-paysage">
+  <canvas data-decor="../hero-equipe-immersion-2026/decor-bureau.webp" class="hh26-scene" data-encre="../hero-equipe-2026/equipe-arc-encre.webp" role="img" aria-label="Illustration en points bleus : six collègues réunis en arc autour d'un ordinateur"></canvas>
+  <img class="hh26-scene-repli" data-src-desktop="../hero-equipe-immersion-2026/equipe-immersion-repli.webp" data-src="../hero-equipe-bas-2026/equipe-bas-repli.webp" alt="" aria-hidden="true" width="2048" height="648" decoding="async">
+  <noscript><picture><source media="(min-width: 1100px)" srcset="../hero-equipe-immersion-2026/equipe-immersion-repli.webp"><img class="hh26-scene-repli" src="../hero-equipe-bas-2026/equipe-bas-repli.webp" alt="" aria-hidden="true" width="2048" height="648"></picture></noscript>
+  </div>
+</section>
+<!-- ░░ NOTRE VISION 2026 ░░ (styles : vision-2026.css · trame et dither : vision-2026.js) -->
+<section id="about" class="hv26" aria-labelledby="hv26-titre">
+  <div class="hv26-inner">
+    <div class="hv26-haut">
+      <div class="hv26-texte">
+        <p class="hv26-label">01 / Notre vision</p>
+        <h2 class="hv26-titre" id="hv26-titre">Le digital, pensé pour <em>durer.</em></h2>
+        <p class="hv26-intro">Chez HWS Agency, nous concevons des expériences digitales sur mesure, utiles et évolutives. Pas juste des sites web, mais des produits pensés pour répondre à vos enjeux métier aujourd’hui et demain.</p>
+        <a class="hv26-lien" href="#method">Découvrir notre approche <svg class="hv26-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <figure class="hv26-media">
+        <canvas class="hv26-trame" aria-hidden="true"></canvas>
+        <div class="hv26-photo">
+          <img src="../vision-2026/photo-fondateurs-2026.jpg" width="1443" height="870" alt="Les deux fondateurs de HWS Agency, souriants, assis côte à côte à un bureau lumineux avec un carnet et un ordinateur portable." loading="lazy" decoding="async">
+          <canvas class="hv26-dither" aria-hidden="true"></canvas>
+        </div>
+        <span class="hv26-croix" style="--x:101%;--y:108%" aria-hidden="true"></span>
+        <span class="hv26-croix" style="--x:-9%;--y:66%" aria-hidden="true"></span>
+      </figure>
+    </div>
+
+    <ol class="hv26-args">
+      <li>
+        <p class="hv26-num">01</p>
+        <h3>Des solutions utiles et sur mesure.</h3>
+        <p>Chaque projet part d’un besoin métier précis. HWS conçoit des solutions adaptées plutôt que d’empiler des fonctionnalités génériques.</p>
+      </li>
+      <li>
+        <p class="hv26-num">02</p>
+        <h3>Une mise en production rapide.</h3>
+        <p>Une méthode rigoureuse permet de lancer rapidement une première version fonctionnelle, puis de l’améliorer grâce aux retours et aux usages réels.</p>
+      </li>
+      <li>
+        <p class="hv26-num">03</p>
+        <h3>Des solutions évolutives.</h3>
+        <p>Des architectures pensées pour évoluer avec l’entreprise, avec une attention portée à la performance, à la sécurité et à l’autonomie des équipes.</p>
+      </li>
+      <li>
+        <p class="hv26-num">04</p>
+        <h3>Un accompagnement de bout en bout.</h3>
+        <p>Stratégie digitale, UX/UI, développement, hébergement et maintenance, avec un interlocuteur unique.</p>
+        <span class="hv26-croix" style="--x:104%;--y:8%" aria-hidden="true"></span>
+      </li>
+    </ol>
+
+    <div class="hv26-chiffres">
+      <p class="hv26-label">Quelques chiffres</p>
+      <dl>
+        <div><dt>Projets livrés <svg class="hv26-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></dt><dd data-hv26-compte="100" data-avant="+">+100</dd></div>
+        <div><dt>MVP garanti <svg class="hv26-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></dt><dd data-hv26-compte="15" data-apres="j">15j</dd></div>
+        <div><dt>Des clients renouvellent <svg class="hv26-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></dt><dd data-hv26-compte="98" data-apres="%">98%</dd></div>
+        <div><dt>De coûts de maintenance <svg class="hv26-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></dt><dd data-hv26-compte="95" data-avant="-" data-apres="%">-95%</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+<section id="services" class="section-dark-legacy section-dark"><style>.pp-svc-name{position:relative;display:inline-block}.pp-svc-name::after{content:&quot;&quot;;position:absolute;left:0;bottom:-3px;width:0;height:2px;background-color:var(--_hws-tokens---color-primary);transition:width .55s cubic-bezier(.2,.6,.2,1)}.pp-svc-link:hover .pp-svc-name::after{width:100%}.pp-svc-link:hover .pp-svc-arrow{transform:translateX(8px);color:var(--_hws-tokens---color-primary)}</style><style>@keyframes pp-ia-pulse{0%,100%{opacity:.4;transform:scale(.85);box-shadow:0 0 0 0 rgba(57,116,247,.4)}50%{opacity:1;transform:scale(1.15);box-shadow:0 0 0 8px rgba(57,116,247,0)}}</style></section><!-- ░░ PROJETS 2026 ░░ (styles : projets-2026.css · carrousel et trame : projets-2026.js) -->
+<section id="projects" class="hp26" aria-labelledby="hp26-titre">
+  <canvas class="hp26-trame" aria-hidden="true"></canvas>
+  <span class="hp26-croix" style="--x:3%;--y:31%" aria-hidden="true"></span>
+  <span class="hp26-croix" style="--x:95%;--y:84%" aria-hidden="true"></span>
+  <div class="hp26-intro">
+    <div>
+      <p class="hp26-label">02 / Projets sélectionnés</p>
+      <h2 class="hp26-titre" id="hp26-titre">Des idées <em>qui prennent vie</em><span class="hp26-point">.</span></h2>
+      <p class="hp26-chapo">Des univers singuliers. Des expériences utiles. <br class="hp26-br">Découvrez les projets que nous avons imaginés et développés.</p>
+    </div>
+    <a class="hp26-tous" href="https://www.hws.pm/projets-realises">Tous nos projets <svg class="hp26-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+  <div class="hp26-carrousel" role="region" aria-roledescription="carrousel" aria-label="Projets sélectionnés">
+    <ol class="hp26-piste"><li class="hp26-slide" aria-roledescription="diapositive" aria-label="1 sur 5 : Eczema CARE+"><figure class="hp26-visuel"><img src="../projets-2026/img/visuels/eczema-care.webp" width="1886" height="1271" alt="Application Eczema CARE+ sur trois téléphones : zones atteintes, suivi « Eczema OBS » et écran d’accueil" loading="lazy" decoding="async"></figure><p class="hp26-voisin" aria-hidden="true">Eczema CARE+</p><div class="hp26-info"><div class="hp26-info-titre"><p class="hp26-cat">Application mobile · Santé</p><h3 class="hp26-nom">Eczema CARE+</h3></div><p class="hp26-desc">Lancée par la Pierre Fabre Eczema Foundation, l’application aide chaque patient à devenir acteur de sa maladie.</p><a class="hp26-cas" href="https://www.hws.pm/projets/eczema-care-plus">Voir l’étude de cas<span class="hp26-sr"> : Eczema CARE+</span> <svg class="hp26-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li><li class="hp26-slide" aria-roledescription="diapositive" aria-label="2 sur 5 : Banquiz"><figure class="hp26-visuel"><img src="../projets-2026/img/visuels/banquiz.webp" width="1886" height="1271" alt="Le site Banquiz sur ordinateur et sur mobile" loading="lazy" decoding="async"></figure><p class="hp26-voisin" aria-hidden="true">Banquiz</p><div class="hp26-info"><div class="hp26-info-titre"><p class="hp26-cat">Site web · Commerce de proximité</p><h3 class="hp26-nom">Banquiz</h3></div><p class="hp26-desc">Une épicerie rurale itinérante : catalogue de 431 produits synchronisé et recherche de franchisés par code postal.</p><a class="hp26-cas" href="https://www.hws.pm/projets/banquiz">Voir l’étude de cas<span class="hp26-sr"> : Banquiz</span> <svg class="hp26-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li><li class="hp26-slide" aria-roledescription="diapositive" aria-label="3 sur 5 : Walleto"><figure class="hp26-visuel"><img src="../projets-2026/img/visuels/walleto.webp" width="1886" height="1271" alt="Le générateur de cartes Wallet de Walleto dans un navigateur, avec un aperçu de carte d’embarquement" loading="lazy" decoding="async"></figure><p class="hp26-voisin" aria-hidden="true">Walleto</p><div class="hp26-info"><div class="hp26-info-titre"><p class="hp26-cat">Application web · Outil</p><h3 class="hp26-nom">Walleto</h3></div><p class="hp26-desc">Un outil gratuit pour créer des cartes Apple Wallet et Google Wallet, conçu et développé par HWS Agency.</p><a class="hp26-cas" href="https://www.hws.pm/projets/walleto">Voir l’étude de cas<span class="hp26-sr"> : Walleto</span> <svg class="hp26-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li><li class="hp26-slide" aria-roledescription="diapositive" aria-label="4 sur 5 : Flower In Love"><figure class="hp26-visuel"><img src="../projets-2026/img/visuels/flower-in-love.webp" width="1886" height="1271" alt="Le site Flower In Love sur ordinateur et sur mobile" loading="lazy" decoding="async"></figure><p class="hp26-voisin" aria-hidden="true">Flower In Love</p><div class="hp26-info"><div class="hp26-info-titre"><p class="hp26-cat">Site vitrine · Événementiel</p><h3 class="hp26-nom">Flower In Love</h3></div><p class="hp26-desc">Nouvelle charte graphique et site vitrine pour une fleuriste événementielle à Toulouse.</p><a class="hp26-cas" href="https://www.hws.pm/projets/flower-in-love">Voir l’étude de cas<span class="hp26-sr"> : Flower In Love</span> <svg class="hp26-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li><li class="hp26-slide" aria-roledescription="diapositive" aria-label="5 sur 5 : Soleil du Midi"><figure class="hp26-visuel"><img src="../projets-2026/img/visuels/soleil-du-midi.webp" width="1886" height="1271" alt="Le site Soleil du Midi sur ordinateur et sur mobile" loading="lazy" decoding="async"></figure><p class="hp26-voisin" aria-hidden="true">Soleil du Midi</p><div class="hp26-info"><div class="hp26-info-titre"><p class="hp26-cat">Site vitrine · Énergies renouvelables</p><h3 class="hp26-nom">Soleil du Midi</h3></div><p class="hp26-desc">Le site d’un opérateur qui exploite et développe clefs-en-main des parcs éoliens et photovoltaïques.</p><a class="hp26-cas" href="https://www.hws.pm/projets/soleil-du-midi">Voir l’étude de cas<span class="hp26-sr"> : Soleil du Midi</span> <svg class="hp26-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li></ol>
+    <div class="hp26-controles">
+      <button type="button" class="hp26-btn hp26-btn--prec" aria-label="Projet précédent"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="hp26-compteur" aria-hidden="true"><span class="hp26-courant">01</span> / 05</p>
+      <div class="hp26-progression" aria-hidden="true"><span></span></div>
+      <button type="button" class="hp26-btn hp26-btn--suiv" aria-label="Projet suivant"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="hp26-sr" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+<!-- ░░ NOTRE MÉTHODE 2026 ░░ (styles : methode-2026.css · trame et apparition : methode-2026.js) -->
+<section id="method" class="hm26" aria-labelledby="hm26-titre">
+  <canvas class="hm26-trame" aria-hidden="true"></canvas>
+  <span class="hm26-croix" style="--x:9.2%;--y:27%" aria-hidden="true"></span>
+  <span class="hm26-croix" style="--x:89.2%;--y:61.5%" aria-hidden="true"></span>
+  <div class="hm26-haut">
+    <div class="hm26-titre-bloc">
+      <p class="hm26-label">03 / Notre méthode</p>
+      <h2 class="hm26-titre" id="hm26-titre"><span class="hm26-l1">De l’idée au réel.</span> <span class="hm26-l2">Puis, plus loin<span class="hm26-point">.</span></span></h2>
+    </div>
+    <div class="hm26-intro">
+      <p>Un cadre précis, du premier échange aux évolutions du produit. Qualité, clarté et délais maîtrisés, à chaque étape.</p>
+      <a class="hm26-lien" href="https://www.hws.pm/services/sites-web-sur-mesure#methode">Découvrir notre méthode en détail <svg class="hm26-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+  <div class="hm26-trajet">
+    <svg class="hm26-svg" viewBox="0 0 1586 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+      <path class="hm26-ligne" d="M0 274 C 70 246, 118 229, 178 217 S 400 183, 486 170 S 702 142, 791 130 S 988 100, 1075 88 S 1290 57, 1373 46 S 1478 25, 1528 16" pathLength="1"/>
+      <path class="hm26-pointe" d="M1513.8 11.3 L1528 16 L1516.3 25.4"/>
+      <circle class="hm26-rond" cx="178" cy="217" r="8"/><circle class="hm26-rond" cx="486" cy="170" r="8"/><circle class="hm26-rond" cx="791" cy="130" r="8"/><circle class="hm26-rond" cx="1075" cy="88" r="8"/><circle class="hm26-rond-corail" cx="1075" cy="88" r="3.6"/><circle class="hm26-rond" cx="1373" cy="46" r="8"/>
+    </svg>
+    <ol class="hm26-etapes"><li class="hm26-etape" style="--x:11.223%;--y:54.250%;--dx:-3.783%;--d:0"><p class="hm26-num"><span class="hm26-sr">Étape </span>01</p><h3 class="hm26-etape-titre">Écouter</h3><p class="hm26-etape-texte">Comprendre vos besoins, votre contexte et vos utilisateurs.</p></li><li class="hm26-etape" style="--x:30.643%;--y:42.500%;--dx:-5.107%;--d:1"><p class="hm26-num"><span class="hm26-sr">Étape </span>02</p><h3 class="hm26-etape-titre">Structurer</h3><p class="hm26-etape-texte">Définir le périmètre, organiser les fonctionnalités et concevoir l’expérience.</p></li><li class="hm26-etape" style="--x:49.874%;--y:32.500%;--dx:-5.359%;--d:2"><p class="hm26-num"><span class="hm26-sr">Étape </span>03</p><h3 class="hm26-etape-titre">Développer</h3><p class="hm26-etape-texte">Construire une solution adaptée, sur une base technique solide.</p></li><li class="hm26-etape" style="--x:67.781%;--y:22.000%;--dx:-3.026%;--d:3"><p class="hm26-num"><span class="hm26-sr">Étape </span>04</p><h3 class="hm26-etape-titre">Faire</h3><p class="hm26-etape-texte">Livrer une version fonctionnelle et la confronter aux retours réels.</p></li><li class="hm26-etape" style="--x:86.570%;--y:11.500%;--dx:-2.963%;--d:4"><p class="hm26-num"><span class="hm26-sr">Étape </span>05</p><h3 class="hm26-etape-titre"><em>Évoluer</em><span class="hm26-point">.</span></h3><p class="hm26-etape-texte">Améliorer le produit et accompagner sa croissance.</p></li></ol>
+  </div>
+  <dl class="hm26-engagements">
+    <div class="hm26-eng hm26-eng--fort"><dt>15 jours</dt><dd>Pour livrer un MVP fonctionnel.</dd></div>
+    <div class="hm26-eng"><dt>8 étapes</dt><dd>Une méthode structurée.</dd></div>
+    <div class="hm26-eng"><dt>Transparence</dt><dd>À chaque étape du projet.</dd></div>
+    <div class="hm26-eng"><dt>100 %</dt><dd>Un code documenté, qui vous appartient.</dd></div>
+  </dl>
+</section>
+<!-- ░░ PARTENAIRES 2026 ░░ (styles : partenaires-2026.css · aucun script : défilement en CSS) -->
+<section id="partners" class="hpa" aria-labelledby="hpa-titre">
+  <span class="hpa-croix" aria-hidden="true"></span>
+  <div class="hpa-haut">
+    <div>
+      <p class="hpa-label">04 / Ils nous font confiance</p>
+      <h2 class="hpa-titre" id="hpa-titre">Nos partenaires <em>&amp; clients</em><span class="hpa-point">.</span></h2>
+    </div>
+    <p class="hpa-intro">Des grands groupes aux associations, ils nous confient la conception et l’évolution de leurs produits digitaux.</p>
+  </div>
+  <div class="hpa-bande">
+    <div class="hpa-piste">
+      <ul class="hpa-logos"><li><span class="hpa-logo" role="img" aria-label="Air France" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d7153dd6e89545cabb_logo-air-france.webp')"></span></li><li><span class="hpa-logo" role="img" aria-label="Airbus" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d6cdd52fdd59d97dc1_logo-airbus.webp')"></span></li><li><span class="hpa-logo" role="img" aria-label="Pierre Fabre" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d829ae392dbbe42751_logo-pierre-fabre.webp')"></span></li><li><span class="hpa-logo" role="img" aria-label="Pierre Fabre Eczema Foundation" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d7153dd6e89545ca2d_logo-ezgzeg.webp')"></span></li><li><span class="hpa-logo" role="img" aria-label="France Asso Cancer et Peau" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d66c6d14681b59946c_logo-client-cmjn.webp')"></span></li><li><span class="hpa-logo" role="img" aria-label="Association Mariale d’Entraide" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d67d7d1946fe510179_logo-ame.webp')"></span></li><li><span class="hpa-logo" role="img" aria-label="Banquiz" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d89b9490c8e83a1cd0_logo-banquiz.webp')"></span></li><li><span class="hpa-logo" role="img" aria-label="Escapade Game" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d629ae392dbbe42554_logo-escapade-game.webp')"></span></li><li><span class="hpa-logo" role="img" aria-label="Listti" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d8309d75c65f8f279c_logo-listti.svg')"></span></li><li><span class="hpa-logo" role="img" aria-label="Maison Sarment" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d87d7d1946fe5102da_logo-maison-sarment.webp')"></span></li><li><span class="hpa-logo" role="img" aria-label="Soleil du Midi" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d6a25110859f93d0d1_logo-sdm.svg')"></span></li><li><span class="hpa-logo" role="img" aria-label="Nemo" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d7e0afe2b18dc633df_logo-icon-et-texte.webp')"></span></li><li><span class="hpa-logo" role="img" aria-label="LGI Wines" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4f50ba702e06964981c2b1_logo-lgi-wines.svg')"></span></li></ul>
+      <ul class="hpa-logos" aria-hidden="true"><li><span class="hpa-logo" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d7153dd6e89545cabb_logo-air-france.webp')"></span></li><li><span class="hpa-logo" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d6cdd52fdd59d97dc1_logo-airbus.webp')"></span></li><li><span class="hpa-logo" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d829ae392dbbe42751_logo-pierre-fabre.webp')"></span></li><li><span class="hpa-logo" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d7153dd6e89545ca2d_logo-ezgzeg.webp')"></span></li><li><span class="hpa-logo" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d66c6d14681b59946c_logo-client-cmjn.webp')"></span></li><li><span class="hpa-logo" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d67d7d1946fe510179_logo-ame.webp')"></span></li><li><span class="hpa-logo" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d89b9490c8e83a1cd0_logo-banquiz.webp')"></span></li><li><span class="hpa-logo" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d629ae392dbbe42554_logo-escapade-game.webp')"></span></li><li><span class="hpa-logo" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d8309d75c65f8f279c_logo-listti.svg')"></span></li><li><span class="hpa-logo" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d87d7d1946fe5102da_logo-maison-sarment.webp')"></span></li><li><span class="hpa-logo" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d6a25110859f93d0d1_logo-sdm.svg')"></span></li><li><span class="hpa-logo" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4660d7e0afe2b18dc633df_logo-icon-et-texte.webp')"></span></li><li><span class="hpa-logo" style="--logo:url('https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a4f50ba702e06964981c2b1_logo-lgi-wines.svg')"></span></li></ul>
+    </div>
+  </div>
+</section>
+<!-- ░░ AVIS 2026 — variante « deck » ░░ (styles : avis-2026.css + avis-2026-deck.css · boucle de feuilles : avis-2026-deck.js) -->
+<section id="testimonials" class="hav hav--deck" aria-labelledby="hav-titre">
+  <div class="hav-inner">
+    <div class="hav-haut">
+      <div>
+        <p class="hav-label">05 / Témoignages clients</p>
+        <h2 class="hav-titre" id="hav-titre"><span>Leurs mots,</span> <em>notre meilleure preuve<span class="hav-point">.</span></em></h2>
+      </div>
+      <p class="hav-stat"><span class="hav-stat-num">98<sup>%</sup></span><span class="hav-stat-label">Taux de renouvellement</span></p>
+    </div>
+    <div class="hav-carrousel" role="region" aria-roledescription="carrousel" aria-label="Témoignages clients">
+      <ul class="hav-liste"><li class="hav-avis" data-i="0"><p class="hav-cat">Application mobile · Santé</p><blockquote><p>Nous avons confié la traduction de notre application en arabe à l'agence HWS. Le résultat a dépassé nos attentes, avec <mark>une interface intuitive</mark> et une amélioration notable des performances. Leur équipe de maintenance assure un suivi régulier et réactif.</p></blockquote><p class="hav-auteur"><span class="hav-nom">Loic Vuillemin</span><span class="hav-poste">Urology Product Manager — Uroquest</span></p></li><li class="hav-avis" data-i="1"><p class="hav-cat">Application mobile · Santé</p><blockquote><p>L'équipe d'HWS a insufflé <mark>une nouvelle vie</mark> à notre application ! Leur expertise a permis de la moderniser, de l'optimiser et de la traduire, la rendant accessible à un public international. Grâce à leur maintenance réactive, notre application continue de fonctionner parfaitement.</p></blockquote><p class="hav-auteur"><span class="hav-nom">Aline Stennevin</span><span class="hav-poste">Medical Advisor — Side Once Skin</span></p></li><li class="hav-avis" data-i="2"><p class="hav-cat">Jeu de cartes · Santé</p><blockquote><p>L'agence HWS a donné vie à notre jeu de cartes, <mark>de la conception à l'impression</mark> ! Leur expertise et leur créativité ont transformé notre idée en une réalité tangible. Nous recommandons vivement leurs services.</p></blockquote><p class="hav-auteur"><span class="hav-nom">Celine Decarpigny</span><span class="hav-poste">Chef de Projets — France Asso Cancer</span></p></li><li class="hav-avis" data-i="3"><p class="hav-cat">Application mobile · Santé</p><blockquote><p>L'équipe HWS a été d'une aide précieuse dans le développement de notre application mobile. <mark>De la conception initiale à la maintenance</mark> en cours, ils ont fait preuve d'un professionnalisme et d'une expertise irréprochables.</p></blockquote><p class="hav-auteur"><span class="hav-nom">Catherine Jean Decoster</span><span class="hav-poste">Chef de Projets Cliniques — Eczema CARE+</span></p></li><li class="hav-avis" data-i="4"><p class="hav-cat">Site web · Commerce</p><blockquote><p>Quel timing et quel talent. <mark>Un site aux petits oignons en 5 semaines</mark> seulement. On est au top ! Merci encore.</p></blockquote><p class="hav-auteur"><span class="hav-nom">Jérôme Fourest</span><span class="hav-poste">Fondateur — Banquiz</span></p></li><li class="hav-avis" data-i="5"><p class="hav-cat">Tourisme · Web &amp; mobile</p><blockquote><p>L'accompagnement de l'Agence HWS dans le développement d'Henri Trip fut pour nous une véritable bénédiction. Nous n'avions pas les compétences en interne. Nous avons construit le projet ensemble <mark>main dans la main</mark> ! Ils sont très réactifs et humains.</p></blockquote><p class="hav-auteur"><span class="hav-nom">Grégory Muratorio</span><span class="hav-poste">CEO — Henri Trip</span></p></li><li class="hav-avis" data-i="6"><p class="hav-cat">Site web · Tourisme</p><blockquote><p>L'équipe HWS est <mark>à l'écoute, réactive</mark> et parfaitement attentive à nos besoins. La création du site et la migration du domaine se sont déroulées simplement, et une formation claire nous rend autonomes au quotidien. Je recommande vivement cette agence !</p></blockquote><p class="hav-auteur"><span class="hav-nom">L'équipe du Vieux Mas</span><span class="hav-poste">Direction du parc — Le Vieux Mas</span></p></li><li class="hav-avis" data-i="7"><p class="hav-cat">Site web · Jeu &amp; loisirs</p><blockquote><p>Grâce à leur accompagnement notre produit a été <mark>lancé avec succès</mark>. Leur équipe a créé un site internet et nous a formés pour une gestion autonome. L'automatisation des process internes et la mise en place des paiements en ligne ont transformé notre efficacité.</p></blockquote><p class="hav-auteur"><span class="hav-nom">Veronique Robelian</span><span class="hav-poste">CEO — Escapade Game</span></p></li><li class="hav-avis" data-i="8"><p class="hav-cat">Application mobile · Santé</p><blockquote><p>Nous avons confié notre application à cette équipe, malgré le fait qu'ils ne connaissaient pas le langage initial. Ils l'ont optimisée, adaptée à nos besoins spécifiques et traduite avec succès. Leur compétence et leur efficacité sont impressionnantes !</p></blockquote><p class="hav-auteur"><span class="hav-nom">Apolline Perrois</span><span class="hav-poste">Responsable scientifique — Hemangiom'app</span></p></li><li class="hav-avis" data-i="9"><p class="hav-cat">Site web · Institutionnel</p><blockquote><p>HWS nous a accompagné dans la création d'<mark>une expérience web complète</mark> : site internet sur-mesure, maintenance réactive et vidéos impactantes. Leur professionnalisme et leur créativité ont permis de concrétiser notre vision et de booster notre visibilité en ligne.</p></blockquote><p class="hav-auteur"><span class="hav-nom">Damien Hervouet</span><span class="hav-poste">Directeur Général — Assoc. Mariale d'Entraide</span></p></li></ul>
+      <div class="hav-deck-commandes">
+        <div class="hav-deck-repere"><p class="hav-compteur" aria-hidden="true"><span class="hav-courant">01</span> / <span class="hav-total">10</span></p><div class="hav-points"></div></div>
+        <div class="hav-deck-fleches"><button type="button" class="hav-btn hav-btn--prec" aria-label="Témoignage précédent"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="hav-btn hav-btn--suiv" aria-label="Témoignage suivant"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+        <p class="hav-sr hav-deck-annonce" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ░░ JOURNAL 2026 ░░ (styles : journal-2026.css · poulpe : journal-2026.js) -->
+<section id="blog" class="hjr" aria-labelledby="hjr-titre">
+  <!-- trame du Journal retirée (21 oct. 2026) : pas d'animation dans cette section -->
+  <div class="hjr-inner">
+    <div class="hjr-haut">
+      <div>
+        <p class="hjr-label">06 / Journal &amp; ressources</p>
+        <h2 class="hjr-titre" id="hjr-titre">Du code, <em>des idées</em><span class="hjr-point">.</span></h2>
+        <p class="hjr-chapo">Retours d’expérience, conseils techniques et réflexions de l’équipe HWS.</p>
+      </div>
+      <a class="hjr-tous" href="https://www.hws.pm/blog">Tous les articles <svg class="hjr-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="hjr-grille">
+      <article class="hjr-article hjr-article--une"><a class="hjr-image" href="https://www.hws.pm/blog/ecommerce-shopify-webflow-sur-mesure" tabindex="-1" aria-hidden="true"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6ad5c6dc48cfac45dad6a340_pexels-photo-6956903.jpeg" width="1600" height="900" alt="" loading="lazy" decoding="async"></a><div class="hjr-texte"><p class="hjr-meta">Conseil <span aria-hidden="true">·</span> 6 min</p><h3 class="hjr-titre-article"><a href="https://www.hws.pm/blog/ecommerce-shopify-webflow-sur-mesure">E-commerce en 2026 : Shopify, Webflow ou sur-mesure ?</a></h3><p class="hjr-resume">Shopify, Webflow ou sur-mesure : notre agence détaille les critères concrets pour choisir la bonne solution e-commerce en 2026, selon votre activité et votre budget.</p><p class="hjr-pied"><time datetime="2026-10-19">19/10/2026</time><a class="hjr-lire" href="https://www.hws.pm/blog/ecommerce-shopify-webflow-sur-mesure" aria-hidden="true" tabindex="-1">Lire l’article <svg class="hjr-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></div></article>
+      <div class="hjr-cote"><article class="hjr-article "><a class="hjr-image" href="https://www.hws.pm/blog/refonte-seo-migration-technique" tabindex="-1" aria-hidden="true"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6acc8e003487dc70d40943d1_pexels-photo-9822732.jpeg" width="1600" height="900" alt="" loading="lazy" decoding="async"></a><div class="hjr-texte"><p class="hjr-meta">Conseil <span aria-hidden="true">·</span> 5 min</p><h3 class="hjr-titre-article"><a href="https://www.hws.pm/blog/refonte-seo-migration-technique">Refonte SEO : comment préserver ses positions pendant une migration technique</a></h3><p class="hjr-resume">Refonte SEO : comment préserver vos positions Google pendant une migration technique. Notre agence détaille redirections, audit et plan de bascule sans perte de trafic.</p><p class="hjr-pied"><time datetime="2026-10-12">12/10/2026</time><a class="hjr-lire" href="https://www.hws.pm/blog/refonte-seo-migration-technique" aria-hidden="true" tabindex="-1">Lire l’article <svg class="hjr-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></div></article><article class="hjr-article "><a class="hjr-image" href="https://www.hws.pm/blog/logiciel-metier-vs-solution-marche" tabindex="-1" aria-hidden="true"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6ac3543065b05461de189834_pexels-photo-6804068.jpeg" width="1600" height="900" alt="" loading="lazy" decoding="async"></a><div class="hjr-texte"><p class="hjr-meta">Produits digitaux sur-mesure <span aria-hidden="true">·</span> 6 min</p><h3 class="hjr-titre-article"><a href="https://www.hws.pm/blog/logiciel-metier-vs-solution-marche">Logiciel métier sur-mesure vs solution du marché : comment trancher ?</a></h3><p class="hjr-resume">Logiciel métier sur-mesure ou solution du marché : quels critères changent vraiment la décision ? Notre agence vous aide à trancher sans parti pris.</p><p class="hjr-pied"><time datetime="2026-10-05">05/10/2026</time><a class="hjr-lire" href="https://www.hws.pm/blog/logiciel-metier-vs-solution-marche" aria-hidden="true" tabindex="-1">Lire l’article <svg class="hjr-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></div></article></div>
+    </div>
+  </div>
+</section>
+<!-- ░░ COLLABORATION 2026 ░░ (styles : collab-2026.css · curseurs et ruban : collab-2026.js) -->
+<section id="collab" class="hco" aria-labelledby="hco-titre">
+  <canvas class="hco-trame" aria-hidden="true"></canvas>
+  <div class="hco-inner">
+    <p class="hco-label">07 / Collaboration</p>
+    <h2 class="hco-titre" id="hco-titre"><span class="hco-l1">Le <span class="hco-projet">projet</span> est</span> <span class="hco-l2"><em class="hco-vous">à vous</em><span class="hco-point">.</span></span></h2>
+    <p class="hco-texte">Chez HWS, vous n’êtes jamais spectateur de votre propre projet. Nous avançons avec vous à chaque étape&nbsp;: <span class="hco-echanges">échanges directs</span>, décisions partagées et itérations rapides. Vous gardez la main, nous faisons avancer les idées.</p>
+    <a class="hco-btn" href="#contact">Réserver une visio <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+  <div class="hco-calque" aria-hidden="true">
+    <span class="hco-trait hco-trait--projet"></span>
+    <span class="hco-trait hco-trait--echanges"></span>
+    <span class="hco-cadre"><i></i><i></i><i></i><i></i></span>
+    <div class="hco-cur hco-cur--guenole" data-qui="guenole"><svg viewBox="0 0 22 26" aria-hidden="true" focusable="false"><path d="M2 2v19l5-5 3.6 8 3.2-1.4-3.6-7.9H17L2 2Z" fill="currentColor" stroke="#F7F7F4" stroke-width="1.2" stroke-linejoin="round"/></svg><span class="hco-nom">Guénolé</span><span class="hco-note hco-note--haut"><i></i>On ajuste</span></div>
+    <div class="hco-cur hco-cur--bruno" data-qui="bruno"><svg viewBox="0 0 22 26" aria-hidden="true" focusable="false"><path d="M2 2v19l5-5 3.6 8 3.2-1.4-3.6-7.9H17L2 2Z" fill="currentColor" stroke="#F7F7F4" stroke-width="1.2" stroke-linejoin="round"/></svg><span class="hco-nom">Bruno</span><span class="hco-note hco-note--haut"><i></i>Validé ensemble</span></div>
+    <div class="hco-cur hco-cur--maxime" data-qui="maxime"><svg viewBox="0 0 22 26" aria-hidden="true" focusable="false"><path d="M2 2v19l5-5 3.6 8 3.2-1.4-3.6-7.9H17L2 2Z" fill="currentColor" stroke="#F7F7F4" stroke-width="1.2" stroke-linejoin="round"/></svg><span class="hco-nom">Maxime</span></div>
+    <div class="hco-cur hco-cur--vous" data-qui="vous"><svg viewBox="0 0 22 26" aria-hidden="true" focusable="false"><path d="M2 2v19l5-5 3.6 8 3.2-1.4-3.6-7.9H17L2 2Z" fill="currentColor" stroke="#F7F7F4" stroke-width="1.2" stroke-linejoin="round"/></svg><span class="hco-nom">Vous</span><span class="hco-note hco-note--droite"><i></i>Votre décision</span></div>
+  </div>
+</section>
+<!-- ░░ FOOTER HWS 2026 ░░ (styles : footer-2026.css · trame : footer-2026.js) -->
+<footer class="hf26 hf26--bleu" aria-labelledby="hf26-titre">
+  <div class="hf26-trame" aria-hidden="true"><canvas></canvas></div>
+  <div class="hf26-inner">
+    <div class="hf26-top">
+      <p class="hf26-label" data-reveal>HWS Agency <span class="hf26-dot">·</span> Toulouse</p>
+      <a class="hf26-up" href="#" data-reveal>Haut de page ↑</a>
+    </div>
+
+    <h2 class="hf26-title" id="hf26-titre" data-reveal style="--d:1">Et si on donnait <em>vie</em> à votre prochaine idée<span class="hf26-q">&nbsp;?</span></h2>
+
+    <div class="hf26-contact" data-reveal style="--d:2">
+      <a class="hf26-mail" href="mailto:contact@hws.pm">contact@hws.pm <svg class="hf26-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="hf26-actions">
+        <a class="hf26-btn" href="mailto:contact@hws.pm">Réserver une visio <svg class="hf26-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+    <nav class="hf26-nav" aria-label="Pied de page" data-reveal style="--d:3">
+      <div class="hf26-col">
+        <p class="hf26-label">01 — Navigation</p>
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/projets-realises">Projets réalisés</a></li>
+          <li><a href="/blog">Journal</a></li>
+          <li><a href="/contact">Nous contacter</a></li>
+        </ul>
+      </div>
+      <div class="hf26-col">
+        <p class="hf26-label">02 — Expertises</p>
+        <ul class="hf26-services">
+          <li><a href="/services/sites-web-sur-mesure">Sites web sur-mesure</a></li>
+          <li><a href="/services/applications-mobiles-saas">Applications mobiles &amp; SaaS</a></li>
+          <li><a href="/services/sites-no-code-webflow">Sites No-Code &amp; Webflow</a></li>
+          <li><a href="/services/refonte-site-web">Refonte de site web</a></li>
+          <li><a href="/services/reprise-projet-web">Reprise de projet web</a></li>
+          <li><a href="/services/audit-de-site-web">Audit &amp; Cadrage</a></li>
+          <li><a href="/services/maintenance-site-web">Maintenance de site web</a></li>
+          <li><a href="/services/regie-sous-traitance">Régie &amp; Sous-traitance</a></li>
+        </ul>
+      </div>
+      <div class="hf26-col">
+        <p class="hf26-label">03 — Contact</p>
+        <address>
+          <a href="https://maps.google.com/?q=50+rue+de+Metz+Toulouse" target="_blank" rel="noopener">50 rue de Metz, 31000 Toulouse</a>
+          <a href="mailto:contact@hws.pm">contact@hws.pm</a>
+        </address>
+        <p class="hf26-social"><a href="https://www.linkedin.com/company/hws-agency" target="_blank" rel="noopener">LinkedIn</a></p>
+      </div>
+    </nav>
+
+    <div class="hf26-sign" data-reveal style="--d:4">
+      <a class="hf26-logo" href="/" aria-label="HWS Agency, retour à l’accueil"><svg viewBox="0 0 321 166" role="img" aria-hidden="true" focusable="false"><path d="M129.757 0.1875H42.2191H20.0031C4.49217 0.1875 -4.64224 17.6008 4.17444 30.3622L58.8265 109.467C66.4574 120.512 82.7685 120.543 90.4417 109.527L145.544 30.4229C154.429 17.6678 145.302 0.1875 129.757 0.1875Z" fill="#3974F7"/><path d="M215.306 0H201.104C194.821 0 188.933 3.06858 185.334 8.21936L96.7281 135.026C87.8172 147.778 96.9411 165.284 112.498 165.284H127.039C133.334 165.284 139.232 162.204 142.829 157.037L231.096 30.2301C239.975 17.4745 230.847 0 215.306 0Z" fill="#3974F7"/><path d="M301.078 0H286.882C280.598 0 274.71 3.06891 271.111 8.22015L182.514 135.027C173.604 147.779 182.728 165.284 198.285 165.284H212.82C219.117 165.284 225.014 162.203 228.611 157.036L316.869 30.2294C325.747 17.4736 316.62 0 301.078 0Z" fill="#3974F7"/></svg></a>
+      <p class="hf26-desc">Agence de développement web et mobile sur-mesure basée à Toulouse. Nous transformons vos idées en produits digitaux performants.</p>
+      <p class="hf26-label">Design <span class="hf26-dot">·</span> Développement</p>
+    </div>
+
+    <div class="hf26-bottom" data-reveal style="--d:5">
+      <p>© 2026 HWS Agency · Toulouse · Développement Web et Mobile</p>
+      <a href="/mentions-legales">Mentions légales</a>
+    </div>
+  </div>
+</footer>
+<script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=69dcdc0620ab5f37ce8bfd2c" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/js/webflow.schunk.afbd71dbb0de1b6e.js" type="text/javascript" integrity="sha384-P2JCtcLjXvLSXYzbUMP6DY8AYZJ42wFHopgUDa1modTLgJBqH3M6CjSduY6guk3X" crossorigin="anonymous"></script><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/js/webflow.e2970141.7a50c8200835cfd6.js" type="text/javascript" integrity="sha384-OQWnh9dUfJBAHSqgmd1BrJhOquvybe3EYnn29xHg9m565Vkql7/P9FpGGznhL/b4" crossorigin="anonymous"></script><!-- ═══ HWS — Cal.com : modal de réservation sur les CTA "Réserver une visio" / "Discutons…" / "Parler de votre projet" ═══
+     Un clic sur tout <a>/<button> dont le texte matche ouvre le modal Cal (hws-agency/30min).
+     Couvre : Nav desktop/mobile, Footer, sections CTA, heros, fiches projets — sur toutes les pages. -->
+<script type="text/javascript">
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://ical.hws.pm/embed/embed.js", "init");
+Cal("init", "30min", {origin:"https://ical.hws.pm"});
+Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+
+(function () {
+  function norm(t) {
+    return (t || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/\s+/g, " ").trim();
+  }
+  /* "reserver une visio", "reservez votre visio"… + CTA commençant par "discutons" ou "parler/parlez de votre projet" */
+  var BOOKING_RE = /reserv\w*\s+(une\s+|votre\s+)?visio|^discutons|^parle[rz]\s+de\s+votre\s+projet/;
+  document.addEventListener("click", function (e) {
+    var el = e.target && e.target.closest ? e.target.closest("a, button") : null;
+    if (!el || !BOOKING_RE.test(norm(el.textContent))) return;
+    e.preventDefault();
+    e.stopPropagation();
+    Cal.ns["30min"]("modal", {
+      calLink: "hws-agency/30min",
+      config: { "layout": "month_view", "useSlotsViewOnSmallScreen": "true" }
+    });
+  }, true);
+})();
+</script>
+
+<!-- Google Tag Manager (noscript) -->
+
+<!-- End Google Tag Manager (noscript) -->
+<!--
+  ════════════════════════════════════════════════════════════════
+  HWS — Page Home
+  Scripts : marquee logos partenaires + animation défilement infini
+  ════════════════════════════════════════════════════════════════
+  À coller dans Webflow Designer :
+  Page Settings (Home "/") → Custom Code → Before </body> tag
+  Coller TOUT le contenu ci-dessous (sans ce bloc commenté du haut)
+  Sauvegarder, publier en preview pour tester
+  ════════════════════════════════════════════════════════════════
+-->
+<style>
+  /* ─── PARTNERS MARQUEE — animation défilement infini ─── */
+  @keyframes pmScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ─── Dégradés bords (masque fondu gauche/droite) ────── */
+  .pm-wrap::before,
+  .pm-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .pm-wrap::before {
+    left: 0;
+    background: linear-gradient(to right, #fff 0%, transparent 100%);
+  }
+  .pm-wrap::after {
+    right: 0;
+    background: linear-gradient(to left, #fff 0%, transparent 100%);
+  }
+</style>
+<script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F69ea11ca6c56536cd056b6b6%2Fnav_scroll-2.0.2.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F69ea11cb0d2835a48bca882e%2Fburger_js-2.0.2.js" type="text/javascript"></script><!-- collabcssfix-1.0.1.js retiré : remplacé par collab-2026 --><!-- collablabelfix-1.0.2.js retiré : remplacé par collab-2026 --><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F69ea1634984fbeb99985f67d%2Ftesti_css-1.0.1.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F6a27eaf8fa90727c4f1b116b%2Fhws_counter_animate-1.0.0.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F6a4cef18d84119ed0a330712%2Ftesti_links-1.0.0.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F69dceeed7a08b24d131f98a1%2Ftagline_cycle-1.0.0.js" type="text/javascript"></script><!-- collabjs-1.2.0.js retiré : remplacé par collab-2026 --><!-- collabcursors-1.3.0.js retiré : remplacé par collab-2026 --><!-- collabtypewriter-1.0.0.js retiré : remplacé par collab-2026 --><!-- collablabelfix-1.0.2.js retiré : remplacé par collab-2026 --><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F69dd003376783756459cf5e3%2Fprojects_scroll-1.0.0.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F69eb7fbbe92001ded472bfa0%2Fhws_scroll_animations-1.1.0.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F6a730e877c34eaf442a9423c%2Fhws_hero_video_desktop_activate-1.0.0.js" type="text/javascript"></script><script>document.write('<script src="../footer-2026/footer-2026-puzzle.js?v=' + Date.now() + '" defer><\/script>');
+  document.write('<script src="../hero-equipe-particules-2026/hero-equipe-particules.js?v=' + Date.now() + '" defer><\/script>');
+  document.write('<script src="../vision-2026/vision-2026-blocs.js?v=' + Date.now() + '" defer><\/script>');
+  document.write('<script src="../projets-2026/projets-2026-croquis.js?v=' + Date.now() + '" defer><\/script>');
+  document.write('<script src="../methode-2026/methode-2026-engrenages.js?v=' + Date.now() + '" defer><\/script>');
+  document.write('<script src="../avis-2026/avis-2026-deck.js?v=' + Date.now() + '" defer><\/script>');
+  document.write('<script src="../journal-2026/journal-2026.js?v=' + Date.now() + '" defer><\/script>');
+  document.write('<script src="../collab-2026/collab-2026.js?v=' + Date.now() + '" defer><\/script>');
+  document.write('<script src="../nav-2026/nav-2026.js?v=' + Date.now() + '" defer><\/script>');
+  document.write('<script src="../liens-refonte-2026.js?v=' + Date.now() + '" defer><\/script>');</script>
+  <script>
+    /* Heure locale de Toulouse dans la ligne de fermeture. */
+    (function () {
+      var el = document.querySelector('[data-hf-clock]');
+      if (!el || !window.Intl) return;
+      var fmt = new Intl.DateTimeFormat('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' });
+      function tick() { el.textContent = fmt.format(new Date()); }
+      tick();
+      el.parentNode.hidden = false;
+      setInterval(tick, 20000);
+    })();
+  </script>
+<!-- collab-mobile.js retiré : remplacé par collab-2026 -->
+</body></html>

@@ -1,0 +1,237 @@
+/* HWS Agency 2026 — section « Témoignages », variante « deck » (d'après le principe du Quote Deck de Scrolltide).
+   Un avis au centre, à plat et lisible ; ses voisins de part et d'autre, inclinés en perspective et estompés,
+   sur une boucle sans fin. Navigation : flèches, repères, clic sur un voisin, glissé, clavier.
+   Adapté au système HWS 2026 : feuilles blanches à filet bleu sur l'ivoire (pas de couleurs pastel, pas d'ombre),
+   citation en Instrument Serif, l'expression <mark> de chaque avis en italique bleu (les mots ne changent pas),
+   repère de l'avis courant en corail (règle de l'étincelle : l'étape en cours).
+   S'active par la classe .hav--deck sur la section ; charger APRÈS avis-2026.css et home-2026-systeme.css.
+   Sans JavaScript : les dix feuilles se lisent dans une rangée qui défile au doigt. Tout est préfixé .hav--deck. */
+
+.hav--deck {
+  --deck-l: clamp(320px, 38vw, 580px);    /* largeur d'une feuille */
+  --deck-pas: 0.76;                        /* écart entre deux feuilles, en fraction de largeur */
+  --deck-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --deck-duree: 0.75s;
+  --deck-blanc: #FFFFFF;
+  --deck-filet: rgba(57, 116, 247, 0.24);
+  --deck-filet-fort: rgba(57, 116, 247, 0.45);
+  --deck-gris: #5E6389;
+  --deck-bleu-texte: #2F63DE;
+}
+
+/* ── La scène ── */
+html .hav--deck .hav-liste {
+  position: relative;
+  display: block;
+  padding-top: 0;
+  margin-top: var(--ecart-contenu, 56px);
+}
+.hav--deck.hav--deck-pret .hav-liste {
+  height: var(--deck-h, 520px);
+  perspective: 1700px;
+  perspective-origin: 50% 40%;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+.hav--deck.hav--deck-pret .hav-liste.is-glisse { cursor: grabbing; }
+.hav--deck .hav-liste:focus-visible { outline: 2px solid var(--hav-bleu); outline-offset: 12px; border-radius: 6px; }
+
+/* ── Une feuille ── */
+html .hav--deck .hav-avis,
+html .hav--deck .hav-avis:nth-child(2n),
+html .hav--deck .hav-avis:nth-child(odd) {
+  display: flex;
+  flex-direction: column;
+  width: var(--deck-l);
+  padding: clamp(26px, 2.5vw, 42px) clamp(26px, 2.6vw, 44px) clamp(24px, 2.2vw, 36px);
+  border: 1px solid var(--deck-filet);
+  border-left: 1px solid var(--deck-filet);
+  border-radius: 6px;
+  background: var(--deck-blanc);
+  opacity: 1;
+  transform: none;
+}
+.hav--deck.hav--deck-pret .hav-avis {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: var(--deck-carte-h, auto);
+  margin-left: calc(var(--deck-l) / -2);
+  transform-origin: 50% 50%;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  transition: transform var(--deck-duree) var(--deck-ease), opacity var(--deck-duree) var(--deck-ease), border-color 0.3s;
+}
+.hav--deck .hav-liste.is-glisse .hav-avis,
+.hav--deck .hav-liste.is-glisse .hav-avis::after { transition: none; }
+/* Les feuilles restent opaques (celle de devant cache celles de derrière) ; l'éloignement se lit par un voile
+   couleur ivoire posé sur la feuille, dont l'intensité vient du script (--voile, 0 = net). */
+.hav--deck.hav--deck-pret .hav-avis::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 6px;
+  background: var(--hav-casse, #F7F7F4);
+  opacity: var(--voile, 0);
+  pointer-events: none;
+  transition: opacity var(--deck-duree) var(--deck-ease);
+}
+.hav--deck .hav-avis.is-voisin { cursor: pointer; }
+.hav--deck .hav-avis.is-loin { pointer-events: none; }
+.hav--deck .hav-avis.is-actif { cursor: auto; user-select: text; -webkit-user-select: text; }
+
+/* Avec le script, la feuille visible est un enveloppe intérieure (.hav-deck-feuille) : le <li> porte la place
+   dans le deck, la feuille porte l'inclinaison au survol. Même effet que la photo des fondateurs (section 01) :
+   la feuille s'incline vers le curseur (5° au plus), une lueur suit le curseur à sa surface, un filet de lumière
+   borde la feuille, et une ombre douce se décale à l'opposé de l'inclinaison. Souris seulement. */
+html .hav--deck.hav--deck-pret .hav-avis:nth-child(n) { display: block; padding: 0; border: 0; background: none; }
+.hav--deck .hav-deck-feuille {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: clamp(26px, 2.5vw, 42px) clamp(26px, 2.6vw, 44px) clamp(24px, 2.2vw, 36px);
+  border: 1px solid var(--deck-filet);
+  border-radius: 6px;
+  background: var(--deck-blanc);
+  transform-origin: 50% 50%;
+  backface-visibility: hidden;
+  transition: border-color 0.3s;
+}
+.hav--deck .hav-deck-feuille > :not(.hav-deck-reflet) { position: relative; z-index: 1; }
+.hav--deck .hav-avis.is-voisin:hover .hav-deck-feuille,
+.hav--deck .hav-avis.is-actif .hav-deck-feuille { border-color: var(--deck-filet-fort); }
+.hav--deck .hav-deck-reflet {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: var(--go, 0);
+  background:
+    radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(57, 116, 247, 0.11), rgba(57, 116, 247, 0.04) 28%, rgba(57, 116, 247, 0) 58%),
+    linear-gradient(115deg, rgba(57, 116, 247, 0) 32%, rgba(57, 116, 247, 0.045) 47%, rgba(57, 116, 247, 0) 62%);
+  box-shadow: inset 0 0 0 1px rgba(57, 116, 247, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* En-tête de la feuille : catégorie à gauche, numéro à deux chiffres à droite */
+.hav--deck .hav-deck-tete { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+html .hav--deck .hav-cat { font-size: 11.5px; font-weight: 500; letter-spacing: 0.14em; color: var(--deck-bleu-texte); }
+.hav--deck .hav-deck-num { flex: none; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: var(--deck-gris); font-variant-numeric: tabular-nums; }
+
+/* Citation : serif, l'expression marquée en italique bleu */
+html .hav--deck .hav-avis blockquote { margin: clamp(20px, 1.9vw, 30px) 0 clamp(24px, 2.2vw, 36px); padding: 0; }
+html .hav--deck .hav-avis blockquote::before { content: none; }
+html .hav--deck .hav-avis blockquote p {
+  max-width: none;
+  font-family: var(--hav-serif);
+  font-size: clamp(21px, 1.95vw, 31px);
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+  color: var(--hav-nuit);
+  text-wrap: pretty;
+}
+.hav--deck .hav-avis blockquote p::before { content: "« "; color: var(--hav-bleu); }
+.hav--deck .hav-avis blockquote p::after { content: " »"; color: var(--hav-bleu); }
+.hav--deck .hav-avis mark { background: none; color: var(--hav-bleu); font-style: italic; }
+
+/* Attribution : filet, puis nom ; poste et entreprise dessous, discrets */
+html .hav--deck .hav-auteur {
+  margin: auto 0 0;
+  padding-top: clamp(18px, 1.6vw, 24px);
+  border-top: 1px solid rgba(23, 27, 73, 0.12);
+  background: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  column-gap: 16px;
+  row-gap: 3px;
+}
+html .hav--deck .hav-nom { font-size: 15px; font-weight: 500; color: var(--hav-nuit); }
+html .hav--deck .hav-poste { grid-column: 1; font-size: 13.5px; line-height: 1.4; color: var(--deck-gris); }
+.hav--deck .hav-entreprise {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hav-nuit);
+  text-align: right;
+}
+
+/* ── Commandes : compteur et repères à gauche, flèches à droite ── */
+.hav--deck .hav-deck-commandes {
+  margin-top: clamp(36px, 3.4vw, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.hav--deck:not(.hav--deck-pret) .hav-deck-commandes { display: none; }
+.hav--deck .hav-deck-repere { display: flex; align-items: center; gap: 22px; min-width: 0; }
+.hav--deck .hav-compteur { font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: var(--deck-gris); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.hav--deck .hav-courant { color: var(--hav-nuit); }
+.hav--deck .hav-points { display: flex; align-items: center; gap: 4px; }
+.hav--deck .hav-point-btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+/* Repère : un point ; l'avis courant devient un trait corail qui s'étire depuis le point (transform seul) */
+.hav--deck .hav-point-btn::before,
+.hav--deck .hav-point-btn::after {
+  content: "";
+  grid-area: 1 / 1;
+  height: 6px;
+  border-radius: 999px;
+}
+.hav--deck .hav-point-btn::before { width: 6px; background: rgba(23, 27, 73, 0.24); transition: opacity 0.3s, background-color 0.3s; }
+.hav--deck .hav-point-btn::after { width: 22px; background: var(--hav-corail); opacity: 0; transform: scaleX(0.27); transition: transform 0.45s var(--deck-ease), opacity 0.3s; }
+.hav--deck .hav-point-btn:hover::before { background: rgba(23, 27, 73, 0.5); }
+.hav--deck .hav-point-btn[aria-current="true"]::before { opacity: 0; }
+.hav--deck .hav-point-btn[aria-current="true"]::after { opacity: 1; transform: none; }
+.hav--deck .hav-deck-fleches { display: flex; gap: 12px; flex: none; }
+.hav--deck .hav-btn:focus-visible, .hav--deck .hav-point-btn:focus-visible { outline: 2px solid var(--hav-bleu); outline-offset: 3px; border-radius: 999px; }
+
+/* ── Sans JavaScript : une rangée de feuilles qui défile ── */
+.hav--deck:not(.hav--deck-pret) .hav-liste {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 12px;
+}
+.hav--deck:not(.hav--deck-pret) .hav-avis { flex: none; scroll-snap-align: start; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hav--deck { --deck-duree: 0.01ms; }
+  .hav--deck .hav-point-btn::before, .hav--deck .hav-point-btn::after { transition: none; }
+}
+
+/* ── Tablette ── */
+@media (max-width: 900px) {
+  .hav--deck { --deck-l: min(64vw, 480px); --deck-pas: 0.82; }
+}
+/* ── Mobile : une feuille presque pleine largeur, un voisin qui dépasse de chaque côté ── */
+@media (max-width: 640px) {
+  .hav--deck { --deck-l: min(80vw, 400px); --deck-pas: 0.94; }
+  html .hav--deck .hav-avis blockquote p { font-size: clamp(20px, 5.4vw, 23px); }
+  html .hav--deck .hav-auteur { grid-template-columns: minmax(0, 1fr); }
+  .hav--deck .hav-entreprise { grid-column: 1; grid-row: auto; text-align: left; margin-top: 6px; }
+  .hav--deck .hav-deck-commandes { flex-direction: column-reverse; align-items: stretch; gap: 20px; }
+  .hav--deck .hav-deck-fleches { justify-content: center; }
+  .hav--deck .hav-deck-repere { justify-content: center; }
+  .hav--deck .hav-point-btn { height: 44px; }
+  .hav--deck .hav-points { gap: 0; }
+  .hav--deck .hav-btn { width: 48px; height: 48px; }
+}

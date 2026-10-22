@@ -1,0 +1,302 @@
+/* HWS Agency — footer 2026
+   Fond blanc cassé, bleu HWS dominant, corail en accent rare, Instrument Serif + Space Grotesk.
+   Tout est préfixé .hf26 pour ne rien toucher au reste du site. */
+
+.hf26 {
+  --hf-bleu: #3974F7;
+  --hf-corail: #FF5A36;
+  --hf-casse: #F7F7F4;
+  --hf-blanc: #FFFFFF;
+  --hf-nuit: #171B49;
+  --hf-nuit-doux: rgba(23, 27, 73, 0.66);
+  --hf-filet: rgba(23, 27, 73, 0.12);
+  --hf-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --hf-sans: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hf-gutter: clamp(24px, 6vw, 96px);
+  --hf-gap: clamp(16px, 2vw, 32px);
+  --hf-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+  background: var(--hf-casse);
+  color: var(--hf-nuit);
+  font-family: var(--hf-sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Remises à zéro locales : assez fortes pour battre les styles globaux du site (h2, p, a…),
+   assez faibles (:where) pour que les classes du footer gardent la main. */
+.hf26 :where(h2, p, ul, li, address) { margin: 0; padding: 0; }
+.hf26 :where(ul) { list-style: none; }
+.hf26 :where(a) { color: inherit; text-decoration: none; }
+.hf26 :where(address) { font-style: normal; }
+.hf26 :is(a, button):focus-visible { outline: 2px solid var(--hf-bleu); outline-offset: 4px; border-radius: 2px; }
+
+/* ── Forme tramée ── */
+.hf26-trame {
+  position: absolute;
+  z-index: 0;
+  top: clamp(56px, 7vw, 120px);
+  right: -13vw;
+  width: min(52vw, 840px);
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+}
+.hf26-trame canvas { display: block; width: 100%; height: 100%; }
+
+/* ── Grille ── */
+.hf26-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(64px, 9vw, 140px) var(--hf-gutter) clamp(24px, 3vw, 36px);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--hf-gap);
+}
+
+.hf26-label {
+  font-family: var(--hf-sans);
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hf-bleu);
+}
+.hf26-label .hf26-dot { color: var(--hf-corail); }
+
+.hf26-top {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: clamp(44px, 6vw, 96px);
+}
+.hf26-up {
+  font-family: var(--hf-sans);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hf-nuit-doux);
+  transition: color 0.25s;
+}
+.hf26-up:hover { color: var(--hf-bleu); }
+
+/* ── Accroche ── */
+.hf26-title {
+  grid-column: 1 / span 7;
+  font-family: var(--hf-serif);
+  font-weight: 400;
+  font-size: clamp(38px, 4.6vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.012em;
+  color: var(--hf-bleu);
+  text-wrap: balance;
+}
+.hf26-title em { font-style: italic; }
+.hf26-title .hf26-q { color: var(--hf-corail); }
+
+/* ── Contact ── */
+.hf26-contact {
+  grid-column: 1 / span 7;
+  margin-top: clamp(28px, 3vw, 44px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 22px;
+}
+.hf26-mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  font-size: clamp(18px, 1.6vw, 24px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--hf-nuit);
+  padding-bottom: 6px;
+  background: linear-gradient(var(--hf-bleu), var(--hf-bleu)) 0 100% / 100% 2px no-repeat;
+  transition: color 0.3s var(--hf-ease), background-size 0.5s var(--hf-ease);
+}
+.hf26-mail:hover { color: var(--hf-bleu); background-size: 0% 2px; background-position: 100% 100%; }
+.hf26-arrow { width: 0.78em; height: 0.78em; flex: none; color: var(--hf-corail); transition: transform 0.35s var(--hf-ease); }
+a:hover > .hf26-arrow, a:focus-visible > .hf26-arrow { transform: translateX(6px); }
+
+.hf26-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; }
+.hf26-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: var(--hf-bleu);
+  color: var(--hf-blanc);
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s var(--hf-ease);
+}
+.hf26-btn:hover { background-color: var(--hf-nuit); }
+.hf26-btn .hf26-arrow { color: currentColor; width: 14px; height: 14px; }
+
+/* ── Navigation ── */
+.hf26-nav {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--hf-gap);
+  row-gap: 44px;
+  margin-top: clamp(80px, 10vw, 160px);
+  padding-top: 28px;
+  border-top: 1px solid var(--hf-filet);
+}
+.hf26-col:nth-child(1) { grid-column: 1 / span 3; }
+.hf26-col:nth-child(2) { grid-column: 4 / span 5; }
+.hf26-col:nth-child(3) { grid-column: 10 / span 3; }
+.hf26-col .hf26-label { margin-bottom: 22px; }
+.hf26-col li + li { margin-top: 9px; }
+.hf26-col a,
+.hf26-col address { font-size: 13.5px; line-height: 1.45; }
+.hf26-col a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--hf-nuit);
+  transition: color 0.25s var(--hf-ease);
+}
+.hf26-col a::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  flex: none;
+  background: var(--hf-corail);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1 8h12M9 4l4 4-4 4' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1 8h12M9 4l4 4-4 4' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.25s var(--hf-ease), transform 0.35s var(--hf-ease);
+}
+.hf26-col a:hover,
+.hf26-col a:focus-visible { color: var(--hf-bleu); }
+.hf26-col a:hover::after,
+.hf26-col a:focus-visible::after { opacity: 1; transform: none; }
+.hf26-services { columns: 2; column-gap: var(--hf-gap); }
+.hf26-services li { break-inside: avoid; }
+.hf26-services li + li { margin-top: 0; }
+.hf26-services li { padding-bottom: 9px; }
+.hf26-col address { display: flex; flex-direction: column; align-items: flex-start; gap: 11px; color: var(--hf-nuit); }
+.hf26-col .hf26-social { margin-top: 18px; }
+
+/* ── Signature ── */
+.hf26-sign {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--hf-gap);
+  row-gap: 24px;
+  align-items: end;
+  margin-top: clamp(72px, 9vw, 136px);
+}
+.hf26-logo { grid-column: 1 / span 3; display: inline-block; width: clamp(72px, 6.5vw, 100px); line-height: 0; }
+.hf26-logo svg { width: 100%; height: auto; display: block; }
+.hf26-desc { grid-column: 4 / span 5; font-size: 13.5px; line-height: 1.6; color: var(--hf-nuit-doux); max-width: 46ch; }
+.hf26-sign .hf26-label { grid-column: 10 / span 3; justify-self: end; text-align: right; }
+
+.hf26-bottom {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--hf-filet);
+  font-size: 12px;
+  color: var(--hf-nuit-doux);
+}
+.hf26-bottom a { transition: color 0.25s; }
+.hf26-bottom a:hover { color: var(--hf-bleu); }
+
+/* ── Apparition à l'entrée dans l'écran ── */
+.hf26 [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.9s var(--hf-ease), transform 0.9s var(--hf-ease);
+  transition-delay: calc(var(--d, 0) * 90ms);
+}
+.hf26.is-in [data-reveal] { opacity: 1; transform: none; }
+.hf26:not(.hf26--js) [data-reveal] { opacity: 1; transform: none; } /* sans JavaScript : tout est visible */
+
+@media (prefers-reduced-motion: reduce) {
+  .hf26 [data-reveal] { transition: none; transform: none; opacity: 1; }
+  .hf26 * { transition-duration: 0.01ms !important; }
+}
+
+/* ── Tablette ── */
+@media (max-width: 1024px) {
+  .hf26-title { grid-column: 1 / -1; }
+  .hf26-contact { grid-column: 1 / -1; }
+  .hf26-trame { width: 52vw; right: -26vw; top: 24px; }
+  .hf26-col:nth-child(1) { grid-column: 1 / span 4; }
+  .hf26-col:nth-child(2) { grid-column: 5 / span 8; }
+  .hf26-col:nth-child(3) { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0 48px; align-items: flex-start; }
+  .hf26-col:nth-child(3) .hf26-label { width: 100%; }
+  .hf26-col:nth-child(3) .hf26-social { margin-top: 0; }
+  .hf26-logo { grid-column: 1 / span 4; }
+  .hf26-desc { grid-column: 5 / span 8; }
+  .hf26-sign .hf26-label { grid-column: 1 / -1; justify-self: start; text-align: left; }
+}
+
+/* ── Mobile ── */
+@media (max-width: 640px) {
+  .hf26-top { padding-bottom: 40px; }
+  .hf26-title { font-size: clamp(32px, 9vw, 44px); }
+  /* La forme devient une bande entre les boutons et la navigation (position calculée en JS). */
+  .hf26-trame { width: 80vw; right: -22vw; top: var(--hf-trame-top, 30%); }
+  .hf26-nav { margin-top: 74vw; }
+  .hf26-col:nth-child(1),
+  .hf26-col:nth-child(2) { grid-column: 1 / -1; }
+  .hf26-col:nth-child(3) { display: block; }
+  .hf26-col:nth-child(3) .hf26-social { margin-top: 18px; }
+  .hf26-services { columns: 1; }
+  .hf26-logo,
+  .hf26-desc { grid-column: 1 / -1; }
+  .hf26-bottom { flex-direction: column; }
+}
+
+/* ── Variante fond bleu (.hf26 hf26--bleu) ──
+   Même mise en page, couleurs inversées : fond bleu HWS, textes et trame en blanc.
+   Le corail disparaît ici : bleu et corail ne doivent jamais se toucher. */
+.hf26--bleu {
+  --hf-blanc-doux: rgba(255, 255, 255, 0.84);
+  --hf-filet: rgba(255, 255, 255, 0.26);
+  background: var(--hf-bleu);
+  color: var(--hf-blanc);
+}
+.hf26--bleu :is(a, button):focus-visible { outline-color: var(--hf-blanc); }
+.hf26--bleu .hf26-label,
+.hf26--bleu .hf26-label .hf26-dot,
+.hf26--bleu .hf26-title,
+.hf26--bleu .hf26-title .hf26-q,
+.hf26--bleu .hf26-arrow,
+.hf26--bleu .hf26-col address { color: var(--hf-blanc); }
+.hf26--bleu .hf26-up,
+.hf26--bleu .hf26-desc,
+.hf26--bleu .hf26-bottom { color: var(--hf-blanc-doux); }
+.hf26--bleu .hf26-up:hover,
+.hf26--bleu .hf26-bottom a:hover { color: var(--hf-blanc); }
+.hf26--bleu .hf26-mail {
+  color: var(--hf-blanc);
+  background-image: linear-gradient(var(--hf-blanc), var(--hf-blanc));
+}
+.hf26--bleu .hf26-mail:hover { color: var(--hf-blanc); }
+.hf26--bleu .hf26-btn { background: var(--hf-blanc); color: var(--hf-bleu); }
+.hf26--bleu .hf26-btn:hover { background-color: var(--hf-nuit); color: var(--hf-blanc); }
+.hf26--bleu .hf26-col a { color: var(--hf-blanc-doux); }
+.hf26--bleu .hf26-col a:hover,
+.hf26--bleu .hf26-col a:focus-visible { color: var(--hf-blanc); }
+.hf26--bleu .hf26-col a::after { background: var(--hf-blanc); }
+.hf26--bleu .hf26-logo path { fill: var(--hf-blanc); }
+.hf26--bleu .hf26-btn .hf26-arrow { color: currentColor; }

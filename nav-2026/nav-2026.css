@@ -1,0 +1,416 @@
+/* HWS Agency — navbar 2026
+   Habillage seul de la navigation Webflow existante (.nav-section) : mêmes liens, même
+   menu déroulant, même menu mobile, mêmes scripts (nav_scroll, burger, réservation Cal).
+   Fond blanc cassé du héro, logo bleu, liens bleu nuit en Space Grotesk, bouton bleu affiné.
+   Tout est préfixé « html .nav-section » : rien ne touche aux autres sections ni à .btn-primary
+   ailleurs sur le site. Les !important ne servent qu'à battre ceux du Site Custom Code. */
+
+html .nav-section {
+  --nv-casse: #F7F7F4;
+  --nv-bleu: #3974F7;
+  --nv-nuit: #171B49;
+  --nv-corail: #FF5A36;
+  --nv-gris: #6B7094;            /* gris bleuté des éléments secondaires */
+  --nv-filet: rgba(23, 27, 73, 0.09);
+  --nv-sans: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --nv-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --nv-gutter: clamp(40px, 6vw, 96px);
+  --nv-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --nv-fleche: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1 8h13M9.5 3.5 14 8l-4.5 4.5' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+  height: 76px;
+  background-color: var(--nv-casse);
+  border-bottom: 1px solid transparent;
+  font-family: var(--nv-sans);
+  transition: border-color 0.35s, background-color 0.35s;
+}
+/* Une fois qu'on a défilé : même fond, un filet très fin pour détacher la barre du contenu.
+   Pas de flou d'arrière-plan : il casserait le menu mobile en position fixe. */
+html .nav-section.is-scrolled {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background-color: var(--nv-casse);
+  border-bottom-color: var(--nv-filet);
+}
+
+/* ── Logo : le SVG existant, en bleu HWS (le CSS l'emporte sur le fill posé par nav_scroll) ── */
+html .nav-section .nav-logo-wrap { height: 28px; }
+html .nav-section .nav-logo-svg { height: 28px; }
+html .nav-section .nav-logo-svg path { fill: var(--nv-bleu); }
+
+/* ── Liens ── */
+html .nav-section .nav-links { gap: clamp(26px, 2.6vw, 40px); }
+html .nav-section .nav-link,
+html .nav-section .nav-link.w--current {
+  position: relative;
+  font-family: var(--nv-sans);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--nv-nuit) !important;
+  transition: color 0.25s var(--nv-ease);
+}
+html .nav-section .nav-link:hover,
+html .nav-section .nav-link:focus-visible,
+html .nav-section .w-dropdown.w--open > .nav-link { color: var(--nv-bleu) !important; }
+/* Soulignement fin : il se dessine au survol, il reste posé sur la page courante. */
+html .nav-section .nav-links > a.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -7px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--nv-ease);
+}
+html .nav-section .nav-links > a.nav-link:hover::after,
+html .nav-section .nav-links > a.nav-link:focus-visible::after { transform: scaleX(1); }
+html .nav-section .nav-links > a.nav-link.w--current { color: var(--nv-bleu) !important; }
+html .nav-section .nav-links > a.nav-link.w--current::after { transform: scaleX(1); }
+html .nav-section .nav-link .w-icon-dropdown-toggle { font-size: 12px; margin-left: 0; transition: transform 0.3s var(--nv-ease); }
+html .nav-section .w-dropdown:hover .w-icon-dropdown-toggle,
+html .nav-section .w-dropdown.w--open .w-icon-dropdown-toggle { transform: rotate(180deg); }
+html .nav-section :is(a, .w-dropdown-toggle):focus-visible { outline: 2px solid var(--nv-bleu); outline-offset: 6px; border-radius: 2px; }
+
+/* ── « Nos services » : bouton qui ouvre le méga-menu ── */
+html .nav-section .nv-mega-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  font-family: var(--nv-sans);
+  font-size: 14.5px;
+  font-weight: 500;
+}
+html .nav-section .nv-chevron { width: 12px; height: 12px; flex: none; transition: transform 0.3s var(--nv-ease); }
+html .nav-section .nv-mega-toggle[aria-expanded="true"] { color: var(--nv-bleu) !important; }
+html .nav-section .nv-mega-toggle[aria-expanded="true"] .nv-chevron { transform: rotate(180deg); }
+/* Le soulignement fin marque aussi l'état ouvert. */
+html .nav-section .nv-mega-toggle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 20px;
+  bottom: -7px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--nv-ease);
+}
+html .nav-section .nv-mega-toggle:hover::after,
+html .nav-section .nv-mega-toggle[aria-expanded="true"]::after { transform: scaleX(1); }
+
+/* ── Le panneau : toute la largeur, calé sous la navbar ── */
+html .nav-section .nv-mega-panel {
+  position: fixed;
+  top: var(--nv-haut, 76px);
+  left: 0;
+  right: 0;
+  background: var(--nv-casse);
+  border-top: 1px solid var(--nv-filet);
+  border-bottom: 1px solid var(--nv-filet);
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.22s var(--nv-ease), transform 0.26s var(--nv-ease);
+}
+html .nav-section .nv-mega-panel[hidden] { display: none; }
+html .nav-section .nv-mega-panel.is-open { opacity: 1; transform: none; }
+/* Voile léger sur la page sous le panneau ; un clic dessus referme le menu. */
+html .nav-section .nv-mega-panel::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background: rgba(23, 27, 73, 0.1);
+  cursor: pointer;
+}
+html .nav-section .nv-mega-inner {
+  position: relative;
+  max-width: 1440px;
+  max-height: calc(100vh - var(--nv-haut, 76px));
+  overflow-y: auto;
+  margin: 0 auto;
+  padding: 44px var(--nv-gutter) 52px;
+  display: grid;
+  grid-template-columns: minmax(220px, 3fr) minmax(0, 9fr);
+  column-gap: clamp(40px, 5vw, 88px);
+}
+
+/* Colonne d'introduction */
+html .nav-section .nv-intro { position: relative; padding-top: 4px; }
+html .nav-section .nv-label {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--nv-sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--nv-bleu);
+}
+html .nav-section .nv-label::before { content: ""; width: 24px; height: 1px; background: var(--nv-bleu); }
+html .nav-section .nv-titre {
+  margin: 18px 0 0;
+  font-family: var(--nv-serif);
+  font-size: clamp(32px, 2.6vw, 42px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: var(--nv-nuit);
+}
+html .nav-section .nv-titre em { font-style: italic; color: var(--nv-bleu); }
+html .nav-section .nv-texte {
+  margin: 16px 0 0;
+  max-width: 30ch;
+  font-family: var(--nv-sans);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--nv-gris);
+}
+html .nav-section .nv-cta,
+html .nav-section .nv-second {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--nv-sans);
+  font-weight: 500;
+  text-decoration: none;
+}
+html .nav-section .nv-cta { margin-top: 28px; font-size: 14.5px; color: var(--nv-bleu); }
+html .nav-section .nv-second { margin-top: 12px; font-size: 13.5px; color: var(--nv-nuit); }
+html .nav-section .nv-cta:hover { color: var(--nv-nuit); }
+html .nav-section .nv-second:hover { color: var(--nv-bleu); }
+html .nav-section .nv-intro > a { display: flex; width: fit-content; }
+html .nav-section .nv-fleche { width: 14px; height: 14px; flex: none; color: var(--nv-corail); transition: transform 0.25s var(--nv-ease), opacity 0.2s; }
+html .nav-section .nv-intro a:hover .nv-fleche { transform: translateX(4px); }
+/* Repère corail, discret, en haut à droite de l'introduction */
+html .nav-section .nv-intro::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  background:
+    linear-gradient(var(--nv-corail), var(--nv-corail)) center / 100% 1.5px no-repeat,
+    linear-gradient(var(--nv-corail), var(--nv-corail)) center / 1.5px 100% no-repeat;
+}
+
+/* Catalogue : trois catégories, des listes typographiques, pas de cartes */
+html .nav-section .nv-catalogue {
+  padding-left: clamp(32px, 4vw, 64px);
+  border-left: 1px solid var(--nv-filet);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: clamp(28px, 3vw, 48px);
+}
+html .nav-section .nv-groupe-titre {
+  margin: 0 0 10px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--nv-filet);
+  font-family: var(--nv-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--nv-bleu);
+}
+html .nav-section .nv-groupe-titre span { margin-right: 6px; font-family: var(--nv-sans); letter-spacing: 0.04em; color: var(--nv-gris); }
+html .nav-section .nv-groupe ul { margin: 0; padding: 0; list-style: none; }
+html .nav-section .nv-lien {
+  display: block;
+  padding: 12px 0;
+  text-decoration: none;
+}
+html .nav-section .nv-lien-nom {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--nv-sans);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--nv-nuit);
+  transition: color 0.2s var(--nv-ease);
+}
+html .nav-section .nv-lien .nv-fleche { opacity: 0; transform: translateX(-4px); }
+html .nav-section .nv-lien-desc {
+  display: block;
+  margin-top: 4px;
+  max-width: 34ch;
+  font-family: var(--nv-sans);
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--nv-gris);
+}
+html .nav-section .nv-lien:hover .nv-lien-nom,
+html .nav-section .nv-lien:focus-visible .nv-lien-nom { color: var(--nv-bleu); }
+html .nav-section .nv-lien:hover .nv-fleche,
+html .nav-section .nv-lien:focus-visible .nv-fleche { opacity: 1; transform: none; }
+
+html .nav-section .nv-fermer {
+  position: absolute;
+  top: 36px;
+  right: var(--nv-gutter);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--nv-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--nv-gris);
+  transition: color 0.2s;
+}
+html .nav-section .nv-fermer span { font-size: 18px; line-height: 1; }
+html .nav-section .nv-fermer:hover { color: var(--nv-nuit); }
+html .nav-section .nv-catalogue { padding-top: 40px; } /* laisse la place à « Fermer » */
+html .nav-section :is(.nv-mega-panel, .nv-m-services) :is(a, button, summary):focus-visible { outline: 2px solid var(--nv-bleu); outline-offset: 3px; border-radius: 2px; }
+
+@media (max-width: 1180px) {
+  html .nav-section .nv-mega-inner { grid-template-columns: minmax(200px, 1fr) minmax(0, 3fr); }
+  html .nav-section .nv-catalogue { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
+}
+
+/* ── Bouton « Réserver une visio » : bleu HWS, plus compact, flèche corail au survol ── */
+html .nav-section .btn-primary {
+  gap: 10px;
+  padding: 11px 18px 11px 20px;
+  border-radius: 999px;
+  background-color: var(--nv-bleu);
+  color: #FFFFFF;
+  font-family: var(--nv-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-transform: none;
+  box-shadow: none;
+  transform: none;
+  transition: background-color 0.3s var(--nv-ease);
+}
+html .nav-section .btn-primary::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  flex: none;
+  background-color: currentColor;
+  -webkit-mask: var(--nv-fleche) center / contain no-repeat;
+          mask: var(--nv-fleche) center / contain no-repeat;
+  transition: transform 0.35s var(--nv-ease), background-color 0.25s;
+}
+html .nav-section .btn-primary:hover {
+  background-color: var(--nv-nuit);
+  box-shadow: none;
+  transform: none;
+}
+html .nav-section .btn-primary:hover::after { background-color: var(--nv-corail); transform: translateX(3px); }
+html .nav-section .btn-primary:focus-visible { outline: 2px solid var(--nv-bleu); outline-offset: 3px; }
+
+/* ── Mobile : burger et menu plein écran, même fonctionnement ── */
+html .nav-section .nav-burger-line { background-color: var(--nv-nuit); }
+html .nav-section .nav-mobile-menu { background-color: var(--nv-casse); }
+html .nav-section .nav-mobile-link,
+html .nav-section .nav-mobile-link.w--current {
+  font-family: var(--nv-sans);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  word-spacing: 0;
+  color: var(--nv-nuit) !important;
+}
+html .nav-section .nav-mobile-link:hover { color: var(--nv-bleu) !important; }
+html .nav-section .nav-mobile-link.w--current { color: var(--nv-bleu) !important; }
+/* Menu mobile : il défile si les catégories ouvertes dépassent l'écran. */
+html .nav-section .nav-mobile-menu { overflow-y: auto; flex-direction: column; padding: 96px 24px 48px; }
+html .nav-section .nav-mobile-links { margin: auto 0; width: 100%; }
+/* « Nos services » et ses catégories : des <details> natifs, accessibles au clavier et au lecteur d'écran. */
+html .nav-section .nv-m-services { width: min(100%, 360px); text-align: center; }
+html .nav-section .nv-m-services > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+  cursor: pointer;
+}
+html .nav-section .nv-m-services summary::-webkit-details-marker { display: none; }
+html .nav-section .nv-m-services > summary .nv-chevron { width: 18px; height: 18px; }
+html .nav-section .nv-m-services[open] > summary { color: var(--nv-bleu) !important; }
+html .nav-section .nv-m-services[open] > summary .nv-chevron,
+html .nav-section .nv-m-groupe[open] > summary .nv-chevron { transform: rotate(180deg); }
+html .nav-section .nv-m-groupes { margin-top: 18px; text-align: left; }
+html .nav-section .nv-m-groupe { border-top: 1px solid var(--nv-filet); }
+html .nav-section .nv-m-groupe:last-child { border-bottom: 1px solid var(--nv-filet); }
+html .nav-section .nv-m-groupe > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 52px;
+  list-style: none;
+  cursor: pointer;
+  font-family: var(--nv-sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--nv-bleu);
+}
+html .nav-section .nv-m-groupe > summary span { font-family: var(--nv-sans); letter-spacing: 0.04em; color: var(--nv-gris); }
+html .nav-section .nv-m-groupe > summary .nv-chevron { margin-left: auto; width: 14px; height: 14px; }
+html .nav-section .nv-m-groupe ul { margin: 0 0 10px; padding: 0; list-style: none; }
+html .nav-section .nav-dropdown-link-mobile,
+html .nav-section .nav-dropdown-link-mobile.w--current {
+  display: block;
+  padding: 12px 0;
+  text-align: left;
+  font-family: var(--nv-sans);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--nv-nuit) !important;
+}
+html .nav-section .nav-dropdown-link-mobile:hover { color: var(--nv-bleu) !important; }
+html .nav-section .nav-mobile-cta {
+  gap: 10px;
+  padding: 13px 22px;
+  border-radius: 999px;
+  background-color: var(--nv-bleu);
+  color: #FFFFFF;
+  font-family: var(--nv-sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+html .nav-section .nav-mobile-cta::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background-color: currentColor;
+  -webkit-mask: var(--nv-fleche) center / contain no-repeat;
+          mask: var(--nv-fleche) center / contain no-repeat;
+}
+
+@media (max-width: 991px) {
+  html .nav-section { height: 68px; }
+  html .nav-section .nav-logo-wrap,
+  html .nav-section .nav-logo-svg { height: 24px; }
+  html .nav-section .btn-primary { padding: 9px 14px 9px 16px; font-size: 13.5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html .nav-section, html .nav-section * { transition-duration: 0.01ms !important; }
+}

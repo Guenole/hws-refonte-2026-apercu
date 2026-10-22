@@ -1,0 +1,73 @@
+/* Variante indépendante : texte en premier, équipe panoramique au pied du héro. */
+.hh26.hh26--equipe.hh26--bas {
+  --hh-paysage-h: min(31.640625vw, 810px);
+  --hh-paysage-mask: linear-gradient(to bottom,
+    transparent 0%, transparent 4%, rgb(0 0 0 / .05) 12%,
+    rgb(0 0 0 / .15) 22%, rgb(0 0 0 / .36) 30%,
+    rgb(0 0 0 / .68) 40%, rgb(0 0 0 / .91) 50%,
+    #000 60%, #000 100%);
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 100vh;
+  min-height: 100svh;
+  background: #F7F7F4;
+}
+.hh26.hh26--bas .hh26-inner,
+.hh26.hh26--bas:not(.hh26--js) .hh26-inner {
+  flex: 0 0 auto;
+  height: auto;
+  min-height: 0;
+  justify-content: flex-start;
+  padding-top: calc(var(--hh-nav) + clamp(18px, 2.6vh, 30px));
+  padding-bottom: 4px;
+}
+.hh26--bas .hh26-paysage {
+  position: relative;
+  z-index: 0;
+  flex: 1 0 var(--hh-paysage-h);
+  min-height: var(--hh-paysage-h);
+  width: 100%;
+  overflow: clip;
+}
+.hh26.hh26--bas .hh26-scene,
+.hh26.hh26--bas .hh26-scene-repli {
+  top: auto !important;
+  bottom: 0;
+  /* L'alpha du dessin disparaît vers le haut ; le papier reste celui du héro. */
+  -webkit-mask-image: var(--hh-paysage-mask);
+  mask-image: var(--hh-paysage-mask);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+.hh26.hh26--bas .hh26-bas {
+  top: 12px;
+  bottom: auto;
+  z-index: 1;
+}
+.hh26.hh26--bas:not(.hh26--js) .hh26-scene-repli[src] {
+  top: auto;
+  bottom: 0;
+  width: min(100%, 2560px);
+  height: auto;
+  transform: translateX(-50%);
+}
+@media (min-width: 700px) and (max-width: 1099px) {
+  .hh26.hh26--equipe.hh26--bas { --hh-paysage-h: 34.8046875vw; min-height: 0; }
+  .hh26.hh26--bas:not(.hh26--js) .hh26-scene-repli[src] { width: 110%; }
+}
+@media (max-width: 699px) {
+  .hh26.hh26--equipe.hh26--bas {
+    --hh-paysage-h: 40.5vw;
+    min-height: 0;
+    --hh-paysage-mask: linear-gradient(to bottom,
+      transparent 0%, transparent 5%, rgb(0 0 0 / .08) 16%,
+      rgb(0 0 0 / .32) 29%, rgb(0 0 0 / .75) 42%,
+      #000 57%, #000 100%);
+  }
+  .hh26.hh26--bas .hh26-inner { padding-top: calc(var(--hh-nav) + 20px); padding-bottom: 8px; }
+  .hh26.hh26--bas .hh26-bas { top: 6px; font-size: 9px; letter-spacing: .11em; }
+  .hh26.hh26--bas:not(.hh26--js) .hh26-scene-repli[src] { width: 128%; }
+}

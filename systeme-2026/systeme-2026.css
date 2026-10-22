@@ -1,0 +1,261 @@
+/* HWS Agency 2026 — socle commun à toutes les pages.
+   Extrait de la home 2026 (home-ascii/home-2026-systeme.css + modules de section) pour servir
+   aux autres pages sans dépendre des classes de la home. Mêmes valeurs que la home.
+   À charger après ../polices-2026/polices-2026.css et avant les feuilles propres à une page.
+   Tout est préfixé .s26 : rien ne touche aux classes Webflow ni aux modules existants.
+
+   Règles (à respecter sur toute nouvelle page) :
+   1. Fond ivoire partout ; seul le footer est bleu. Pas de section noire.
+   2. Deux polices : Instrument Serif 400 (titres, chiffres, titres d'éléments) et Space Grotesk 400/500.
+   3. Titre de section : label « 0X / … » bleu au-dessus (sans numéro dans un héro), un segment en italique bleu, ponctuation finale corail
+      (point ajouté par .s26-titre--point quand le texte n'en a pas : le texte ne change pas).
+   4. Contenus en colonnes séparées par des filets fins, jamais en cartes.
+   5. Corail rare : ponctuation des titres, croix de repère, un repère de frise (étape en cours à l'écran, jalon final sur papier), un seul élément par illustration.
+   6. Une illustration animée au plus par section, en trame de points (moteur trame-2026.js). Jamais de pictogrammes
+      au trait : une rangée de figures = un seul canvas, une figure par colonne, un seul élément corail.
+   7. Éléments numérotés (arguments, piliers, étapes, questions) : toujours deux chiffres « 01 — ».
+   8. Une section sans label dans le contenu d'origine se lit comme la suite de la précédente : pas de label inventé,
+      pas de numéro, pas de filet, pas de double vide (.s26--suite).
+   9. Les composants partagés de la home (avis-2026…) s'alignent sur le socle : même gouttière, mêmes tailles (bloc final).
+   10. Typographie française (systeme-2026.js) : un mot à trait d'union ne se coupe jamais ; un mot d'une seule lettre
+       reste collé au mot suivant ; espace insécable avant : ; ? ! % » et après « ; le reste est confié à
+       text-wrap: balance / pretty. */
+
+:root {
+  /* Couleurs */
+  --c-ivoire: #F7F7F4;
+  --c-blanc: #FFFFFF;
+  --c-nuit: #171B49;
+  --c-nuit-doux: rgba(23, 27, 73, 0.74);
+  --c-gris: #5E6389;                       /* textes secondaires : 5,4:1 sur l'ivoire */
+  --c-bleu: #3974F7;
+  --c-bleu-texte: #2F63DE;                 /* bleu des petits textes : 4,9:1 sur l'ivoire */
+  --c-corail: #FF5A36;
+  --c-filet: rgba(57, 116, 247, 0.24);
+  --c-filet-fort: rgba(57, 116, 247, 0.45);
+  --c-sep: rgba(23, 27, 73, 0.12);
+
+  /* Polices */
+  --f-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --f-sans: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Espacements (identiques à la home) */
+  --air: clamp(104px, 11vw, 176px);
+  --gouttiere: clamp(20px, 6vw, 96px);
+  --largeur: 1440px;
+  --ecart-label: 18px;
+  --ecart-chapo: 22px;
+  --ecart-contenu: calc(var(--air) * 0.42);
+
+  /* Tailles de texte (identiques à la home) */
+  --t-label: 12px;
+  --t-titre: clamp(48px, 6.6vw, 104px);
+  --t-titre-long: clamp(40px, 4.6vw, 72px);    /* titres de plus de 45 signes (titres SEO des pages services) */
+  --t-sous-titre: clamp(26px, 2.3vw, 34px);
+  --t-chapo: clamp(16px, 1.3vw, 19px);
+  --t-texte: clamp(14.5px, 1.05vw, 16px);
+  --t-lien: 15px;
+  --t-meta: 11.5px;
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@media (max-width: 640px) {
+  :root { --air: 88px; --t-titre: clamp(44px, 12.4vw, 56px); --t-titre-long: clamp(34px, 9.6vw, 44px); --ecart-contenu: 48px; }
+}
+
+/* ── Page ── */
+/* La feuille Webflow donne Clash Display aux titres h1 à h6 : sans cette règle, leurs espaces vides suffisent
+   à télécharger Clash sans jamais l'afficher. Spécificité minimale : toute classe de titre l'emporte. */
+:where(.s26-page) :is(h1, h2, h3, h4, h5, h6) { font-family: inherit; }
+
+html.s26-page { background: var(--c-ivoire); scrollbar-color: rgba(23, 27, 73, 0.28) var(--c-ivoire); }
+.s26-page body { background: var(--c-ivoire); counter-reset: s26-section; }
+.s26-page ::selection { background: rgba(57, 116, 247, 0.2); color: var(--c-nuit); }
+
+/* ── Section ── */
+.s26 {
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+  background: var(--c-ivoire);
+  color: var(--c-nuit);
+  font-family: var(--f-sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+.s26, .s26 *, .s26 *::before, .s26 *::after { box-sizing: border-box; }
+.s26 :where(h1, h2, h3, p, ul, ol, li, dl, dt, dd, figure, blockquote) { margin: 0; padding: 0; }
+.s26 :where(ul, ol) { list-style: none; }
+.s26 :where(a) { color: inherit; text-decoration: none; }
+.s26 :where(button) { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+.s26 :is(a, button, summary, [tabindex]):focus-visible { outline: 2px solid var(--c-bleu); outline-offset: 4px; border-radius: 3px; }
+.s26 [data-anim-fade] { opacity: 1 !important; transform: none !important; }
+.s26-insecable { white-space: nowrap; }
+.s26-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.s26-inner {
+  position: relative;
+  z-index: 1;
+  max-width: calc(var(--largeur) + 2 * var(--gouttiere));
+  margin: 0 auto;
+  padding: var(--air) var(--gouttiere);
+}
+/* Deux sections qui se suivent partagent leur air : un filet les sépare, pas un double vide. */
+.s26--suite .s26-inner { padding-top: 0; }
+.s26-filet-haut .s26-inner { border-top: 1px solid var(--c-filet); }
+
+/* ── En-tête de section ── */
+.s26-entete { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 32%); column-gap: 6%; align-items: end; }
+.s26-entete--seul { grid-template-columns: minmax(0, 1fr); }
+.s26-entete > :last-child:not(:first-child) { padding-bottom: 8px; }
+
+.s26-label {
+  display: block;
+  font-family: var(--f-sans);
+  font-size: var(--t-label);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-bleu-texte);
+}
+/* Numérotation « 0X / » posée par le CSS : le texte du label ne change pas. */
+.s26-label--num { counter-increment: s26-section; }
+.s26-label--num::before { content: counter(s26-section, decimal-leading-zero) " / "; }
+
+.s26-titre {
+  margin-top: var(--ecart-label);
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: var(--t-titre);
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+  color: var(--c-nuit);
+  text-wrap: balance;
+}
+.s26-titre--long { font-size: var(--t-titre-long); line-height: 1; letter-spacing: -0.025em; }
+.s26-titre em { font-style: italic; color: var(--c-bleu); letter-spacing: -0.015em; }
+.s26-point { color: var(--c-corail); font-style: normal; }
+.s26-titre--point::after { content: "."; color: var(--c-corail); font-style: normal; }
+
+.s26-chapo {
+  max-width: 46ch;
+  font-size: var(--t-chapo);
+  line-height: 1.55;
+  color: var(--c-nuit-doux);
+  text-wrap: pretty;
+}
+.s26-entete .s26-titre + .s26-chapo { margin-top: var(--ecart-chapo); }
+.s26-texte { font-size: var(--t-texte); line-height: 1.6; color: var(--c-nuit-doux); text-wrap: pretty; }
+.s26-texte a, .s26-chapo a { color: var(--c-bleu-texte); background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; transition: color 0.25s; }
+.s26-texte a:hover, .s26-chapo a:hover { color: var(--c-nuit); }
+
+/* Titre d'élément (argument, étape, question) */
+.s26-sous-titre { font-family: var(--f-serif); font-weight: 400; font-size: var(--t-sous-titre); line-height: 1.05; letter-spacing: -0.012em; color: var(--c-nuit); text-wrap: balance; }
+.s26-sous-titre--bleu { color: var(--c-bleu); }
+
+/* Petite information (catégorie, compteur) */
+.s26-meta { font-size: var(--t-meta); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-bleu-texte); }
+
+/* Numéro d'élément « 01 — » */
+.s26-num { display: flex; align-items: center; gap: 14px; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: var(--c-bleu-texte); }
+.s26-num::after { content: ""; width: 24px; height: 1px; background: var(--c-bleu); }
+
+/* ── Liens et boutons ── */
+.s26-fleche { width: 14px; height: 14px; flex: none; transition: transform 0.35s var(--ease), color 0.25s; }
+a:hover > .s26-fleche, a:focus-visible > .s26-fleche, button:hover > .s26-fleche { transform: translateX(5px); }
+
+.s26-lien {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: var(--t-lien);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--c-nuit);
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+  transition: color 0.25s var(--ease), background-size 0.45s var(--ease);
+}
+.s26-lien .s26-fleche { color: var(--c-corail); }
+.s26-lien:hover { color: var(--c-bleu); background-size: 0% 1px; background-position: 100% 100%; }
+
+.s26-bouton {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 26px;
+  border-radius: 999px;
+  background: var(--c-bleu);
+  color: var(--c-blanc);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  transition: background-color 0.3s var(--ease);
+}
+.s26-bouton:hover { background-color: var(--c-nuit); }
+.s26-bouton:hover > .s26-fleche { color: var(--c-corail); }
+
+/* ── Colonnes séparées par des filets (arguments, piliers, chiffres, expertises) ── */
+.s26-colonnes { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); }
+.s26-colonnes > * { position: relative; padding: 4px clamp(20px, 2.4vw, 40px) 8px; border-left: 1px solid var(--c-filet); }
+.s26-colonnes > :first-child { padding-left: 0; border-left: 0; }
+.s26-colonnes .s26-sous-titre { margin-top: 18px; }
+.s26-colonnes .s26-texte { margin-top: 16px; max-width: 36ch; }
+
+/* ── Chiffres en serif ── */
+.s26-chiffre { font-family: var(--f-serif); font-size: clamp(58px, 6.6vw, 104px); line-height: 0.92; letter-spacing: -0.03em; color: var(--c-bleu); font-variant-numeric: tabular-nums; }
+
+/* ── Croix de repère corail ── */
+.s26-croix {
+  position: absolute;
+  z-index: 2;
+  left: var(--x);
+  top: var(--y);
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--c-corail), var(--c-corail)) center / 100% 1.5px no-repeat,
+    linear-gradient(var(--c-corail), var(--c-corail)) center / 1.5px 100% no-repeat;
+}
+
+/* ── Apparition à l'entrée dans l'écran (systeme-2026.js) : visible par défaut sans script ── */
+.s26-js [data-s26-apparition] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.9s var(--ease), transform 1s var(--ease);
+  transition-delay: calc(var(--d, 0) * 90ms);
+}
+.s26-js [data-s26-apparition].is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .s26 [data-s26-apparition] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .s26 * { transition-duration: 0.01ms !important; }
+}
+
+/* ── Tablette ── */
+@media (max-width: 1024px) {
+  .s26-entete { grid-template-columns: minmax(0, 1fr); row-gap: 22px; }
+  .s26-entete > :last-child:not(:first-child) { padding-bottom: 0; }
+  .s26-colonnes { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 56px; }
+  .s26-colonnes > :nth-child(odd) { padding-left: 0; border-left: 0; }
+}
+/* ── Mobile ── */
+@media (max-width: 640px) {
+  .s26-colonnes { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
+  .s26-colonnes > *, .s26-colonnes > :nth-child(odd) { padding: 28px 0; border-left: 0; border-top: 1px solid var(--c-filet); }
+  .s26-colonnes > :first-child { border-top: 0; padding-top: 0; }
+  .s26-colonnes .s26-texte { max-width: none; }
+  .s26-chiffre { font-size: clamp(50px, 15vw, 64px); }
+}
+
+/* ══ Composants partagés de la home, alignés sur le socle (repris de home-2026-systeme.css) ══ */
+html .hav-inner { max-width: calc(var(--largeur) + 2 * var(--gouttiere)); padding: var(--air) var(--gouttiere); }
+html .hav-haut { padding-left: 0; padding-right: 0; }
+html .hav-avis:nth-child(odd) { padding-left: 0; }
+html .hav-label { font-size: var(--t-label); font-weight: 500; line-height: 1.4; letter-spacing: 0.16em; color: var(--c-bleu-texte); }
+html .hav-titre { margin-top: var(--ecart-label); font-size: var(--t-titre); line-height: 0.96; letter-spacing: -0.03em; }
+html .hav-cat { font-size: var(--t-meta); letter-spacing: 0.14em; color: var(--c-bleu-texte); }
+html .hav-avis blockquote p { font-size: clamp(17px, 1.55vw, 23px); }
+html .hav-liste { padding-top: var(--ecart-contenu); }

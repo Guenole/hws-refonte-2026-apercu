@@ -1,0 +1,8 @@
+/* HWS Agency 2026 — les deux polices du site, déclarées une seule fois.
+   Instrument Serif : titres (et mots en italique).
+   Space Grotesk : tout le reste (textes, liens, boutons, navigation, petits libellés en capitales).
+   Graisses utilisées : Instrument Serif 400 ; Space Grotesk 400 (textes) et 500 (liens, boutons, libellés, noms).
+   À charger avant les feuilles des sections. */
+@font-face { font-family: "Instrument Serif"; src: url("fonts/InstrumentSerif-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Instrument Serif"; src: url("fonts/InstrumentSerif-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Space Grotesk"; src: url("fonts/SpaceGrotesk-variable.woff2") format("woff2"); font-weight: 300 700; font-style: normal; font-display: swap; }

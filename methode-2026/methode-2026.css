@@ -1,0 +1,248 @@
+/* HWS Agency — section « Notre méthode » 2026
+   Trajectoire ascendante en SVG reliant cinq étapes, poulpes tramés sur les bords,
+   bandeau des engagements. Tout est préfixé .hm26. */
+
+.hm26 {
+  --hm-bleu: #3974F7;
+  --hm-corail: #FF5A36;
+  --hm-casse: #F7F7F4;
+  --hm-nuit: #171B49;
+  --hm-gris: #6B7094;
+  --hm-filet: rgba(57, 116, 247, 0.55);
+  --hm-sep: rgba(23, 27, 73, 0.16);
+  --hm-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --hm-sans: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hm-ease: cubic-bezier(0.22, 0.7, 0.2, 1);
+
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+  background: var(--hm-casse);
+  color: var(--hm-nuit);
+  font-family: var(--hm-sans);
+  -webkit-font-smoothing: antialiased;
+  padding: clamp(80px, 6.5vw, 110px) 0 clamp(56px, 4.5vw, 80px);
+}
+.hm26, .hm26 *, .hm26 *::before, .hm26 *::after { box-sizing: border-box; }
+.hm26 :where(h2, h3, p, ol, li, dl, dt, dd) { margin: 0; padding: 0; }
+.hm26 :where(ol) { list-style: none; }
+.hm26 :where(a) { color: inherit; text-decoration: none; }
+.hm26 :is(a):focus-visible { outline: 2px solid var(--hm-bleu); outline-offset: 4px; border-radius: 2px; }
+.hm26 [data-anim-fade] { opacity: 1 !important; transform: none !important; }
+.hm26-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.hm26-trame { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none; }
+.hm26-croix {
+  position: absolute;
+  z-index: 1;
+  left: var(--x);
+  top: var(--y);
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--hm-corail), var(--hm-corail)) center / 100% 1.5px no-repeat,
+    linear-gradient(var(--hm-corail), var(--hm-corail)) center / 1.5px 100% no-repeat;
+}
+.hm26-point { color: var(--hm-corail); font-style: normal; }
+
+/* ── En-tête : titre à gauche, introduction à droite ── */
+.hm26-haut {
+  position: relative;
+  z-index: 2;
+  padding: 0 10.5% 0 11.8%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 30%);
+  column-gap: 4%;
+  align-items: start;
+}
+.hm26-label {
+  font-family: var(--hm-sans);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hm-bleu);
+}
+.hm26-titre {
+  margin-top: clamp(18px, 1.8vw, 30px);
+  font-family: var(--hm-serif);
+  font-weight: 400;
+  font-size: clamp(52px, 7vw, 118px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+.hm26-titre > span { display: block; }
+.hm26-l1 { color: var(--hm-nuit); }
+.hm26-l2 { color: var(--hm-bleu); font-style: italic; padding-left: 0.4em; letter-spacing: -0.02em; }
+.hm26-intro { padding-top: clamp(40px, 4.5vw, 72px); }
+.hm26-intro p { font-size: clamp(15px, 1.25vw, 20px); line-height: 1.5; color: var(--hm-gris); }
+.hm26-lien {
+  margin-top: clamp(24px, 2.6vw, 40px);
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 7px;
+  font-size: clamp(14px, 1.05vw, 16.5px);
+  font-weight: 500;
+  color: var(--hm-nuit);
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+  transition: color 0.25s;
+}
+.hm26-lien:hover { color: var(--hm-bleu); }
+.hm26-fleche { width: 15px; height: 15px; flex: none; color: var(--hm-corail); transition: transform 0.3s var(--hm-ease); }
+.hm26-lien:hover .hm26-fleche, .hm26-lien:focus-visible .hm26-fleche { transform: translateX(4px); }
+
+/* ── La trajectoire : un SVG au format fixe, les étapes posées en pourcentage ── */
+.hm26-trajet {
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(-30px, -1.5vw, -10px);
+  aspect-ratio: 1586 / 400;
+}
+.hm26-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.hm26-ligne, .hm26-pointe { fill: none; stroke: var(--hm-bleu); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.hm26-pointe { vector-effect: non-scaling-stroke; }
+/* Pas de non-scaling-stroke sur la ligne : Chrome appliquerait alors le tracé progressif (pathLength) en pixels écran
+   et couperait la ligne avant le point 05 dès que la section dépasse 1586 px. L'épaisseur est gardée à 1,4 px par le JS (--hm-trait). */
+.hm26-ligne { stroke-width: var(--hm-trait, 1.4); stroke-dasharray: 1; stroke-dashoffset: 0; }
+.hm26-rond { fill: var(--hm-casse); stroke: var(--hm-bleu); stroke-width: 1.8; vector-effect: non-scaling-stroke; }
+.hm26-rond-corail { fill: var(--hm-corail); }
+
+.hm26-etape {
+  position: absolute;
+  left: calc(var(--x) + var(--dx));
+  top: var(--y);
+  width: 18%;
+}
+.hm26-num {
+  position: absolute;
+  left: calc(-1 * var(--dx) / 0.18);   /* recentré au-dessus du cercle */
+  bottom: calc(100% + 0.55vw);
+  transform: translateX(-50%);
+  font-family: var(--hm-sans);
+  font-size: clamp(12px, 0.95vw, 15px);
+  letter-spacing: 0.08em;
+  color: var(--hm-bleu);
+}
+.hm26-etape-titre {
+  margin-top: 2.2vw;
+  font-family: var(--hm-serif);
+  font-weight: 400;
+  font-size: clamp(32px, 3vw, 50px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--hm-nuit);
+}
+.hm26-etape-titre em { font-style: italic; color: var(--hm-bleu); }
+.hm26-etape-texte {
+  margin-top: 14px;
+  max-width: 17em;
+  font-size: clamp(14px, 1.08vw, 17px);
+  line-height: 1.45;
+  color: var(--hm-gris);
+}
+
+/* ── Bandeau des engagements ── */
+.hm26-engagements {
+  position: relative;
+  z-index: 2;
+  margin: clamp(48px, 5vw, 80px) 3.2% 0;
+  padding: clamp(28px, 2.6vw, 44px) 4.2% 0;
+  border-top: 1px solid var(--hm-filet);
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1.1fr 1.05fr;
+}
+.hm26-eng {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: clamp(6px, 1.2vw, 20px) clamp(16px, 2.4vw, 40px) 0;
+  border-left: 1px solid var(--hm-sep);
+}
+.hm26-eng:first-child { padding-left: 0; padding-top: 0; border-left: 0; }
+.hm26-eng dt {
+  font-family: var(--hm-serif);
+  font-size: clamp(32px, 3.2vw, 54px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--hm-nuit);
+}
+.hm26-eng--fort dt { font-style: italic; font-size: clamp(56px, 6.2vw, 100px); color: var(--hm-bleu); letter-spacing: -0.03em; }
+.hm26-eng dd { margin-top: 12px; font-size: clamp(14px, 1.2vw, 19px); line-height: 1.4; color: var(--hm-gris); }
+
+/* ── Apparition : la ligne se trace, les étapes suivent ── */
+.hm26--js .hm26-ligne { stroke-dashoffset: 1; transition: stroke-dashoffset 2.2s var(--hm-ease); }
+.hm26--js .hm26-pointe, .hm26--js .hm26-rond, .hm26--js .hm26-rond-corail { opacity: 0; transition: opacity 0.5s 1.8s; }
+.hm26--js .hm26-etape { opacity: 0; transform: translateY(12px); transition: opacity 0.8s var(--hm-ease), transform 0.9s var(--hm-ease); transition-delay: calc(0.25s + var(--d) * 0.32s); }
+.hm26--js.is-in .hm26-ligne { stroke-dashoffset: 0; }
+.hm26--js.is-in :is(.hm26-pointe, .hm26-rond, .hm26-rond-corail) { opacity: 1; }
+.hm26--js.is-in .hm26-rond { transition-delay: 0.3s; }
+.hm26--js.is-in .hm26-etape { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .hm26 * { transition: none !important; }
+  .hm26--js .hm26-ligne { stroke-dashoffset: 0; }
+  .hm26--js :is(.hm26-pointe, .hm26-rond, .hm26-rond-corail, .hm26-etape) { opacity: 1; transform: none; }
+}
+
+/* ── Tablette et mobile : la courbe devient une progression verticale ── */
+@media (max-width: 1100px) {
+  .hm26-haut { padding: 0 clamp(20px, 6vw, 64px); grid-template-columns: minmax(0, 1fr); row-gap: 28px; }
+  .hm26-intro { padding-top: 0; max-width: 520px; }
+  .hm26-l2 { padding-left: 0.3em; }
+  .hm26-trajet { aspect-ratio: auto; margin: 64px clamp(20px, 6vw, 64px) 0; }
+  .hm26-svg { display: none; }
+  .hm26-etapes {
+    position: relative;
+    display: grid;
+    gap: 40px;
+    padding-left: 44px;
+  }
+  /* Le fil vertical, avec sa flèche en bas */
+  .hm26-etapes::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 10px;
+    bottom: -18px;
+    width: 1.4px;
+    background: var(--hm-bleu);
+  }
+  .hm26-etapes::after {
+    content: "";
+    position: absolute;
+    left: 3px;
+    bottom: -20px;
+    width: 11px;
+    height: 11px;
+    border-right: 1.4px solid var(--hm-bleu);
+    border-bottom: 1.4px solid var(--hm-bleu);
+    transform: rotate(45deg);
+  }
+  .hm26-etape { position: relative; left: auto; top: auto; width: auto; }
+  .hm26-etape::before {
+    content: "";
+    position: absolute;
+    left: -44px;
+    top: 2px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    border: 1.8px solid var(--hm-bleu);
+    background: var(--hm-casse);
+  }
+  .hm26-etape:nth-child(4)::before { background: radial-gradient(circle, var(--hm-corail) 0 3.5px, var(--hm-casse) 4px); }
+  .hm26-num { position: static; transform: none; }
+  .hm26-etape-titre { margin-top: 10px; font-size: clamp(34px, 6vw, 46px); }
+  .hm26-etape-texte { max-width: 34em; font-size: 15.5px; }
+  .hm26-engagements { margin: 72px clamp(20px, 6vw, 64px) 0; padding: 32px 0 0; grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; }
+  .hm26-eng:nth-child(3) { padding-left: 0; border-left: 0; }
+  .hm26-eng--fort dt { font-size: clamp(54px, 9vw, 80px); }
+  .hm26-croix:nth-of-type(1) { left: auto; right: 8%; top: 4%; }
+  .hm26-croix:nth-of-type(2) { display: none; }
+}
+@media (max-width: 520px) {
+  .hm26-titre { font-size: clamp(44px, 13vw, 58px); }
+  .hm26-engagements { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
+  .hm26-eng { padding: 22px 0; border-left: 0; border-top: 1px solid var(--hm-sep); }
+  .hm26-eng:first-child { padding-top: 0; border-top: 0; }
+}

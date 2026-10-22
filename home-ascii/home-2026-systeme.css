@@ -1,0 +1,91 @@
+/* HWS Agency — home 2026 : système commun à toutes les sections.
+   Une seule source pour l'espacement vertical, la gouttière et les tailles de texte.
+   Chargé en dernier : il l'emporte sur les valeurs propres à chaque section.
+   Le héro (plein écran) et la navigation ne sont pas concernés. */
+
+:root {
+  /* Espacements */
+  --air: clamp(104px, 11vw, 176px);          /* haut et bas de chaque section */
+  --gouttiere: clamp(20px, 6vw, 96px);       /* marge gauche et droite du contenu */
+  --largeur: 1440px;                         /* largeur maximale du contenu */
+  --ecart-label: 18px;                       /* label → titre */
+  --ecart-chapo: 22px;                       /* titre → texte d'introduction */
+  --ecart-contenu: calc(var(--air) * 0.42);  /* en-tête → contenu */
+
+  /* Tailles de texte */
+  --t-label: 12px;                                   /* « 0X / … », catégories, dates */
+  --t-titre: clamp(48px, 6.6vw, 104px);              /* titre de section */
+  --t-sous-titre: clamp(26px, 2.3vw, 34px);          /* titres d'éléments (arguments, étapes, articles) : comme le socle systeme-2026 */
+  --t-chapo: clamp(16px, 1.3vw, 19px);               /* texte d'introduction */
+  --t-texte: clamp(14.5px, 1.05vw, 16px);            /* textes courants */
+  --t-lien: 15px;                                    /* liens soulignés */
+}
+@media (max-width: 640px) {
+  :root { --air: 88px; --t-titre: clamp(44px, 12.4vw, 56px); --ecart-contenu: 48px; }
+}
+
+/* ── Titres : la feuille Webflow leur donne Clash Display ; ils héritent de nos polices (Clash n'est plus téléchargée) ── */
+:where(html) :is(h1, h2, h3, h4, h5, h6) { font-family: inherit; }
+
+/* ── Espacement vertical ── */
+html :is(.hv26-inner, .hp26, .hm26, .hpa, .hav-inner, .hjr-inner) { padding-top: var(--air); padding-bottom: var(--air); }
+html .hf26-inner { padding-top: var(--air); }
+
+/* ── Même gouttière et même largeur partout ── */
+html :is(.hv26-inner, .hav-inner, .hjr-inner) { max-width: calc(var(--largeur) + 2 * var(--gouttiere)); padding-left: var(--gouttiere); padding-right: var(--gouttiere); }
+html :is(.hp26-intro, .hpa-haut) { max-width: calc(var(--largeur) + 2 * var(--gouttiere)); padding-left: var(--gouttiere); padding-right: var(--gouttiere); }
+html .hm26-haut { max-width: calc(var(--largeur) + 2 * var(--gouttiere)); margin: 0 auto; padding-left: var(--gouttiere); padding-right: var(--gouttiere); }
+html .hm26-engagements { margin-left: var(--gouttiere); margin-right: var(--gouttiere); padding-left: 0; padding-right: 0; }
+html .hpa-bande { margin-left: var(--gouttiere); margin-right: var(--gouttiere); }
+@media (min-width: 1100px) {
+  html .hm26-engagements { margin-left: max(var(--gouttiere), (100% - var(--largeur)) / 2); margin-right: max(var(--gouttiere), (100% - var(--largeur)) / 2); }
+}
+
+/* ── Labels « 0X / … » ── */
+html :is(.hv26-label, .hp26-label, .hm26-label, .hpa-label, .hav-label, .hjr-label) {
+  font-size: var(--t-label);
+  line-height: 1.4;
+  letter-spacing: 0.16em;
+}
+
+/* ── Titres de section ── */
+html :is(.hv26-titre, .hp26-titre, .hm26-titre, .hpa-titre, .hav-titre, .hjr-titre) {
+  margin-top: var(--ecart-label);
+  font-size: var(--t-titre);
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+}
+
+/* ── Textes d'introduction ── */
+html :is(.hv26-intro, .hp26-chapo, .hm26-intro p, .hpa-intro, .hjr-chapo) {
+  font-size: var(--t-chapo);
+  line-height: 1.55;
+}
+html :is(.hp26-chapo, .hjr-chapo, .hv26-intro) { margin-top: var(--ecart-chapo); }
+
+/* ── Liens soulignés ── */
+html :is(.hv26-lien, .hp26-tous, .hm26-lien, .hjr-tous, .hjr-lire, .hp26-cas) { font-size: var(--t-lien); font-weight: 500; }
+
+/* ── Titres d'éléments ── */
+html :is(.hv26-args h3, .hm26-etape-titre, .hjr-cote .hjr-titre-article) { font-size: var(--t-sous-titre); line-height: 1.05; }
+
+/* ── Textes courants ── */
+html :is(.hv26-args h3 + p, .hp26-desc, .hm26-etape-texte, .hjr-cote .hjr-resume, .hm26-eng dd) { font-size: var(--t-texte); line-height: 1.55; }
+html .hjr-article--une .hjr-resume { font-size: var(--t-chapo); line-height: 1.55; }
+html .hav-avis blockquote p { font-size: clamp(17px, 1.55vw, 23px); }
+
+/* ── Petites informations (catégories, dates, compteurs) ── */
+html :is(.hp26-cat, .hav-cat, .hjr-meta, .hjr-pied time, .hv26-num, .hm26-num) { font-size: 11.5px; letter-spacing: 0.14em; }
+
+/* ── En-tête → contenu ── */
+html .hv26-args { margin-top: calc(var(--air) * 0.9); }
+html .hp26-carrousel { margin-top: var(--ecart-contenu); }
+html .hm26-trajet { margin-top: calc(var(--ecart-contenu) * 0.3); }
+html .hm26-engagements { margin-top: var(--ecart-contenu); }
+html .hpa-bande { margin-top: var(--ecart-contenu); }
+html .hav-liste { padding-top: var(--ecart-contenu); }
+html .hjr-grille { margin-top: var(--ecart-contenu); }
+
+/* Témoignages : l'en-tête et la première colonne s'alignent sur la gouttière commune. */
+html .hav-haut { padding-left: 0; padding-right: 0; }
+html .hav-avis:nth-child(odd) { padding-left: 0; }

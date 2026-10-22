@@ -1,0 +1,180 @@
+/* HWS Agency — section « Témoignages » 2026
+   Titre éditorial à gauche, 98 % à droite derrière un filet vertical ; puis deux avis
+   côte à côte, séparés par un filet, qui défilent par paires. Poulpe tramé en bas à droite.
+   Tout est préfixé .hav. */
+
+.hav {
+  --hav-bleu: #3974F7;
+  --hav-corail: #FF5A36;
+  --hav-casse: #F7F7F4;
+  --hav-nuit: #171B49;
+  --hav-gris: #6B7094;
+  --hav-filet: rgba(57, 116, 247, 0.45);
+  --hav-sep: rgba(23, 27, 73, 0.14);
+  --hav-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --hav-sans: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hav-ease: cubic-bezier(0.22, 0.7, 0.2, 1);
+
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+  background: var(--hav-casse);
+  color: var(--hav-nuit);
+  font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.hav, .hav *, .hav *::before, .hav *::after { box-sizing: border-box; }
+.hav :where(h2, p, ul, li, blockquote) { margin: 0; padding: 0; }
+.hav :where(ul) { list-style: none; }
+.hav :where(blockquote) { border: 0; font-size: inherit; line-height: inherit; }
+.hav :is(a, button):focus-visible { outline: 2px solid var(--hav-bleu); outline-offset: 4px; border-radius: 3px; }
+.hav [data-anim-fade] { opacity: 1 !important; transform: none !important; }
+.hav-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.hav-trame { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none; }
+
+.hav-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1672px;
+  margin: 0 auto;
+  padding: clamp(72px, 7vw, 112px) 5.7% clamp(64px, 6vw, 96px);
+}
+
+/* ── En-tête : titre | filet | 98 % ── */
+.hav-haut {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  padding: 0 0.7% clamp(28px, 2.6vw, 44px);
+  border-bottom: 1px solid var(--hav-filet);
+}
+.hav-label {
+  font-family: var(--hav-sans);
+  font-size: clamp(11px, 0.95vw, 15px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--hav-bleu);
+}
+.hav-titre {
+  margin-top: clamp(14px, 1.4vw, 24px);
+  font-family: var(--hav-serif);
+  font-weight: 400;
+  font-size: clamp(50px, 7.4vw, 124px);
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  color: var(--hav-nuit);
+}
+.hav-titre > span, .hav-titre > em { display: block; }
+.hav-titre em { font-style: italic; color: var(--hav-bleu); letter-spacing: -0.03em; }
+.hav-point { color: var(--hav-corail); font-style: normal; }
+.hav-stat {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: clamp(40px, 5.4vw, 88px);
+  margin-left: clamp(32px, 4.6vw, 76px);
+  border-left: 1px solid var(--hav-sep);
+}
+.hav-stat-num {
+  font-family: var(--hav-serif);
+  font-style: italic;
+  font-size: clamp(86px, 10vw, 168px);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--hav-bleu);
+}
+.hav-stat-num sup { font-size: 0.42em; vertical-align: 0.95em; margin-left: 0.12em; font-style: normal; }
+.hav-stat-label { margin-top: clamp(10px, 1vw, 16px); font-size: clamp(15px, 1.35vw, 22px); color: var(--hav-gris); }
+
+/* ── Deux avis côte à côte ── */
+.hav-liste {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding-top: clamp(36px, 3.2vw, 52px);
+}
+.hav-avis { padding: 0 clamp(32px, 4vw, 64px) 0 0.7%; }
+.hav-avis:nth-child(2n) { padding: 0 0 0 clamp(32px, 4vw, 64px); border-left: 1px solid var(--hav-sep); }
+.hav-cat {
+  font-family: var(--hav-sans);
+  font-size: clamp(11px, 0.9vw, 14px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--hav-bleu);
+}
+.hav-avis blockquote {
+  position: relative;
+  margin-top: clamp(24px, 2.2vw, 36px);
+  padding-left: clamp(56px, 5.5vw, 92px);
+}
+.hav-avis blockquote::before {
+  content: "“";
+  position: absolute;
+  left: 0;
+  top: -0.08em;
+  font-family: var(--hav-serif);
+  font-size: clamp(84px, 8vw, 132px);
+  line-height: 0.85;
+  color: var(--hav-bleu);
+}
+.hav-avis blockquote p {
+  max-width: 31ch;
+  font-size: clamp(17px, 1.68vw, 28px);
+  line-height: 1.5;
+  color: var(--hav-nuit);
+}
+.hav-avis mark { background: none; color: var(--hav-bleu); }
+.hav-auteur {
+  margin: clamp(22px, 2vw, 32px) 0 0 clamp(56px, 5.5vw, 92px);
+  padding-top: clamp(22px, 2vw, 34px);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: linear-gradient(var(--hav-nuit), var(--hav-nuit)) 0 0 / 52px 1px no-repeat;
+}
+.hav-nom { font-size: clamp(16px, 1.45vw, 24px); font-weight: 500; color: var(--hav-nuit); }
+.hav-poste { font-size: clamp(14px, 1.3vw, 21px); color: var(--hav-gris); }
+
+/* Changement de paire : fondu court */
+.hav--js .hav-avis { opacity: 0; transform: translateY(8px); transition: opacity 0.5s var(--hav-ease), transform 0.6s var(--hav-ease); }
+.hav--js .hav-avis:nth-child(2n) { transition-delay: 0.08s; }
+.hav--js .hav-avis.is-in { opacity: 1; transform: none; }
+
+/* ── Contrôles : les mêmes que le carrousel Projets, plus discrets ── */
+.hav-controles { margin-top: clamp(44px, 4vw, 64px); display: flex; align-items: center; justify-content: center; gap: 24px; }
+.hav:not(.hav--js) .hav-controles { display: none; }
+.hav:not(.hav--js) .hav-liste { row-gap: 56px; }
+.hav-btn { display: grid; place-items: center; width: 46px; height: 46px; padding: 0; border-radius: 50%; cursor: pointer; transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.25s var(--hav-ease); }
+.hav-btn svg { width: 16px; height: 16px; }
+.hav-btn--prec { border: 1px solid rgba(23, 27, 73, 0.35); background: transparent; color: var(--hav-nuit); }
+.hav-btn--prec:hover { border-color: var(--hav-nuit); background: var(--hav-nuit); color: #fff; }
+.hav-btn--suiv { border: 1px solid var(--hav-bleu); background: var(--hav-bleu); color: #fff; }
+.hav-btn--suiv:hover { border-color: var(--hav-nuit); background: var(--hav-nuit); }
+.hav-btn:active { transform: scale(0.95); }
+.hav-compteur { font-family: var(--hav-sans); font-size: 13px; letter-spacing: 0.08em; color: var(--hav-gris); font-variant-numeric: tabular-nums; }
+.hav-courant { color: var(--hav-bleu); }
+.hav-progression { width: 140px; height: 2px; background: rgba(23, 27, 73, 0.12); border-radius: 2px; overflow: hidden; }
+.hav-progression span { display: block; height: 100%; background: var(--hav-bleu); transform: scaleX(var(--progres, 0.2)); transform-origin: left; transition: transform 0.6s var(--hav-ease); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hav * { transition-duration: 0.01ms !important; transition-delay: 0s !important; }
+}
+
+/* ── Tablette et mobile : un avis à la fois ── */
+@media (max-width: 900px) {
+  .hav-inner { padding-left: clamp(20px, 6vw, 56px); padding-right: clamp(20px, 6vw, 56px); }
+  .hav-liste { grid-template-columns: minmax(0, 1fr); }
+  .hav-avis, .hav-avis:nth-child(2n) { padding: 0; border-left: 0; }
+  .hav-avis blockquote p { max-width: 36ch; font-size: clamp(17px, 2.6vw, 22px); }
+}
+@media (max-width: 600px) {
+  .hav-haut { grid-template-columns: minmax(0, 1fr); row-gap: 28px; padding-left: 0; }
+  .hav-titre { font-size: clamp(44px, 12.4vw, 58px); }
+  .hav-stat { padding: 22px 0 0; margin: 0; border-left: 0; border-top: 1px solid var(--hav-sep); }
+  .hav-stat-num { font-size: 88px; }
+  .hav-avis blockquote { padding-left: 0; padding-top: 52px; }
+  .hav-avis blockquote::before { font-size: 84px; }
+  .hav-auteur { margin-left: 0; }
+  .hav-controles { gap: 16px; }
+  .hav-progression { width: 72px; }
+}

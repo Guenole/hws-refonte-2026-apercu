@@ -1,0 +1,62 @@
+/* HWS Agency 2026 — page service « Applications mobiles & SaaS ».
+   Ne contient que ce qui est propre à la page. Le reste vient :
+   - du socle ../systeme-2026/systeme-2026.css ;
+   - des composants des pages services ../service-sur-mesure-2026/sur-mesure-2026.css, repris tels quels.
+   Préfixe .ap26. */
+
+/* ══ 1. Héro : le titre porte déjà son point ; l'emplacement de l'illustration est celui du patron
+   de la page sur-mesure (.sm26-patron), occupé ici par le téléphone et l'écran (ecran-2026.js). ══ */
+.ap26-hero .sm26-h1::after { content: none; }
+.ap26-hero .sm26-h1 { font-size: clamp(40px, 4.3vw, 72px); }   /* titre de 66 signes : un cran sous celui des autres héros */
+.ap26-hero .sm26-h1 em { white-space: nowrap; }   /* « applications mobiles » ne se coupe pas, « & » reste avec « SaaS » */
+.ap26-hero .sm26-hero-inner { padding-bottom: calc(clamp(64px, 10vh, 120px) + 48px); }   /* place réservée aux micro-libellés */
+.ap26-hero .sm26-hero-inner > * { max-width: min(42%, 600px); }   /* le titre ne touche jamais le téléphone */
+/* Micro-libellés du héro en ligne : en bas à gauche du premier écran, sous le texte sur mobile */
+.ap26-hero-micro {
+  position: absolute;
+  z-index: 1;
+  left: max(var(--gouttiere), (100% - var(--largeur)) / 2);
+  bottom: clamp(24px, 4.5vh, 48px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+}
+.ap26-hero-micro .s26-meta { color: var(--c-gris); }
+.ap26-hero-micro strong { font-weight: 500; color: var(--c-bleu-texte); margin-right: 0.5em; }
+.ap26-casse { text-transform: none; }   /* « iOS » garde sa casse dans les libellés en capitales */
+
+/* ══ 2. Chiffres : libellés en texte courant, règle commune dans ../service-sur-mesure-2026/sur-mesure-2026.css ══ */
+
+/* ══ 3. Onglets : le format du projet (badge en ligne) au-dessus du nom du type ══ */
+.ap26-badge { margin-bottom: 14px; }
+
+/* ══ 4. Outils : deux bandes dans le même cadre, la seconde défile en sens inverse ══ */
+.ap26-bande .sm26-piste + .sm26-piste { margin-top: clamp(22px, 2.6vw, 36px); animation-direction: reverse; }
+.ap26-bande:hover .sm26-piste { animation-play-state: paused; }
+.ap26-logo-mot {
+  display: block;
+  height: clamp(40px, 3.6vw, 54px);
+  font-size: clamp(16px, 1.3vw, 20px);
+  font-weight: 500;
+  line-height: clamp(40px, 3.6vw, 54px);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: var(--c-nuit);
+  opacity: 0.82;
+}
+
+@media (max-width: 1100px) {
+  /* texte, puis l'illustration, puis les micro-libellés */
+  .ap26-hero { flex-direction: column; }
+  .ap26-hero .sm26-hero-inner { order: 1; }
+  .ap26-hero .ap26-ecran { order: 2; margin-top: 32px; }
+  .ap26-hero .sm26-hero-inner > * { max-width: 680px; }
+  .ap26-hero-micro { order: 3; position: static; padding: 18px var(--gouttiere) 0; }
+  .ap26-hero .sm26-hero-inner { padding-bottom: 0; }
+}
+@media (max-width: 640px) {
+  .ap26-hero .sm26-hero-inner { padding-top: calc(72px + 32px); }
+  .ap26-hero .sm26-hero-texte { margin-top: 18px; }
+  .ap26-hero .sm26-hero-actions { margin-top: 24px; }
+  .ap26-hero .ap26-ecran { margin-top: 24px; height: 78vw; }
+}

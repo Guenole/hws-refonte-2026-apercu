@@ -1,0 +1,57 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   HWS — Passe « aérer la home » (impeccable layout, 19 oct. 2026)
+   CSS seulement : aucun texte, ordre ni structure modifié.
+   Diagnostic et mesures : .impeccable/review/layout-diagnostic.md
+   À reporter dans Webflow : Avis clients et Mobile touchent des classes
+   partagées par d'autres pages ; #services, #partners et #projects passent par
+   le Site Custom Code (.section est une classe générique).
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* Rythme : section Services vide supprimée, écart titre → contenu unifié à 64 px */
+#services { padding-top: 0; padding-bottom: 0; }
+.testi-intro { margin-bottom: 64px; }
+#partners.section { padding-top: 80px; padding-bottom: 80px; }
+#partners .testi-intro { margin-bottom: 40px; }
+
+/* Défauts : libellé du carrousel visible sous la nav, largeurs de texte, alignement */
+#projects .ps-top { padding-top: calc(68px + 16px) !important; }
+#projects .ps-tags-text { max-width: 360px; }
+.method-body { max-width: 34em; }
+.hero-sub { max-width: 640px; }
+.hero-mark { right: clamp(40px, 6vw, 96px); }
+.fc { z-index: 4; } /* curseurs de la section Collaboration sous le texte */
+
+/* Vision : titre sur 3 lignes, texte à ~72 caractères par ligne, chiffres sur une ligne */
+.about-headline-block { max-width: 1120px; margin-bottom: 64px; }
+.about-body-p { font-size: clamp(.95rem, 1.2vw, 1.05rem); line-height: 1.75; max-width: 36em; }
+.about-h3 { margin-top: 40px; margin-bottom: 12px; }
+.about-h3.first { margin-top: 0; }
+@media (min-width: 992px) {
+  .svc-stats.about-stats-override { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Avis clients : cartes plus larges et espacées */
+.testi-track { gap: 0; }
+.testi-card { width: 420px; margin-right: 24px; }
+.testi-tracks { gap: 24px; }
+
+/* Mobile : une seule gouttière de 20 px, 80/80 par section, 40 px titre → contenu */
+@media (max-width: 767px) {
+  .section-light, .section-dark, .blog-section, .method-section { padding-left: 20px; padding-right: 20px; }
+  #projects .ps-top, #projects .ps-bottom { padding-left: 20px !important; padding-right: 20px !important; }
+  .collab-content { padding-left: 20px; padding-right: 20px; }
+  .section-light, .section, .blog-section, .method-section, .testi-section, #partners.section { padding-top: 80px; padding-bottom: 80px; }
+  .testi-card { width: calc(100vw - 48px); padding: 24px; margin-right: 16px; }
+  .testi-tracks { gap: 16px; }
+  .about-headline-block { margin-bottom: 40px; }
+  .testi-intro, #partners .testi-intro { margin-bottom: 40px; }
+  .blog-header { margin-bottom: 40px; }
+}
+
+/* Revue (fix) : la photo de Vision accompagne le texte, plus de colonne vide sous elle */
+@media (min-width: 992px) {
+  .about-media { position: sticky; top: 100px; align-self: start; }
+}
+
+/* Revue (fix) : le chiffre « 98 % » des avis devient lisible (bleu HWS, grand texte ≥ 3:1) */
+.testi-stat-num { color: #3974F7; }

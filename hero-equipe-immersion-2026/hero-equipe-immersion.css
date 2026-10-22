@@ -1,0 +1,47 @@
+/* Cadre de bureau en U. Les réserves sont de vraies transparences, sans voile sur le papier. */
+.hh26--immersion .hh26-decor {
+  display: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.hh26.hh26--immersion .hh26-bas {
+  position: relative;
+  inset: auto;
+  margin-top: 24px;
+  width: min(100%, 450px);
+  gap: 28px;
+  font-size: 10px;
+  letter-spacing: .1em;
+}
+@media (min-width: 1100px) {
+  .hh26.hh26--equipe.hh26--immersion {
+    display: block;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-bottom: calc(min(22.85vw, 585px) + 32px);
+  }
+  .hh26.hh26--immersion .hh26-inner {
+    padding-bottom: 0;
+    z-index: 2;
+  }
+  .hh26--immersion .hh26-decor {
+    display: block;
+    opacity: .8;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 8%, rgb(0 0 0 / .08) 15%, rgb(0 0 0 / .55) 30%, #000 52%, #000 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, transparent 8%, rgb(0 0 0 / .08) 15%, rgb(0 0 0 / .55) 30%, #000 52%, #000 100%);
+  }
+  .hh26--immersion .hh26-paysage {
+    position: absolute;
+    inset: auto 0 0;
+    height: var(--hh-paysage-h);
+    min-height: 0;
+    z-index: 1;
+  }
+}
+@media (max-width: 699px) {
+  .hh26.hh26--immersion .hh26-bas { margin-top: 20px; justify-content: center; font-size: 9px; }
+}

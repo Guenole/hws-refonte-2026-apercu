@@ -1,0 +1,290 @@
+/* HWS Agency — section « Projets sélectionnés » 2026
+   Carrousel panoramique : projet actif au centre, voisins visibles en perspective.
+   Un dispositif par type de projet : site web (ordinateur + mobile), application mobile
+   (trois téléphones), application web (navigateur + zoom). Tout est préfixé .hp26.
+   Polices : Instrument Serif et Space Grotesk, déclarées dans ../polices-2026/polices-2026.css. */
+
+.hp26 {
+  --hp-bleu: #3974F7;
+  --hp-corail: #FF5A36;
+  --hp-casse: #F7F7F4;
+  --hp-nuit: #171B49;
+  --hp-gris: #6B7094;
+  --hp-filet: rgba(23, 27, 73, 0.12);
+  --hp-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --hp-sans: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hp-gutter: clamp(20px, 6vw, 96px);
+  --hp-ease: cubic-bezier(0.22, 0.7, 0.2, 1);
+  /* Géométrie du carrousel : largeur du projet actif, échelle et écart des voisins */
+  --hp-w: min(50vw, 820px);
+  --hp-s: 0.74;
+  --hp-gap: 40px;
+  --hp-ratio: 1.6;   /* le visuel fait 16/10 */
+
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+  background: var(--hp-casse);
+  color: var(--hp-nuit);
+  font-family: var(--hp-sans);
+  -webkit-font-smoothing: antialiased;
+  padding: clamp(96px, 10vw, 150px) 0 clamp(72px, 7vw, 110px);
+}
+.hp26, .hp26 *, .hp26 *::before, .hp26 *::after { box-sizing: border-box; }
+.hp26 :where(h2, h3, p, ol, li, figure) { margin: 0; padding: 0; }
+.hp26 :where(ol) { list-style: none; }
+.hp26 :where(a) { color: inherit; text-decoration: none; }
+.hp26 :where(img) { display: block; max-width: none; }
+.hp26 :is(a, button):focus-visible { outline: 2px solid var(--hp-bleu); outline-offset: 4px; border-radius: 3px; }
+.hp26 [data-anim-fade] { opacity: 1 !important; transform: none !important; }
+.hp26-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.hp26-trame { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none; }
+.hp26-croix {
+  position: absolute;
+  z-index: 1;
+  left: var(--x);
+  top: var(--y);
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--hp-corail), var(--hp-corail)) center / 100% 1.5px no-repeat,
+    linear-gradient(var(--hp-corail), var(--hp-corail)) center / 1.5px 100% no-repeat;
+}
+.hp26-fleche { width: 14px; height: 14px; flex: none; color: var(--hp-corail); transition: transform 0.3s var(--hp-ease); }
+a:hover > .hp26-fleche, a:focus-visible > .hp26-fleche { transform: translateX(4px); }
+
+/* ── Introduction ── */
+.hp26-intro {
+  position: relative;
+  z-index: 2;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--hp-gutter);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+.hp26-label {
+  font-family: var(--hp-sans);
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hp-bleu);
+}
+.hp26-titre {
+  margin-top: 18px;
+  font-family: var(--hp-serif);
+  font-weight: 400;
+  font-size: clamp(50px, 7vw, 112px);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: var(--hp-nuit);
+}
+.hp26-titre em { font-style: italic; color: var(--hp-bleu); letter-spacing: -0.015em; }
+.hp26-point { color: var(--hp-corail); }
+.hp26-chapo {
+  margin-top: 22px;
+  max-width: 52ch;
+  font-size: clamp(16px, 1.3vw, 19px);
+  line-height: 1.55;
+  color: var(--hp-gris);
+}
+.hp26-tous {
+  flex: none;
+  margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--hp-nuit);
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+  transition: color 0.25s;
+}
+.hp26-tous:hover { color: var(--hp-bleu); }
+
+/* ── Carrousel ── */
+.hp26-carrousel { position: relative; z-index: 2; margin-top: clamp(48px, 5vw, 72px); }
+.hp26-piste {
+  position: relative;
+  height: calc(var(--hp-w) / var(--hp-ratio) + 170px);   /* visuel + informations */
+  perspective: 1800px;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.hp26-slide {
+  --pos: 0;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--hp-w);
+  transform-origin: 50% 40%;
+  transform:
+    translateX(calc(-50% + var(--pos) * (var(--hp-w) * (1 + var(--hp-s)) / 2 + var(--hp-gap))))
+    scale(var(--sc, 1))
+    rotateY(var(--ry, 0deg));
+  transition: transform 0.8s var(--hp-ease), opacity 0.6s var(--hp-ease), filter 0.6s;
+  will-change: transform;
+}
+.hp26-slide[data-pos="-2"] { --pos: -2; }
+.hp26-slide[data-pos="-1"] { --pos: -1; }
+.hp26-slide[data-pos="0"] { --pos: 0; z-index: 3; }
+.hp26-slide[data-pos="1"] { --pos: 1; }
+.hp26-slide[data-pos="2"] { --pos: 2; }
+.hp26-slide[data-pos="-1"], .hp26-slide[data-pos="1"] { --sc: var(--hp-s); z-index: 2; cursor: pointer; }
+.hp26-slide[data-pos="-1"] { --ry: 14deg; }
+.hp26-slide[data-pos="1"] { --ry: -14deg; }
+.hp26-slide[data-pos="-2"], .hp26-slide[data-pos="2"] { --sc: 0.5; opacity: 0; pointer-events: none; }
+.hp26-slide.sans-transition { transition: none; }
+
+/* Le visuel : une seule image par projet, composée en amont (outils/composer.html).
+   L'image couvre le cadre 16/10 plus ce qui en dépasse (téléphones, ombres) :
+   7,5 % de chaque côté, 6,5 % au-dessus, 17,5 % en dessous. Fond transparent. */
+.hp26-visuel { position: relative; aspect-ratio: 16 / 10; margin: 0; }
+.hp26-visuel img {
+  position: absolute;
+  left: -7.5%;
+  top: -6.5%;
+  width: 115%;
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+}
+
+/* Nom des voisins, sous leur visuel */
+.hp26-voisin {
+  margin-top: 64px;   /* sous le téléphone qui dépasse du visuel */
+  font-size: 17px;
+  color: var(--hp-gris);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+/* Le nom se place du côté visible du voisin, près du projet actif. */
+.hp26-slide[data-pos="-1"] .hp26-voisin { opacity: 1; text-align: right; padding-right: 6%; }
+.hp26-slide[data-pos="1"] .hp26-voisin { opacity: 1; text-align: left; padding-left: 6%; }
+
+/* Informations du projet actif */
+.hp26-info {
+  display: grid;
+  grid-template-columns: minmax(max-content, auto) 1px minmax(0, 1fr) auto;
+  column-gap: clamp(20px, 2.6vw, 40px);
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.45s var(--hp-ease), transform 0.5s var(--hp-ease), visibility 0s 0.45s;
+}
+.hp26-slide { display: flex; flex-direction: column; }
+.hp26-slide .hp26-info { margin-top: clamp(40px, 3.6vw, 56px); }
+/* Sur grand écran, la ligne d'informations déborde un peu du visuel : la description respire. */
+@media (min-width: 1025px) {
+  .hp26-slide .hp26-info { width: 124%; margin-left: -12%; }
+}
+.hp26-slide[data-pos="0"] .hp26-info { opacity: 1; visibility: visible; transform: none; transition-delay: 0.25s, 0.25s, 0s; }
+.hp26-slide[data-pos="0"] .hp26-voisin { display: none; }
+.hp26-info-titre { min-width: 0; }
+.hp26-nom { white-space: nowrap; }
+.hp26-info::before { content: ""; grid-column: 2; grid-row: 1; align-self: stretch; background: var(--hp-filet); }
+.hp26-info-titre { grid-column: 1; grid-row: 1; }
+.hp26-desc { grid-column: 3; grid-row: 1; max-width: 42ch; font-size: 15px; line-height: 1.5; color: var(--hp-gris); }
+.hp26-cas {
+  grid-column: 4;
+  grid-row: 1;
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 5px;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--hp-nuit);
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+  transition: color 0.25s;
+}
+.hp26-cas:hover { color: var(--hp-bleu); }
+.hp26-cat {
+  font-family: var(--hp-sans);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hp-bleu);
+}
+.hp26-nom {
+  margin-top: 8px;
+  font-family: var(--hp-sans);
+  font-size: clamp(28px, 2.4vw, 36px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--hp-nuit);
+}
+
+/* ── Contrôles ── */
+.hp26-controles {
+  position: relative;
+  margin-top: clamp(28px, 3vw, 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+.hp26-btn {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.25s var(--hp-ease);
+}
+.hp26-btn svg { width: 16px; height: 16px; }
+.hp26-btn--prec { border: 1px solid rgba(23, 27, 73, 0.35); background: transparent; color: var(--hp-nuit); }
+.hp26-btn--prec:hover { border-color: var(--hp-nuit); background: var(--hp-nuit); color: #fff; }
+.hp26-btn--suiv { border: 1px solid var(--hp-bleu); background: var(--hp-bleu); color: #fff; }
+.hp26-btn--suiv:hover { border-color: var(--hp-nuit); background: var(--hp-nuit); }
+.hp26-btn:active { transform: scale(0.95); }
+.hp26-compteur { font-family: var(--hp-sans); font-size: 13px; letter-spacing: 0.08em; color: var(--hp-gris); font-variant-numeric: tabular-nums; }
+.hp26-courant { color: var(--hp-bleu); }
+.hp26-progression { width: 140px; height: 2px; background: rgba(23, 27, 73, 0.12); border-radius: 2px; overflow: hidden; }
+.hp26-progression span { display: block; height: 100%; width: 100%; background: var(--hp-bleu); transform: scaleX(var(--progres, 0.2)); transform-origin: left; transition: transform 0.6s var(--hp-ease); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hp26 * { transition-duration: 0.01ms !important; transition-delay: 0s !important; }
+}
+
+/* ── Tablette ── */
+@media (max-width: 1024px) {
+  .hp26 { --hp-w: 68vw; --hp-s: 0.7; --hp-gap: 24px; }
+  .hp26-intro { flex-direction: column; align-items: flex-start; gap: 28px; }
+  .hp26-slide[data-pos="-1"] { --ry: 8deg; }
+  .hp26-slide[data-pos="1"] { --ry: -8deg; }
+  .hp26-voisin { display: none; }
+  .hp26-info { grid-template-columns: minmax(0, 1fr) auto; row-gap: 14px; }
+  .hp26-info::before { display: none; }
+  .hp26-desc { grid-column: 1 / -1; grid-row: 2; }
+  .hp26-cas { grid-column: 2; grid-row: 1; align-self: end; }
+}
+
+/* ── Mobile : voisins réduits à une lisière ── */
+@media (max-width: 700px) {
+  .hp26 { --hp-w: 84vw; --hp-s: 0.88; --hp-gap: 10px; padding-top: 88px; }
+  .hp26-croix { display: none; }
+  .hp26-titre { font-size: clamp(46px, 13.5vw, 60px); }
+  .hp26-br { display: none; }
+  .hp26-chapo { font-size: 16px; }
+  .hp26-piste { height: calc(var(--hp-w) / var(--hp-ratio) + 230px); perspective: none; }
+  .hp26-slide[data-pos="-1"], .hp26-slide[data-pos="1"] { --ry: 0deg; opacity: 0.55; }
+  .hp26-info { grid-template-columns: minmax(0, 1fr); }
+  .hp26-slide .hp26-info { margin-top: 28px; }
+  .hp26-desc { grid-row: 2; font-size: 15px; }
+  .hp26-cas { grid-column: 1; grid-row: 3; justify-self: start; }
+  .hp26-controles { gap: 16px; }
+  .hp26-progression { width: 72px; }
+}

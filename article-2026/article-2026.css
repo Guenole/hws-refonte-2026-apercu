@@ -1,0 +1,464 @@
+/* HWS Agency 2026 — gabarit d'article du Journal.
+   Ne contient que ce qui est propre à l'article : couleurs, polices, espacements, titres, labels, liens,
+   boutons et colonnes à filets viennent du socle ../systeme-2026/systeme-2026.css.
+   Le corps est le champ « texte riche » du CMS Webflow, posé tel quel dans .ar26-texte : sa mise en forme
+   ne vise que des balises génériques (h2, h3, h4, p, ul, ol, li, a, strong, em, blockquote, figure,
+   figcaption, img, table, hr, code) et neutralise les styles par défaut de .w-richtext, pour servir à
+   tous les articles. Préfixe .ar26.
+
+   Mise en page : une marge (25 %) qui porte l'appareil de l'article (catégorie, temps, date, puis le
+   sommaire collant), et un axe de lecture à droite (titre, chapô, texte en colonne d'environ 70 signes). */
+
+.ar26 {
+  --ar26-marge: minmax(220px, 25%);
+  --ar26-ecart: clamp(56px, 6.2vw, 112px);  /* l'écart accueille les numéros des intertitres */
+  --ar26-nav: 76px;                         /* hauteur de la navigation fixe */
+  --ar26-corps: clamp(16.5px, calc(0.4vw + 12.4px), 18px);   /* texte courant de l'article */
+}
+
+/* ══ Grille commune : marge | axe de lecture ══ */
+.ar26-grille {
+  display: grid;
+  grid-template-columns: var(--ar26-marge) minmax(0, 1fr);
+  column-gap: var(--ar26-ecart);
+  align-items: start;
+}
+
+/* ══ 1. En-tête : méta dans la marge, titre et chapô sur l'axe ══ */
+.ar26-article > .s26-inner { padding-top: calc(var(--ar26-nav) + clamp(56px, 9vh, 112px)); padding-bottom: calc(var(--air) * 0.7); }
+
+.ar26-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: clamp(6px, 0.7vw, 12px);
+  padding-top: 16px;
+  border-top: 1px solid var(--c-filet-fort);
+}
+.ar26-infos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  font-size: var(--t-meta);
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-gris);
+  font-variant-numeric: tabular-nums;
+}
+/* Séparateur posé par le CSS : le texte des champs ne change pas */
+.ar26-infos > * + *::before { content: "·"; margin: 0 0.7em; color: var(--c-bleu); }
+
+.ar26-h1 {
+  max-width: 16.5em;
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: var(--t-titre-long);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  text-transform: none;
+  color: var(--c-nuit);
+  text-wrap: balance;
+}
+/* Ponctuation finale en corail (article-2026.js) ; sans ponctuation, un point corail est ajouté */
+.ar26-h1--point::after { content: "."; color: var(--c-corail); }
+
+.ar26-chapo {
+  margin-top: clamp(24px, 2.6vw, 36px);
+  max-width: 46ch;
+  font-size: var(--t-chapo);
+  line-height: 1.55;
+  color: var(--c-nuit-doux);
+  text-wrap: pretty;
+}
+
+/* ══ 2. Photo de l'article : toute la largeur utile ══ */
+.ar26-photo {
+  margin-top: clamp(48px, 6vw, 88px);
+  aspect-ratio: 21 / 9;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #E8ECF6;
+}
+.ar26-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ══ 3. Corps : sommaire collant dans la marge, texte riche sur l'axe ══ */
+.ar26-corps { margin-top: clamp(64px, 7vw, 112px); }
+
+.ar26-sommaire {
+  position: sticky;
+  top: calc(var(--ar26-nav) + 32px);
+  max-height: calc(100vh - var(--ar26-nav) - 56px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+.ar26-sommaire::-webkit-scrollbar { display: none; }
+.ar26-sommaire[hidden] { display: none; }
+.ar26-som-titre,
+.ar26-sommaire summary {
+  padding-bottom: 14px;
+  font-size: var(--t-label);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-bleu-texte);
+}
+/* Grand écran : un simple titre, la liste toujours ouverte ; le <summary> ne sert qu'en dessous de 1025 px */
+.ar26-sommaire summary { display: none; list-style: none; }
+.ar26-sommaire summary::-webkit-details-marker { display: none; }
+.ar26-som-liste { border-top: 1px solid var(--c-filet-fort); }
+.ar26-som-liste a {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: baseline;
+  padding: 13px 0 14px;
+  border-bottom: 1px solid var(--c-sep);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.42;
+  color: var(--c-gris);
+  text-wrap: pretty;
+  transition: color 0.25s var(--ease);
+}
+.ar26-som-num { font-size: 11.5px; letter-spacing: 0.1em; color: var(--c-bleu-texte); font-variant-numeric: tabular-nums; }
+.ar26-som-nom { position: relative; justify-self: start; }
+.ar26-som-liste a:hover { color: var(--c-nuit); }
+.ar26-som-liste a[aria-current] { color: var(--c-nuit); }
+/* La partie lue : un filet bleu se dessine sous son nom (comme l'onglet ouvert) */
+.ar26-som-nom::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: var(--c-bleu);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease);
+}
+.ar26-som-liste a[aria-current] .ar26-som-nom::after { transform: scaleX(1); }
+.ar26-som-liste a:focus-visible { outline-offset: 2px; }
+
+/* ── Texte riche ── */
+.ar26-texte {
+  max-width: 36em;                          /* ≈ 70 signes par ligne en Space Grotesk */
+  font-size: var(--ar26-corps);
+  line-height: 1.72;
+  color: var(--c-nuit-doux);
+  counter-reset: ar26-h2;
+  overflow-wrap: break-word;
+}
+.ar26-texte::before, .ar26-texte::after { content: none; }  /* neutralise le clearfix de .w-richtext */
+.ar26-texte::after { content: ""; display: table; clear: both; }
+.ar26-texte > :first-child { margin-top: 0 !important; }
+
+.ar26-texte p { margin: 1.1em 0 0; text-wrap: pretty; }
+.ar26-texte :is(strong, b) { font-weight: 500; color: var(--c-nuit); }
+.ar26-texte :is(em, i) { font-family: var(--f-serif); font-style: italic; font-size: 1.12em; line-height: 1; letter-spacing: 0; color: var(--c-nuit); }
+
+/* Liens du texte : bleu texte souligné d'un filet, bleu nuit au survol */
+.ar26-texte a {
+  color: var(--c-bleu-texte);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.24em;
+  text-decoration-color: var(--c-filet-fort);
+  transition: color 0.25s var(--ease), text-decoration-color 0.25s var(--ease);
+}
+.ar26-texte a:hover { color: var(--c-nuit); text-decoration-color: currentColor; }
+.ar26-texte a:focus-visible { outline: 2px solid var(--c-bleu); outline-offset: 3px; border-radius: 3px; }
+
+/* Intertitres : numéro « 01 — » repris du sommaire, puis le titre en serif */
+.ar26-texte :is(h1, h2, h3, h4, h5, h6) { font-weight: 400; text-transform: none; color: var(--c-nuit); text-wrap: balance; scroll-margin-top: calc(var(--ar26-nav) + 40px); }
+.ar26-texte :is(h1, h2) {
+  margin: clamp(64px, 6.4vw, 100px) 0 0;
+  font-family: var(--f-serif);
+  font-size: clamp(30px, 2.6vw, 40px);
+  line-height: 1.06;
+  letter-spacing: -0.016em;
+}
+.ar26-texte h2 { counter-increment: ar26-h2; }
+/* Le numéro « 01 — » du sommaire, suspendu dans l'écart à gauche de l'intertitre, sur la ligne de base
+   du premier vers (boîte en ligne à marge négative : aucun décalage du texte du titre). */
+.ar26-texte h2::before {
+  content: counter(ar26-h2, decimal-leading-zero) " —";
+  content: counter(ar26-h2, decimal-leading-zero) " —" / "";
+  display: inline-block;
+  width: 44px;
+  margin-left: calc(-44px - var(--ar26-num-ecart));
+  margin-right: var(--ar26-num-ecart);
+  text-align: right;
+  white-space: nowrap;
+  font-family: var(--f-sans);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  color: var(--c-bleu-texte);
+  font-variant-numeric: tabular-nums;
+}
+.ar26-texte { --ar26-num-ecart: clamp(14px, 1.4vw, 22px); }
+/* Petit grand écran : l'écart est plus étroit, le numéro reste seul */
+@media (min-width: 1025px) and (max-width: 1279px) {
+  .ar26-texte h2::before { content: counter(ar26-h2, decimal-leading-zero); content: counter(ar26-h2, decimal-leading-zero) / ""; width: 22px; margin-left: calc(-22px - var(--ar26-num-ecart)); }
+}
+.ar26-texte h3 {
+  margin: 2.4em 0 0;
+  font-family: var(--f-serif);
+  font-size: clamp(23px, 1.8vw, 27px);
+  line-height: 1.14;
+  letter-spacing: -0.01em;
+}
+.ar26-texte :is(h4, h5, h6) { margin: 2.2em 0 0; font-family: var(--f-sans); font-size: 1em; font-weight: 500; line-height: 1.4; letter-spacing: 0; }
+.ar26-texte :is(h1, h2) + * { margin-top: 22px; }
+.ar26-texte :is(h3, h4, h5, h6) + * { margin-top: 12px; }
+
+/* Listes : un filet bleu à la place de la puce, des numéros « 01 » en bleu */
+.ar26-texte :is(ul, ol) { margin: 1.1em 0 0; padding: 0; list-style: none; overflow: visible; }
+.ar26-texte ol { counter-reset: ar26-ol; }
+.ar26-texte li { position: relative; margin: 0; padding-left: 32px; }
+.ar26-texte li + li { margin-top: 0.62em; }
+.ar26-texte ul > li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.86em;
+  width: 13px;
+  height: 1px;
+  background: var(--c-bleu);
+}
+.ar26-texte ol > li { counter-increment: ar26-ol; padding-left: 38px; }
+.ar26-texte ol > li::before {
+  content: counter(ar26-ol, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.32em;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  color: var(--c-bleu-texte);
+  font-variant-numeric: tabular-nums;
+}
+.ar26-texte li > :is(ul, ol) { margin-top: 0.62em; }
+.ar26-texte li p { margin: 0; }
+
+/* Citation : entre deux filets forts, en serif (jamais une boîte de couleur) */
+.ar26-texte blockquote {
+  margin: 2.2em 0 0;
+  padding: 30px 0 32px;
+  border: 0;
+  border-top: 1px solid var(--c-filet-fort);
+  border-bottom: 1px solid var(--c-filet-fort);
+  font-family: var(--f-serif);
+  font-size: clamp(24px, 2vw, 30px);
+  line-height: 1.24;
+  letter-spacing: -0.01em;
+  color: var(--c-nuit);
+  text-wrap: pretty;
+}
+.ar26-texte blockquote p { margin: 0; }
+.ar26-texte blockquote p + p { margin-top: 0.6em; }
+.ar26-texte blockquote :is(em, i) { font-size: 1em; color: var(--c-bleu); }
+.ar26-texte blockquote cite, .ar26-texte blockquote footer { display: block; margin-top: 18px; font-family: var(--f-sans); font-size: var(--t-meta); font-style: normal; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-gris); }
+
+/* Images et figures (structure Webflow : figure > div > img + figcaption) */
+.ar26-texte img { display: block; max-width: 100%; height: auto; border-radius: 6px; }
+.ar26-texte figure { margin: 2.4em 0 0; }
+.ar26-texte figure,
+.ar26-texte figure.w-richtext-align-fullwidth,
+.ar26-texte figure.w-richtext-align-normal { width: 100%; max-width: 100% !important; text-align: left; }
+.ar26-texte figure > div { display: block; padding-bottom: 0; }
+.ar26-texte figure img { width: 100%; }
+.ar26-texte figure.w-richtext-align-center { width: auto; margin-left: auto; margin-right: auto; display: table; }
+.ar26-texte figure.w-richtext-align-floatleft { float: left; width: 44%; max-width: 44% !important; margin: 0.45em 28px 0.8em 0; }
+.ar26-texte figure.w-richtext-align-floatright { float: right; width: 44%; max-width: 44% !important; margin: 0.45em 0 0.8em 28px; }
+.ar26-texte figcaption {
+  margin-top: 12px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  text-align: left;
+  color: var(--c-gris);
+}
+.ar26-texte figure.w-richtext-figure-type-video > div { position: relative; aspect-ratio: 16 / 9; border-radius: 6px; overflow: hidden; }
+.ar26-texte figure.w-richtext-figure-type-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* Tableau : en-têtes en capitales bleu texte sur un filet fort, lignes séparées par le séparateur */
+.ar26-texte table {
+  margin: 2.2em 0 0;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+.ar26-texte th {
+  padding: 0 18px 12px 0;
+  border-bottom: 1px solid var(--c-filet-fort);
+  text-align: left;
+  vertical-align: bottom;
+  font-size: var(--t-meta);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-bleu-texte);
+}
+.ar26-texte td { padding: 13px 18px 13px 0; border-bottom: 1px solid var(--c-sep); vertical-align: top; }
+.ar26-texte :is(th, td):last-child { padding-right: 0; }
+.ar26-texte caption { caption-side: bottom; padding-top: 12px; text-align: left; font-size: 13.5px; color: var(--c-gris); }
+
+.ar26-texte .w-embed { margin: 2.2em 0 0; }
+.ar26-texte .w-embed > table:first-child { margin-top: 0; }
+.ar26-texte .w-embed + * { margin-top: 2em; }
+.ar26-texte hr { height: 1px; margin: 2.6em 0 0; border: 0; background: var(--c-filet); }
+.ar26-texte :is(blockquote, figure, table, hr) + * { margin-top: 2em; }
+/* Code : pas de troisième police (règle des deux voix) ; Space Grotesk 500 sur un fond bleu très léger */
+.ar26-texte code { padding: 0.12em 0.36em; border-radius: 3px; background: rgba(57, 116, 247, 0.09); font-family: var(--f-sans); font-size: 0.92em; font-weight: 500; color: var(--c-nuit); font-variant-numeric: tabular-nums; }
+.ar26-texte pre { margin: 2em 0 0; padding: 20px 22px; border-radius: 6px; background: rgba(57, 116, 247, 0.07); overflow-x: auto; font-size: 14px; line-height: 1.6; }
+.ar26-texte pre code { padding: 0; background: none; font-size: 1em; }
+
+/* ══ 4. Sur le même sujet (même langage que le Journal de la home) ══ */
+.ar26-filet-entree { border-top: 1px solid var(--c-filet); margin-bottom: calc(var(--air) * 0.6); }
+.ar26-lies-entete {
+  display: grid;
+  grid-template-columns: var(--ar26-marge) minmax(0, 1fr) auto;
+  grid-template-areas: "label titre lien";
+  column-gap: var(--ar26-ecart);
+  align-items: end;
+}
+/* Le label se range dans la marge, comme la méta de l'article : filet bleu, puis le mot */
+.ar26-lies-label { grid-area: label; align-self: start; margin-top: clamp(10px, 1.2vw, 20px); padding-top: 16px; border-top: 1px solid var(--c-filet-fort); }
+.ar26-lies-entete .ar26-lies-titre { grid-area: titre; margin-top: 0; }
+.ar26-lies-entete .ar26-tous { grid-area: lien; justify-self: end; margin-bottom: 10px; }
+.ar26-lies-liste { grid-column: 2; margin-top: var(--ecart-contenu); }
+.ar26-lie { display: flex; flex-direction: column; }
+.ar26-lies-liste > .ar26-lie:last-child { padding-right: 0; }
+.ar26-lie-image { display: block; aspect-ratio: 16 / 9; border-radius: 6px; overflow: hidden; background: #E8ECF6; }
+.ar26-lie-image img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
+.ar26-lie:hover .ar26-lie-image img { transform: scale(1.025); }
+.ar26-lie-meta { margin-top: 24px; }
+.ar26-lie-meta > * + *::before { content: "·"; margin: 0 0.7em; color: var(--c-gris); }
+.ar26-lie-titre {
+  margin-top: 12px;
+  max-width: 22em;
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: var(--t-sous-titre);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  color: var(--c-nuit);
+  text-wrap: balance;
+}
+.ar26-lie-titre a { transition: color 0.25s var(--ease); }
+.ar26-lie-titre a::after { content: ""; position: absolute; inset: 0; }  /* toute la colonne est cliquable, sans carte visible */
+.ar26-lie:hover .ar26-lie-titre a { color: var(--c-bleu); }
+.ar26-lie-titre a:focus-visible { outline: none; }
+.ar26-lie-titre a:focus-visible::after { outline: 2px solid var(--c-bleu); outline-offset: 8px; border-radius: 6px; }
+.ar26-lie .s26-texte.ar26-lie-resume { margin-top: 14px; max-width: 52ch; }
+
+/* ══ 5. Appel final (même composant que la page service) ══ */
+.ar26-cta .s26-inner { padding-bottom: calc(var(--air) * 0.5); }
+.ar26-cta-cadre {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(64px, 8vw, 128px) clamp(20px, 5vw, 80px);
+  border-top: 1px solid var(--c-filet-fort);
+  border-bottom: 1px solid var(--c-filet-fort);
+}
+.ar26-cta-cadre .s26-chapo { margin-top: var(--ecart-chapo); }
+.ar26-cta-actions { margin-top: clamp(30px, 3.4vw, 44px); display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 16px 32px; }
+
+/* L'intertitre atteint par le sommaire reçoit le focus sans contour (c'est un repère, pas un contrôle) */
+.ar26-texte :is(h2, h3)[tabindex="-1"]:focus { outline: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ar26 * { transition-duration: 0.01ms !important; }
+  .ar26-lie:hover .ar26-lie-image img { transform: none; }
+}
+
+/* ══ Tablette : une seule colonne, le sommaire devient repliable en tête d'article ══ */
+@media (max-width: 1024px) {
+  .ar26-grille { grid-template-columns: minmax(0, 1fr); }
+  /* La méta passe sous le chapô, comme une signature : le titre ouvre la page */
+  .ar26-meta { order: 2; flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin: clamp(28px, 4vw, 40px) 0 0; padding-top: 14px; }
+  .ar26-h1 { max-width: 18em; }
+  /* Le numéro passe devant l'intertitre, sur la même ligne */
+  .ar26-texte h2::before { width: auto; margin-left: 0; margin-right: 14px; text-align: left; }
+
+  /* Un seul filet avant les articles liés : celui de la ligne « À lire aussi » */
+  .ar26-filet-entree { border-top: 0; }
+  /* Une ligne sous un filet : « À lire aussi » à gauche, « Voir tous les articles » à droite ; le titre dessous */
+  .ar26-lies-entete { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: none; column-gap: 16px; row-gap: 26px; align-items: start; }
+  .ar26-lies-label { grid-column: 1 / -1; grid-row: 1; margin-top: 0; padding-top: 18px; }
+  .ar26-lies-entete .ar26-tous { grid-column: 2; grid-row: 1; justify-self: end; margin: 12px 0 0; }
+  .ar26-lies-entete .ar26-lies-titre { grid-column: 1 / -1; grid-row: 2; }
+  .ar26-lies-liste { grid-column: 1; }
+
+  .ar26-sommaire {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    margin-bottom: 48px;
+    border-top: 1px solid var(--c-filet-fort);
+    border-bottom: 1px solid var(--c-filet-fort);
+  }
+  .ar26-som-titre { display: none; }
+  .ar26-sommaire summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 0;
+    cursor: pointer;
+  }
+  /* Pastille « + » dessinée en CSS, comme la FAQ */
+  .ar26-sommaire summary::after {
+    content: "";
+    flex: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--c-filet-fort);
+    background:
+      linear-gradient(var(--c-bleu), var(--c-bleu)) center / 11px 1.5px no-repeat,
+      linear-gradient(var(--c-bleu), var(--c-bleu)) center / 1.5px 11px no-repeat;
+    transition: background-size 0.35s var(--ease), background-color 0.3s, border-color 0.3s;
+  }
+  .ar26-sommaire details[open] summary::after {
+    background:
+      linear-gradient(var(--c-blanc), var(--c-blanc)) center / 11px 1.5px no-repeat,
+      linear-gradient(var(--c-blanc), var(--c-blanc)) center / 1.5px 0 no-repeat,
+      var(--c-bleu);
+    border-color: var(--c-bleu);
+  }
+  .ar26-sommaire summary:focus-visible { outline: 2px solid var(--c-bleu); outline-offset: 4px; border-radius: 3px; }
+  .ar26-som-liste { padding-bottom: 6px; border-top: 1px solid var(--c-sep); }
+  .ar26-som-liste li:last-child a { border-bottom: 0; }
+  .ar26-som-liste a { font-size: 15px; padding: 14px 0; }
+  .ar26-corps { margin-top: clamp(48px, 7vw, 72px); }
+}
+
+/* ══ Mobile ══ */
+@media (max-width: 640px) {
+  .ar26 { --ar26-nav: 72px; --ar26-corps: 16.5px; }
+  .ar26-article > .s26-inner { padding-top: calc(var(--ar26-nav) + 44px); }
+  .ar26-photo { margin-top: 40px; aspect-ratio: 16 / 11; }
+  .ar26-texte { line-height: 1.68; }
+  .ar26-texte :is(h1, h2) { margin-top: 60px; font-size: clamp(27px, 7.4vw, 31px); line-height: 1.08; }
+  .ar26-texte li { padding-left: 26px; }
+  .ar26-texte ol > li { padding-left: 34px; }
+  .ar26-texte blockquote { font-size: 23px; padding: 24px 0 26px; }
+  .ar26-texte figure.w-richtext-align-floatleft,
+  .ar26-texte figure.w-richtext-align-floatright { float: none; width: 100%; max-width: 100% !important; margin: 2em 0 0; }
+  .ar26-texte table { display: block; overflow-x: auto; font-size: 14px; }
+  .ar26-lie-meta { margin-top: 20px; }
+  .ar26-cta-cadre { padding: 56px 4px; }
+  .ar26-cta-actions { flex-direction: column; gap: 18px; }
+}
