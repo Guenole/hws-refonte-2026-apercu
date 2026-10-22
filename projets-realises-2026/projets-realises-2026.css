@@ -1,0 +1,111 @@
+/* HWS Agency 2026 — page « Nos réalisations » (/projets-realises).
+   Un index éditorial : une ligne par projet, séparée par un filet, comme la table d'un dossier.
+   Numéro | nom en serif et résumé | secteur, solution, année | aperçu en taille moyenne.
+   Construit avec une seule liste de collection Projets (tri par Ordre) ; numéros par compteur CSS ; aucun script.
+   Les visuels de projet sont des preuves : aucun effet de trame dessus. Préfixe .pr26. */
+
+.pr26 { --pr26-nav: 76px; }
+
+/* ══ Héro : titre à gauche, chapô à droite sur la même ligne de base ══ */
+.pr26-hero > .s26-inner { padding-top: calc(var(--pr26-nav) + clamp(56px, 9vh, 112px)); padding-bottom: calc(var(--air) * 0.55); }
+.pr26-hero-grille { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 30%); column-gap: 6%; align-items: end; }
+.pr26-h1 { max-width: 13em; }
+.pr26-chapo { padding-bottom: 10px; }
+
+/* ══ L'index ══ */
+.pr26-liste .s26-inner { padding-top: 0; }
+.pr26-entetes,
+.pr26-ligne {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) minmax(180px, 20%) clamp(220px, 24vw, 360px);
+  column-gap: clamp(20px, 3vw, 48px);
+}
+.pr26-entetes {
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--c-filet-fort);
+  font-size: var(--t-meta);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-gris);
+}
+.pr26-items { counter-reset: pr26; }
+.pr26-item { counter-increment: pr26; border-bottom: 1px solid var(--c-filet); }
+.pr26-ligne {
+  align-items: center;
+  padding: clamp(22px, 2.4vw, 34px) 0;
+  color: var(--c-nuit);
+}
+.pr26-num { align-self: start; padding-top: 0.55em; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: var(--c-bleu-texte); font-variant-numeric: tabular-nums; }
+.pr26-num::before { content: counter(pr26, decimal-leading-zero); }
+.pr26-texte { display: flex; flex-direction: column; align-self: start; min-width: 0; }
+.pr26-nom {
+  font-family: var(--f-serif);
+  font-size: clamp(30px, 3.1vw, 50px);
+  line-height: 1;
+  letter-spacing: -0.024em;
+  text-wrap: balance;
+  transition: color 0.3s var(--ease);
+}
+.pr26-desc {
+  margin-top: 14px;
+  max-width: 52ch;
+  font-size: var(--t-texte);
+  line-height: 1.55;
+  color: var(--c-nuit-doux);
+  text-wrap: pretty;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.pr26-meta { align-self: start; display: flex; flex-direction: column; gap: 4px; padding-top: 0.5em; font-size: 14px; line-height: 1.45; color: var(--c-gris); }
+.pr26-meta > :first-child { font-weight: 500; color: var(--c-nuit); }
+.pr26-meta > span:empty { display: none; }
+.pr26-image { aspect-ratio: 16 / 10; border-radius: 6px; overflow: hidden; background: #E8ECF6; }
+.pr26-image img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
+/* Image composée de la page d'accueil (projets-2026/img/visuels) : fond transparent, appareils qui débordent du cadre 16/10
+   (7,5 % à gauche et à droite, 6,5 % en haut, 17,5 % en bas) ; même placement que le carrousel de la home. */
+.pr26-image--compose { position: relative; overflow: visible; background: none; border-radius: 0; }
+.pr26-image--compose img { position: absolute; left: -7.5%; top: -6.5%; width: 115%; height: auto; object-fit: contain; }
+
+/* Survol : le nom passe en bleu, l'aperçu s'avance très légèrement (la vidéo au survol de la prod reste possible) */
+.pr26-ligne:hover .pr26-nom { color: var(--c-bleu); }
+.pr26-ligne:hover .pr26-image img { transform: scale(1.03); }
+.pr26-ligne:focus-visible { outline: 2px solid var(--c-bleu); outline-offset: 6px; border-radius: 6px; }
+
+/* ══ Appel final ══ */
+.pr26-cta .s26-inner { padding-bottom: calc(var(--air) * 0.5); }
+.pr26-cta-cadre {
+  position: relative; display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: clamp(64px, 8vw, 128px) clamp(20px, 5vw, 80px);
+  border-top: 1px solid var(--c-filet-fort); border-bottom: 1px solid var(--c-filet-fort);
+}
+.pr26-cta-cadre .s26-chapo { margin-top: var(--ecart-chapo); }
+.pr26-cta-actions { margin-top: clamp(30px, 3.4vw, 44px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pr26 * { transition-duration: 0.01ms !important; }
+  .pr26-ligne:hover .pr26-image img { transform: none; }
+}
+
+/* ══ Tablette : la méta passe sous le résumé ══ */
+@media (max-width: 1024px) {
+  .pr26-hero-grille { grid-template-columns: minmax(0, 1fr); row-gap: 24px; }
+  .pr26-entetes { display: none; }
+  .pr26-items { border-top: 1px solid var(--c-filet-fort); }
+  .pr26-ligne { grid-template-columns: 44px minmax(0, 1fr) clamp(200px, 34vw, 300px); grid-template-areas: "num texte image" "num meta image"; row-gap: 14px; }
+  .pr26-num { grid-area: num; }
+  .pr26-texte { grid-area: texte; }
+  .pr26-meta { grid-area: meta; flex-direction: row; flex-wrap: wrap; gap: 0 10px; padding-top: 0; }
+  .pr26-meta > * + *::before { content: "·"; margin-right: 10px; color: var(--c-bleu); }
+  .pr26-image { grid-area: image; align-self: start; }
+}
+/* ══ Mobile : l'aperçu en tête de chaque projet ══ */
+@media (max-width: 640px) {
+  .pr26 { --pr26-nav: 72px; }
+  .pr26-ligne { grid-template-columns: 34px minmax(0, 1fr); grid-template-areas: "image image" "num texte" "num meta"; row-gap: 12px; padding: 28px 0; }
+  .pr26-image { margin-bottom: 8px; }
+  .pr26-nom { font-size: clamp(28px, 8vw, 34px); }
+  .pr26-num { padding-top: 0.4em; }
+}

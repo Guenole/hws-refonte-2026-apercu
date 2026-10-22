@@ -1,0 +1,259 @@
+/* HWS Agency 2026 — page projet, v3 « le dossier » (template CMS Webflow « Projets »), construisible sans script :
+   liaisons de champs, listes de collection (multi-référence, multi-images), texte riche stylé, visibilité conditionnelle.
+   Les règles :has(.w-dyn-bind-empty) ne servent qu'au prototype : dans Webflow, ce sont des visibilités conditionnelles.
+   Un héro (le nom, ce que nous avons fait, la vidéo), puis le dossier du projet : une fiche d'identité qui reste
+   à l'écran à gauche, et l'histoire en quatre temps à droite (point de départ, réalisations, déroulé, résultats).
+   Chaque bloc vient d'un champ court et factuel ; un champ vide fait disparaître son bloc.
+   Couleurs, polices, labels, titres, liens, boutons, colonnes à filets : socle ../systeme-2026/systeme-2026.css.
+   Les visuels de projet sont des preuves : aucun effet dessus. Préfixe .pj26. */
+
+.pj26 { --pj26-nav: 76px; }
+
+/* ══ 1. Héro ══ */
+.pj26-hero > .s26-inner { padding-top: calc(var(--pj26-nav) + clamp(48px, 7vh, 96px)); padding-bottom: calc(var(--air) * 0.62); }
+.pj26-hero-grille {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  column-gap: clamp(40px, 5vw, 88px);
+  align-items: end;
+}
+.pj26-index { margin-left: 0.6em; color: var(--c-gris); font-variant-numeric: tabular-nums; }
+.pj26-h1 {
+  margin-top: var(--ecart-label);
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: clamp(56px, 6.8vw, 112px);
+  line-height: 0.92;
+  letter-spacing: -0.032em;
+  text-transform: none;
+  color: var(--c-nuit);
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+.pj26-h1::after { content: "."; color: var(--c-corail); }
+.pj26-chapo { margin-top: clamp(22px, 2.4vw, 32px); max-width: 40ch; font-size: var(--t-chapo); line-height: 1.55; color: var(--c-nuit-doux); text-wrap: pretty; }
+.pj26-actions { margin-top: clamp(28px, 3vw, 40px); display: flex; flex-wrap: wrap; align-items: center; gap: 16px 30px; }
+.pj26-actions a[href="#"] { display: none; }
+
+/* Vidéo : la preuve, à côté du texte, ni pleine largeur ni recadrée */
+.pj26-video { position: relative; aspect-ratio: 16 / 10; border-radius: 6px; overflow: hidden; background: #E8ECF6; }
+.pj26-video :is(video, img) { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+.pj26-video video { opacity: 0; transition: opacity 0.6s var(--ease); }
+.pj26-video.is-lue video { opacity: 1; }
+.pj26-video:fullscreen :is(video, img) { object-fit: contain; }
+.pj26-video:-webkit-full-screen :is(video, img) { object-fit: contain; }
+.pj26-video-src { display: none; }
+.pj26-video:not(:has(.pj26-video-src:not(.w-dyn-bind-empty))) :is(video, .pj26-boutons) { display: none; }
+.pj26-boutons { position: absolute; right: 16px; bottom: 16px; display: flex; gap: 8px; }
+.pj26-rond {
+  display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(247, 247, 244, 0.94); color: var(--c-nuit);
+  transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+.pj26-rond:hover { background: var(--c-blanc); color: var(--c-bleu); }
+.pj26-rond:focus-visible { outline: 2px solid var(--c-blanc); outline-offset: 3px; }
+.pj26-rond svg { width: 17px; height: 17px; }
+.pj26-rond [data-etat] { display: none; }
+.pj26-rond[aria-pressed="false"] [data-etat="off"], .pj26-rond[aria-pressed="true"] [data-etat="on"] { display: block; }
+
+/* ══ 2. Le dossier : fiche collante | récit ══ */
+.pj26-dossier-grille {
+  display: grid;
+  grid-template-columns: minmax(230px, 24%) minmax(0, 1fr);
+  column-gap: clamp(48px, 6vw, 112px);
+  align-items: start;
+  border-top: 1px solid var(--c-filet-fort);
+  padding-top: clamp(40px, 4.4vw, 64px) !important;
+}
+
+/* La fiche d'identité : toujours sous les yeux pendant la lecture */
+.pj26-fiche { position: sticky; top: calc(var(--pj26-nav) + 28px); }
+.pj26-fiche-liste > div { padding: 13px 0 14px; border-bottom: 1px solid var(--c-sep); }
+.pj26-fiche-liste > div:first-child { padding-top: 0; }
+.pj26-fiche dt { font-size: var(--t-meta); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-gris); }
+.pj26-fiche dd { margin-top: 6px; font-size: 15px; font-weight: 500; line-height: 1.45; color: var(--c-nuit); }
+.pj26-fiche dd a { display: inline-flex; align-items: center; gap: 8px; max-width: 100%; transition: color 0.25s var(--ease); }
+.pj26-fiche dd a:hover { color: var(--c-bleu); }
+.pj26-fiche dd a .s26-fleche { color: var(--c-corail); transform: rotate(-45deg); }
+.pj26-fiche-liste > div:has(> dd.w-dyn-bind-empty), .pj26-fiche-liste > div:has(a[href="#"]) { display: none; }
+.pj26-fiche-liste > div:nth-child(5) dd, .pj26-fiche-liste > div:nth-child(6) dd { font-weight: 400; color: var(--c-nuit-doux); }
+
+.pj26-sommaire { margin-top: 30px; }
+.pj26-sommaire ol { counter-reset: pj26-som; border-top: 1px solid var(--c-filet-fort); }
+.pj26-sommaire li { counter-increment: pj26-som; }
+.pj26-sommaire a {
+  display: grid; grid-template-columns: 30px minmax(0, 1fr); align-items: baseline;
+  padding: 11px 0 12px; border-bottom: 1px solid var(--c-sep);
+  font-size: 14px; font-weight: 500; line-height: 1.4; color: var(--c-gris);
+  transition: color 0.25s var(--ease);
+}
+.pj26-sommaire a::before { content: counter(pj26-som, decimal-leading-zero); font-size: 11.5px; letter-spacing: 0.1em; color: var(--c-bleu-texte); font-variant-numeric: tabular-nums; }
+.pj26-sommaire a:hover, .pj26-sommaire a[aria-current] { color: var(--c-nuit); }
+/* L'étape lue : un point corail devant le titre (l'étape en cours, règle de l'étincelle) */
+.pj26-sommaire a[aria-current]::before { color: var(--c-corail); }
+.pj26-sommaire li:has(a[hidden]) { display: none; }
+
+/* Le récit : quatre temps séparés par un filet */
+.pj26-temps { scroll-margin-top: calc(var(--pj26-nav) + 32px); }
+.pj26-temps + .pj26-temps { margin-top: calc(var(--air) * 0.7); padding-top: calc(var(--air) * 0.5); border-top: 1px solid var(--c-filet); }
+.pj26-titre { font-size: clamp(38px, 4vw, 62px); line-height: 1; letter-spacing: -0.026em; }
+
+/* 01 — Point de départ : le constat en grand, puis défi | réponse */
+.pj26-constat {
+  margin-top: var(--ecart-contenu);
+  max-width: 26em;
+  font-family: var(--f-serif);
+  font-size: clamp(25px, 2.25vw, 35px);
+  line-height: 1.18;
+  letter-spacing: -0.012em;
+  color: var(--c-nuit);
+  text-wrap: pretty;
+}
+.pj26-defi { margin-top: calc(var(--ecart-contenu) * 0.8); padding-top: 22px; border-top: 1px solid var(--c-sep); }
+.pj26-defi dt { font-size: var(--t-meta); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-bleu-texte); }
+.pj26-defi dd { margin-top: 12px; max-width: 34ch; font-size: var(--t-texte); line-height: 1.6; color: var(--c-nuit-doux); text-wrap: pretty; }
+.pj26-defi > div:has(> dd.w-dyn-bind-empty) { display: none; }
+.pj26-defi:not(:has(dd:not(.w-dyn-bind-empty))) { display: none; }
+
+/* 02 — Réalisations : une colonne par réalisation, sa capture au-dessus, en taille moyenne */
+.pj26-livrables {
+  margin-top: var(--ecart-contenu);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(28px, 3vw, 48px);
+  row-gap: clamp(40px, 4vw, 60px);
+}
+.pj26-livrables { counter-reset: pj26-liv; }
+.pj26-livrable { display: flex; flex-direction: column; counter-increment: pj26-liv; }
+.pj26-livrable-num::before { content: counter(pj26-liv, decimal-leading-zero); }
+.pj26-livrable-image { aspect-ratio: 16 / 9; border-radius: 6px; overflow: hidden; background: #E8ECF6; }
+.pj26-livrable-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pj26-livrable-num { margin-top: 20px; }
+.pj26-livrable:not(:has(.pj26-livrable-image img:not(.w-dyn-bind-empty))) .pj26-livrable-num { margin-top: 0; padding-top: 18px; border-top: 1px solid var(--c-filet); }
+.pj26-livrable-image:has(img.w-dyn-bind-empty) { display: none; }
+.pj26-livrable .s26-sous-titre { margin-top: 12px; font-size: clamp(23px, 1.9vw, 29px); }
+.pj26-livrable .s26-texte { margin-top: 10px; max-width: 46ch; }
+.pj26-autres { margin-top: clamp(40px, 4vw, 56px); padding-top: 20px; border-top: 1px solid var(--c-sep); }
+.pj26-autres:not(:has(.w-dyn-item)) { display: none; }
+.pj26-autres-titre { font-size: var(--t-meta); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-gris); }
+.pj26-autres-liste { margin-top: 16px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.pj26-autres-liste img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; background: #E8ECF6; }
+
+/* 03 — Déroulé : le champ texte riche « etapes » (une liste à puces, repère en gras) devient une frise.
+   Autant de colonnes que d'étapes, sans script ; la dernière étape est marquée en corail. */
+.pj26-etapes { margin-top: var(--ecart-contenu); }
+.pj26-etapes ul {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  column-gap: clamp(20px, 2.4vw, 36px);
+}
+.pj26-etapes ul::before { content: ""; position: absolute; left: 0; right: 0; top: 6px; height: 1px; background: var(--c-filet-fort); }
+.pj26-etapes li {
+  position: relative;
+  margin: 0;
+  padding: 30px 0 0;
+  font-family: var(--f-serif);
+  font-size: clamp(21px, 1.7vw, 26px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--c-nuit);
+  text-wrap: balance;
+}
+.pj26-etapes li::before {
+  content: ""; position: absolute; left: 0; top: 0; width: 13px; height: 13px; border-radius: 50%;
+  background: var(--c-ivoire); border: 1.5px solid var(--c-bleu);
+}
+.pj26-etapes li:last-child::before { background: var(--c-corail); border-color: var(--c-corail); }
+.pj26-etapes li strong { display: block; margin-bottom: 10px; font-family: var(--f-sans); font-size: 13px; font-weight: 500; line-height: 1.4; letter-spacing: 0.06em; color: var(--c-bleu-texte); }
+
+/* 04 — Résultats : chiffres en serif bleu, puis la parole du client */
+.pj26-chiffres { margin-top: var(--ecart-contenu); }
+.pj26-chiffres .s26-chiffre { font-size: clamp(48px, 5vw, 80px); }
+.pj26-chiffres > div:has(> dt.w-dyn-bind-empty) { display: none; }
+/* Aucun chiffre (Webflow : bloc visible si « Chiffre 1 » est renseigné) : l'avis suit directement le titre */
+.pj26-chiffres:not(:has(dt:not(.w-dyn-bind-empty))) { display: none; }
+.pj26-chiffres:not(:has(dt:not(.w-dyn-bind-empty))) + .pj26-avis { margin-top: var(--ecart-contenu); padding-top: 0; border-top: 0; }
+.pj26-chiffres dd { margin-top: 14px; max-width: 22ch; font-size: var(--t-texte); line-height: 1.5; color: var(--c-nuit-doux); text-wrap: pretty; }
+.pj26-avis { margin-top: calc(var(--ecart-contenu) * 1.1); padding-top: clamp(32px, 3.4vw, 48px); border-top: 1px solid var(--c-filet-fort); }
+.pj26-avis blockquote { margin: 0; padding: 0; border: 0; font-size: inherit; line-height: inherit; }
+.pj26-citation { max-width: 22em; font-family: var(--f-serif); font-size: clamp(28px, 2.8vw, 44px); line-height: 1.12; letter-spacing: -0.02em; color: var(--c-nuit); text-wrap: balance; }
+.pj26-citation::before { content: "« "; color: var(--c-bleu); }
+.pj26-citation::after { content: " »"; color: var(--c-bleu); }
+.pj26-avis figcaption { margin-top: 24px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.pj26-nom { font-size: 15px; font-weight: 500; color: var(--c-nuit); }
+.pj26-metier { font-size: var(--t-meta); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-gris); }
+.pj26-avis:has(.pj26-citation.w-dyn-bind-empty) { display: none; }
+
+/* Un temps sans contenu disparaît, et son entrée de sommaire avec lui (script) */
+.pj26-temps[hidden] { display: none; }
+
+/* ══ 3. Projet suivant : une ligne entière cliquable ══ */
+.pj26-suivant .s26-inner { padding-top: 0; }
+.pj26-suivant-lien {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(220px, 26vw, 380px) auto;
+  align-items: center;
+  column-gap: clamp(28px, 4vw, 64px);
+  padding: clamp(28px, 3vw, 40px) 0;
+  border-top: 1px solid var(--c-filet-fort);
+  border-bottom: 1px solid var(--c-filet-fort);
+}
+.pj26-suivant-texte { display: flex; flex-direction: column; }
+.pj26-suivant-nom { margin-top: var(--ecart-label); font-family: var(--f-serif); font-size: var(--t-titre); line-height: 0.96; letter-spacing: -0.03em; color: var(--c-nuit); transition: color 0.3s var(--ease); }
+.pj26-suivant-desc { margin-top: 14px; max-width: 46ch; font-size: var(--t-texte); line-height: 1.55; color: var(--c-nuit-doux); }
+.pj26-suivant-image { aspect-ratio: 16 / 10; border-radius: 6px; overflow: hidden; background: #E8ECF6; }
+.pj26-suivant-image img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
+.pj26-suivant-fleche { width: clamp(34px, 3vw, 48px); height: clamp(34px, 3vw, 48px); color: var(--c-corail); transition: transform 0.4s var(--ease); }
+.pj26-suivant-lien:hover .pj26-suivant-nom { color: var(--c-bleu); }
+.pj26-suivant-lien:hover .pj26-suivant-image img { transform: scale(1.03); }
+.pj26-suivant-lien:hover .pj26-suivant-fleche { transform: translateX(8px); }
+.pj26-suivant-lien:focus-visible { outline: 2px solid var(--c-bleu); outline-offset: 6px; border-radius: 6px; }
+.pj26-suivant:has(.pj26-suivant-lien[href="#"]) { display: none; }
+
+/* ══ 4. Appel final ══ */
+.pj26-cta .s26-inner { padding-bottom: calc(var(--air) * 0.5); }
+.pj26-cta-cadre {
+  position: relative; display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: clamp(64px, 8vw, 128px) clamp(20px, 5vw, 80px);
+  border-top: 1px solid var(--c-filet-fort); border-bottom: 1px solid var(--c-filet-fort);
+}
+.pj26-cta-cadre .s26-chapo { margin-top: var(--ecart-chapo); }
+.pj26-cta-actions { margin-top: clamp(30px, 3.4vw, 44px); display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 16px 32px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pj26 * { transition-duration: 0.01ms !important; }
+}
+
+/* ══ Tablette : la fiche passe au-dessus du récit, en colonnes ══ */
+@media (max-width: 1024px) {
+  .pj26-hero-grille { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
+  .pj26-dossier-grille { grid-template-columns: minmax(0, 1fr); row-gap: 56px; }
+  .pj26-fiche { position: static; }
+  .pj26-fiche-liste { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 28px; }
+  .pj26-fiche-liste > div:first-child { padding-top: 13px; }
+  .pj26-sommaire { display: none; }
+  .pj26-suivant-lien { grid-template-columns: minmax(0, 1fr) auto; row-gap: 24px; }
+  .pj26-suivant-image { grid-column: 1 / -1; grid-row: 2; max-width: 520px; }
+}
+/* ══ Mobile ══ */
+@media (max-width: 640px) {
+  .pj26 { --pj26-nav: 72px; }
+  .pj26-h1 { font-size: clamp(56px, 17vw, 76px); }
+  .pj26-actions { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .pj26-fiche-liste { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 18px; }
+  .pj26-livrables { grid-template-columns: minmax(0, 1fr); }
+  .pj26-autres-liste { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pj26-etapes ul { grid-auto-flow: row; row-gap: 26px; padding-left: 30px; }
+  .pj26-etapes ul::before { left: 6px; right: auto; top: 6px; bottom: 6px; width: 1px; height: auto; }
+  .pj26-etapes li { padding-top: 0; }
+  .pj26-etapes li::before { left: -30px; top: 3px; }
+  .pj26-chiffres { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; row-gap: 28px !important; }
+  .pj26-chiffres > *, .pj26-chiffres > :nth-child(odd) { padding: 0 0 0 16px !important; border-top: 0 !important; border-left: 1px solid var(--c-filet) !important; }
+  .pj26-chiffres > :nth-child(odd) { padding-left: 0 !important; border-left: 0 !important; }
+  .pj26-defi { grid-template-columns: minmax(0, 1fr) !important; }
+}

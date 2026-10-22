@@ -18,6 +18,10 @@
     '/services/sites-no-code-webflow': 'service-no-code-2026/index.html',
     '/services/applications-mobiles-saas': 'service-apps-saas-2026/index.html',
     '/blog/ecommerce-shopify-webflow-sur-mesure': 'article-2026/index.html',
+    '/projets/banquiz': 'projet-2026/index.html',
+    '/projets/listti': 'projet-2026/listti.html',
+    '/projets-realises': 'projets-realises-2026/index.html',
+    '/blog': 'journal-index-2026/index.html',
   };
   const SITE = 'https://www.hws.pm';
   const script = document.currentScript;

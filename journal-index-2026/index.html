@@ -1,0 +1,621 @@
+<!DOCTYPE html><!-- Prototype local HWS 2026 : page « Journal » (listes de collection Blog), contenu et SEO de https://www.hws.pm/blog. --><html data-wf-domain="www.hws.pm" data-wf-page="69ef1ee0bf06493caa38727a" class="s26-page" data-wf-site="69dcdc0620ab5f37ce8bfd2c" lang="fr"><head><meta name="robots" content="noindex"><meta charset="utf-8"/><link href="https://cdn.prod.website-files.com" rel="preconnect" crossorigin="anonymous"/><title>Journal — HWS Agency · Conseils, méthodes, retours d&#x27;expérience</title><meta content="Conseils, méthodes et retours d&#x27;expérience d&#x27;une agence web sur-mesure basée à Toulouse. Pas de buzzwords, des décisions concrètes." name="description"/><meta content="Journal — HWS Agency · Conseils, méthodes, retours d&#x27;expérience" property="og:title"/><meta content="Conseils, méthodes et retours d&#x27;expérience d&#x27;une agence web sur-mesure basée à Toulouse. Pas de buzzwords, des décisions concrètes." property="og:description"/><meta content="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/6a466770ef3fe74656dbef1a_og-blog-1200x630.jpg" property="og:image"/><meta content="Journal — HWS Agency · Conseils, méthodes, retours d&#x27;expérience" name="twitter:title"/><meta content="Conseils, méthodes et retours d&#x27;expérience d&#x27;une agence web sur-mesure basée à Toulouse. Pas de buzzwords, des décisions concrètes." name="twitter:description"/><meta property="og:type" content="website"/><meta content="summary_large_image" name="twitter:card"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="ic7UgtaZCsvFo0FzsHVyGvWYt0fra6kv9tv55vS_bpA" name="google-site-verification"/><meta content="Webflow" name="generator"/><link href="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/css/hws-agency-2-0.webflow.shared.4a36962f1.css" rel="stylesheet" type="text/css" integrity="sha384-SjaWLx6NztwSTkZGbgDvuVQ341Hsm7KYbaf2wVZO7K7CMA1oZScL0phfKZPndxuN" crossorigin="anonymous"/><script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script><link href="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/69ea1d351a05c6524ab8f9e9_FavIcon%20HWS.png" rel="shortcut icon" type="image/x-icon"/><link href="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/69ea1d38f57dd8e8d5abacff_Webclip%20HWS.png" rel="apple-touch-icon"/><link href="https://www.hws.pm/blog" rel="canonical"/><script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+  { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.hws.pm/" },
+  { "@type": "ListItem", "position": 2, "name": "Journal" } ] }
+</script><!-- HWS Preloader v2 — « on entre dans le logo » (oct. 2026)
+     Site Settings > Custom Code > Head. Joue à chaque affichage de page, y compris au retour arrière (bfcache).
+     Écran bleu HWS + logo blanc (version 2026) → le logo devient une fenêtre sur la page → zoom dans la barre centrale.
+     Remplace l'ancien préchargeur v1 (scripts « preloader » + « preloader_js » et div #pt), supprimé le 6 oct. 2026 : sauvegarde dans webflow-paste/ancien-preloader-v1-backup/. -->
+<style>
+#hws-pl{position:fixed;inset:0;z-index:2147483000;animation:hws-pl-failsafe .4s 5s forwards}
+#hws-pl svg{display:block;width:100%;height:100%}
+/* Bandeau cookies masqué pendant l'intro seulement : la classe est retirée à la fin, et l'animation expire seule au bout de 2,5 s si le script plantait. */
+html.hws-pl-on #consentos-banner-host{animation:hws-pl-hold 2.5s}
+@keyframes hws-pl-hold{0%,100%{visibility:hidden}}
+@keyframes hws-pl-failsafe{to{opacity:0;visibility:hidden}}
+</style>
+<script>
+(function(){
+  var d=document,w=window;
+  if(w.self!==w.top)return;
+  var reduce=w.matchMedia&&w.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var P=['M129.757 0.1875H42.2191H20.0031C4.49217 0.1875 -4.64224 17.6008 4.17444 30.3622L58.8265 109.467C66.4574 120.512 82.7685 120.543 90.4417 109.527L145.544 30.4229C154.429 17.6678 145.302 0.1875 129.757 0.1875Z','M215.306 0H201.104C194.821 0 188.933 3.06858 185.334 8.21936L96.7281 135.026C87.8172 147.778 96.9411 165.284 112.498 165.284H127.039C133.334 165.284 139.232 162.204 142.829 157.037L231.096 30.2301C239.975 17.4745 230.847 0 215.306 0Z','M301.078 0H286.882C280.598 0 274.71 3.06891 271.111 8.22015L182.514 135.027C173.604 147.779 182.728 165.284 198.285 165.284H212.82C219.117 165.284 225.014 162.203 228.611 157.036L316.869 30.2294C325.747 17.4736 316.62 0 301.078 0Z'];
+  // Point visé par le zoom : milieu de la barre centrale du logo (unités du viewBox 321×166).
+  // Viser le centre d'une forme garantit qu'on finit DANS le logo (donc sur la page), pas dans un vide blanc.
+  var OX=163.72,OY=83,HALF=25;
+  // Chronologie (ms) : apparition du logo, ouverture (le noir devient transparent), zoom, fin.
+  var APPEAR=450,OPEN0=450,OPEN1=750,ZOOM0=600,ZOOM1=1500,FADE0=1470,END=1560;
+  var el=d.createElement('div');el.id='hws-pl';el.setAttribute('aria-hidden','true');
+  el.innerHTML='<svg xmlns="http://www.w3.org/2000/svg"><defs><g id="hws-pl-l">'+P.map(function(p){return '<path d="'+p+'"/>';}).join('')+'</g><mask id="hws-pl-m" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%"><rect width="100%" height="100%" fill="#fff"/><use id="hws-pl-hole" href="#hws-pl-l" fill="#000" opacity="0"/></mask></defs><rect width="100%" height="100%" fill="#3974F7" mask="url(#hws-pl-m)"/><use id="hws-pl-ink" href="#hws-pl-l" fill="#fff"/></svg>';
+  var logo=el.querySelector('#hws-pl-l'),ink=el.querySelector('#hws-pl-ink'),hole=el.querySelector('#hws-pl-hole'),t0=0;
+  function c(x){return x<0?0:x>1?1:x;}
+  function outBack(x){var s=1.6;x-=1;return 1+x*x*((s+1)*x+s);}
+  function inOut(x){return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;}
+  function render(t){
+    var W=w.innerWidth,H=w.innerHeight;
+    var k0=Math.min(120,W*.28)/321;
+    var kEnd=1.25*Math.sqrt(W*W+H*H)/2/HALF;
+    var a=c(t/APPEAR),k,o,f;
+    if(reduce){k=k0;o=1;f=1-c((t-400)/400);}
+    else{
+      var z=c((t-ZOOM0)/(ZOOM1-ZOOM0));
+      k=k0*(.82+.18*outBack(a))*Math.exp(Math.log(kEnd/k0)*Math.pow(z,2.5));
+      o=t<OPEN0?a:1-inOut(c((t-OPEN0)/(OPEN1-OPEN0)));
+      f=1-c((t-FADE0)/(END-FADE0));
+    }
+    logo.setAttribute('transform','translate('+W/2+' '+H/2+') scale('+k+') translate('+(-OX)+' '+(-OY)+')');
+    ink.setAttribute('opacity',o);
+    // Le trou n'existe qu'une fois le logo noir opaque : sinon on verrait la page avant l'ouverture.
+    hole.setAttribute('opacity',!reduce&&t>=OPEN0?1:0);
+    el.style.opacity=f;
+  }
+  function done(){d.documentElement.classList.remove('hws-pl-on');if(el.parentNode)el.parentNode.removeChild(el);}
+  function frame(){
+    try{
+      var t=performance.now()-t0;
+      if(t>=(reduce?800:END))return done();
+      render(t);requestAnimationFrame(frame);
+    }catch(e){done();}
+  }
+  function mount(){
+    d.documentElement.classList.add('hws-pl-on');
+    el.style.animation='';el.style.opacity='';
+    d.body.insertBefore(el,d.body.firstChild);
+    render(0);
+    requestAnimationFrame(function(){el.style.animation='none';t0=performance.now();frame();});
+  }
+  // Retour arrière servi depuis le cache du navigateur : les scripts ne se relancent pas, on rejoue l'intro à la main.
+  w.addEventListener('pageshow',function(e){if(e.persisted&&!el.parentNode)mount();});
+  if(d.body)mount();
+  else{var mo=new MutationObserver(function(){if(d.body){mo.disconnect();mount();}});mo.observe(d.documentElement,{childList:true});}
+})();
+</script>
+
+<style>
+  html .nav-link.w--current,
+  html .nav-mobile-link.w--current,
+  html .nav-dropdown-link.w--current,
+  html .nav-dropdown-link-mobile.w--current {
+    color: #ffffff !important;
+  }
+  
+  html .nav-link.w--current:hover,
+  html .nav-mobile-link.w--current:hover {
+    color: #3974f7 !important;
+  }
+
+  /* ── Gouttière fluide desktop — carousel #projects (les scripts projects_css_* injectent
+     un padding 2.5rem après le CSS Webflow, on reprend la main ici) ── */
+  #projects .ps-top,
+  #projects .ps-bottom {
+    padding-left: clamp(40px, 6vw, 96px) !important;
+    padding-right: clamp(40px, 6vw, 96px) !important;
+  }
+  @media (max-width: 991px) {
+    #projects .ps-top,
+    #projects .ps-bottom {
+      padding-left: 40px !important;
+      padding-right: 40px !important;
+    }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://www.hws.pm/#organization",
+  "name": "HWS Agency",
+  "url": "https://www.hws.pm/",
+  "logo": "https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/69ea1d38f57dd8e8d5abacff_Webclip%20HWS.png",
+  "image": "https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/69ea1d38f57dd8e8d5abacff_Webclip%20HWS.png",
+  "description": "Agence de développement web & mobile sur-mesure basée à Toulouse. Nous transformons vos idées en produits digitaux performants.",
+  "email": "contact@hws.pm",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "50 rue de Metz",
+    "postalCode": "31000",
+    "addressLocality": "Toulouse",
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 43.6005218,
+    "longitude": 1.4493936
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Toulouse" },
+    { "@type": "Country", "name": "France" }
+  ],
+  "foundingDate": "2024",
+  "sameAs": [
+    "https://www.linkedin.com/company/hws-agency"
+  ]
+}
+</script>
+
+<script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F69ea13e371f8c352d56bd645%2Fburger_css-2.0.3.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F69eb7fbbe92001ded472bfa0%2Fhws_scroll_animations-1.1.0.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F6a9ed01c44a101a7fbd1c1c5%2Fhws_overflow_sticky_fix-1.0.0.js" type="text/javascript"></script><link rel="stylesheet" href="../polices-2026/polices-2026.css">
+<script>document.write('<link rel="stylesheet" href="../footer-2026/footer-2026.css?v=' + Date.now() + '">');</script>
+<style>
+  /* Footer « puzzle » : la zone de trame couvre toute la moitié droite, le puzzle y est centré par le script. */
+  @media (min-width: 641px) { .hf26 .hf26-trame { top: 0; right: -4vw; width: min(64vw, 1150px); } }
+</style>
+<script>document.write('<link rel="stylesheet" href="../systeme-2026/systeme-2026.css?v=' + Date.now() + '">');</script>
+<script>document.write('<link rel="stylesheet" href="../nav-2026/nav-2026.css?v=' + Date.now() + '">');</script>
+<script>document.write('<link rel="stylesheet" href="journal-index-2026.css?v=' + Date.now() + '">');</script>
+</head><body><div class="nav-section"><a href="https://www.hws.pm/" class="nav-logo-wrap w-inline-block"><svg width="80" height="42" viewBox="0 0 321 166" fill="none" xmlns="http://www.w3.org/2000/svg" class="nav-logo-svg"><path d="M129.757 0.1875H42.2191H20.0031C4.49217 0.1875 -4.64224 17.6008 4.17444 30.3622L58.8265 109.467C66.4574 120.512 82.7685 120.543 90.4417 109.527L145.544 30.4229C154.429 17.6678 145.302 0.1875 129.757 0.1875Z" fill="white"></path><path d="M215.306 0H201.104C194.821 0 188.933 3.06858 185.334 8.21936L96.7281 135.026C87.8172 147.778 96.9411 165.284 112.498 165.284H127.039C133.334 165.284 139.232 162.204 142.829 157.037L231.096 30.2301C239.975 17.4745 230.847 0 215.306 0Z" fill="white"></path><path d="M301.078 0H286.882C280.598 0 274.71 3.06891 271.111 8.22015L182.514 135.027C173.604 147.779 182.728 165.284 198.285 165.284H212.82C219.117 165.284 225.014 162.203 228.611 157.036L316.869 30.2294C325.747 17.4736 316.62 0 301.078 0Z" fill="white"></path></svg></a><div class="nav-links"><a href="https://www.hws.pm/" class="nav-link">Accueil</a><div class="nv-mega"><button type="button" class="nav-link nv-mega-toggle" aria-expanded="false" aria-controls="nv-mega-panel">Nos services <svg class="nv-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="nv-mega-panel" id="nv-mega-panel" role="region" aria-label="Nos services" hidden><div class="nv-mega-inner"><div class="nv-intro"><p class="nv-label">Expertises</p><p class="nv-titre">Ce qu’on construit <em>ensemble.</em></p><p class="nv-texte">Huit expertises pour concevoir, reprendre et faire grandir vos produits digitaux, à Toulouse et à distance.</p><a class="nv-cta" href="#">Un projet en tête ? Réserver une visio <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="nv-second" href="https://www.hws.pm/projets-realises">Voir nos projets réalisés <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><div class="nv-catalogue"><div class="nv-groupe"><p class="nv-groupe-titre" id="nv-g01"><span>01</span> Concevoir &amp; développer</p><ul aria-labelledby="nv-g01"><li><a class="nv-lien" href="https://www.hws.pm/services/sites-web-sur-mesure"><span class="nv-lien-nom">Sites web sur-mesure <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="nv-lien-desc">Des sites performants et évolutifs, développés pour vous.</span></a></li><li><a class="nv-lien" href="https://www.hws.pm/services/sites-no-code-webflow"><span class="nv-lien-nom">Sites No-Code &amp; Webflow <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="nv-lien-desc">Des sites modernes, rapides et modifiables par vos équipes.</span></a></li><li><a class="nv-lien" href="https://www.hws.pm/services/applications-mobiles-saas"><span class="nv-lien-nom">Applications mobiles &amp; SaaS <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="nv-lien-desc">Des applications mobiles et SaaS sur-mesure, évolutives.</span></a></li></ul></div><div class="nv-groupe"><p class="nv-groupe-titre" id="nv-g02"><span>02</span> Reprendre &amp; faire évoluer</p><ul aria-labelledby="nv-g02"><li><a class="nv-lien" href="https://www.hws.pm/services/refonte-site-web"><span class="nv-lien-nom">Refonte de site web <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="nv-lien-desc">Design, UX, performances et SEO, repris de A à Z.</span></a></li><li><a class="nv-lien" href="https://www.hws.pm/services/reprise-projet-web"><span class="nv-lien-nom">Reprise de projet web <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="nv-lien-desc">On reprend votre code, on le stabilise, on le fait avancer.</span></a></li><li><a class="nv-lien" href="https://www.hws.pm/services/maintenance-site-web"><span class="nv-lien-nom">Maintenance <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="nv-lien-desc">Mises à jour, sécurité, monitoring et évolutions.</span></a></li></ul></div><div class="nv-groupe"><p class="nv-groupe-titre" id="nv-g03"><span>03</span> Cadrer &amp; renforcer</p><ul aria-labelledby="nv-g03"><li><a class="nv-lien" href="https://www.hws.pm/services/audit-de-site-web"><span class="nv-lien-nom">Audit &amp; Cadrage <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="nv-lien-desc">Technique, UX, SEO, sécurité : un rapport concret et priorisé.</span></a></li><li><a class="nv-lien" href="https://www.hws.pm/services/regie-sous-traitance"><span class="nv-lien-nom">Régie &amp; Sous-traitance <svg class="nv-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="nv-lien-desc">Des développeurs salariés HWS intégrés à vos équipes.</span></a></li></ul></div></div><button type="button" class="nv-fermer" aria-label="Fermer le menu Nos services">Fermer <span aria-hidden="true">×</span></button></div></div></div><a href="https://www.hws.pm/projets-realises" class="nav-link">Projets réalisés</a><a href="https://www.hws.pm/blog" aria-current="page" class="nav-link w--current">Journal</a></div><a href="#" class="btn-primary w-button">Réserver une visio</a><a id="nav-burger-btn" href="#" class="nav-burger w-button"><span class="nav-burger-line"></span><span class="nav-burger-line"></span><span class="nav-burger-line"></span></a><div id="nav-mobile-menu" class="nav-mobile-menu"><div class="nav-mobile-links"><a href="https://www.hws.pm/" class="nav-mobile-link">Accueil</a><details class="nv-m-services"><summary class="nav-mobile-link">Nos services <svg class="nv-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="nv-m-groupes"><details class="nv-m-groupe"><summary><span>01</span> Concevoir &amp; développer <svg class="nv-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><ul><li><a class="nav-dropdown-link-mobile" href="https://www.hws.pm/services/sites-web-sur-mesure">Sites web sur-mesure</a></li><li><a class="nav-dropdown-link-mobile" href="https://www.hws.pm/services/sites-no-code-webflow">Sites No-Code &amp; Webflow</a></li><li><a class="nav-dropdown-link-mobile" href="https://www.hws.pm/services/applications-mobiles-saas">Applications mobiles &amp; SaaS</a></li></ul></details><details class="nv-m-groupe"><summary><span>02</span> Reprendre &amp; faire évoluer <svg class="nv-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><ul><li><a class="nav-dropdown-link-mobile" href="https://www.hws.pm/services/refonte-site-web">Refonte de site web</a></li><li><a class="nav-dropdown-link-mobile" href="https://www.hws.pm/services/reprise-projet-web">Reprise de projet web</a></li><li><a class="nav-dropdown-link-mobile" href="https://www.hws.pm/services/maintenance-site-web">Maintenance</a></li></ul></details><details class="nv-m-groupe"><summary><span>03</span> Cadrer &amp; renforcer <svg class="nv-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><ul><li><a class="nav-dropdown-link-mobile" href="https://www.hws.pm/services/audit-de-site-web">Audit &amp; Cadrage</a></li><li><a class="nav-dropdown-link-mobile" href="https://www.hws.pm/services/regie-sous-traitance">Régie &amp; Sous-traitance</a></li></ul></details></div></details><a href="https://www.hws.pm/projets-realises" class="nav-mobile-link">Projets réalisés</a><a href="https://www.hws.pm/blog" aria-current="page" class="nav-mobile-link w--current">Journal</a><a href="#contact" class="nav-mobile-cta">Réserver une visio</a></div></div></div>
+<!-- ░░ JOURNAL 2026 ░░ socle : ../systeme-2026/ · page : journal-index-2026.css
+     Deux listes de collection Blog, triées par date de publication décroissante ; chaque élément = un bloc lien vers l’article.
+       1. « À la une » : limite 1 élément.   2. « Tous les articles » : sauter 1 élément (option native), pas de limite.
+     Champs liés : name, catégorie, temps de lecture, résumé, image principale (+ son texte alternatif), date de publication.
+     Numéros 01, 02… posés par un compteur CSS. Aucun script de mise en forme, aucun filtre. -->
+<main class="jx26" id="contenu">
+<header class="s26 jx26-hero" aria-labelledby="jx26-titre">
+  <div class="s26-inner jx26-hero-grille">
+    <div>
+      <p class="s26-label" data-s26-apparition>Par HWS Agency</p>
+      <h1 class="s26-titre s26-titre--point" id="jx26-titre" data-s26-apparition><em>Journal</em></h1>
+    </div>
+    <p class="s26-chapo jx26-chapo" data-s26-apparition>Conseils, méthodes et retours d’expérience d’une agence web sur-mesure basée à Toulouse. Pas de buzzwords, des décisions concrètes.</p>
+  </div>
+</header>
+
+<section class="s26 s26--suite jx26-une" aria-labelledby="jx26-une-titre">
+  <div class="s26-inner">
+    <div class="jx26-entete"><h2 class="s26-label s26-label--num" id="jx26-une-titre">À la une</h2></div>
+    <div class="w-dyn-list" data-champ="liste de collection Blog, tri Date de publication décroissante, limite 1">
+      <div role="list" class="w-dyn-items">
+        <div role="listitem" class="w-dyn-item">
+          <a class="jx26-une-lien" href="/blog/ecommerce-shopify-webflow-sur-mesure" data-champ="lien vers la page de l’article">
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6ad5c6dc48cfac45dad6a340_pexels-photo-6956903.jpeg" alt="" data-champ="image principale" fetchpriority="high" decoding="async" width="1600" height="1000"></div>
+            <div class="jx26-une-texte">
+              <p class="s26-num jx26-num" aria-hidden="true"></p>
+              <p class="s26-meta jx26-meta"><span data-champ="catégorie">Conseil</span><span data-champ="temps de lecture">6 min</span></p>
+              <h3 class="jx26-une-titre" data-champ="name">E-commerce en 2026 : Shopify, Webflow ou sur-mesure ?</h3>
+              <p class="s26-chapo jx26-une-resume" data-champ="résumé">Shopify, Webflow ou sur-mesure : notre agence détaille les critères concrets pour choisir la bonne solution e-commerce en 2026, selon votre activité et votre budget.</p>
+              <div class="jx26-une-pied">
+                <time class="jx26-date" datetime="2026-10-19" data-champ="date de publication">October 19, 2026</time>
+                <span class="s26-lien">Lire l’article <svg class="s26-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s26 s26--suite jx26-tous" aria-labelledby="jx26-tous-titre">
+  <div class="s26-inner">
+    <div class="jx26-entete"><h2 class="s26-label s26-label--num" id="jx26-tous-titre">Tous les articles</h2></div>
+    <div class="jx26-cadre">
+      <div class="w-dyn-list" data-champ="liste de collection Blog, tri Date de publication décroissante, sauter 1 élément">
+        <div role="list" class="jx26-items w-dyn-items">
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/refonte-seo-migration-technique" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6acc8e003487dc70d40943d1_pexels-photo-9822732.jpeg" alt="" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Conseil</span><span data-champ="temps de lecture">5 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Refonte SEO : comment préserver ses positions pendant une migration technique</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Refonte SEO : comment préserver vos positions Google pendant une migration technique. Notre agence détaille redirections, audit et plan de bascule sans perte de trafic.</p>
+            <time class="jx26-date" datetime="2026-10-12" data-champ="date de publication">October 12, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/logiciel-metier-vs-solution-marche" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6ac3543065b05461de189834_pexels-photo-6804068.jpeg" alt="" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Produits digitaux sur-mesure</span><span data-champ="temps de lecture">6 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Logiciel métier sur-mesure vs solution du marché : comment trancher ?</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Logiciel métier sur-mesure ou solution du marché : quels critères changent vraiment la décision ? Notre agence vous aide à trancher sans parti pris.</p>
+            <time class="jx26-date" datetime="2026-10-05" data-champ="date de publication">October 5, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/no-code-low-code-differences" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6aba1f673f3896cc583b698b_pexels-photo-11813187.jpeg" alt="" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">No-code</span><span data-champ="temps de lecture">5 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">No-code, low-code : ce que ça change vraiment pour votre projet digital</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">No-code, low-code : différences concrètes, cas d&#x27;usage réels et limites à connaître avant de choisir la bonne approche pour votre projet digital chez HWS.</p>
+            <time class="jx26-date" datetime="2026-09-28" data-champ="date de publication">September 28, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/cout-application-mobile-2026" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6aba1da814e615c91fe22e39_pexels-photo-7213210.jpeg" alt="" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Conseil</span><span data-champ="temps de lecture">5 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Combien coûte une application mobile en 2026 ? La vraie fourchette</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Prix d&#x27;une application mobile en 2026 : fourchettes réalistes selon la complexité, natif ou cross-platform, et ce qui fait vraiment varier un devis d&#x27;agence.</p>
+            <time class="jx26-date" datetime="2026-09-28" data-champ="date de publication">September 28, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/dette-technique-definition-cout" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6aa79ce0091e3b99dd1a1ed8_pexels-photo-17489155.jpeg" alt="" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Reprise &amp; dette technique</span><span data-champ="temps de lecture">5 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Qu&#x27;est-ce que la dette technique ? Ce que ça coûte vraiment à votre entreprise</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">La dette technique n&#x27;est pas qu&#x27;un problème de développeurs : elle ralentit vos projets et fait grimper les coûts. Définition, causes et solutions concrètes.</p>
+            <time class="jx26-date" datetime="2026-09-14" data-champ="date de publication">September 14, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/ia-developpement-web-pme" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a9ed04cdb2f269474e66075_pexels-photo-34804018.jpeg" alt="" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Conseil</span><span data-champ="temps de lecture">6 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">L&#x27;IA dans le développement web : ce qui change vraiment pour les PME</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">L&#x27;IA change la façon de coder, tester et automatiser un projet web. Ce qui fonctionne vraiment pour une PME, sans promesse exagérée, expliqué par notre agence.</p>
+            <time class="jx26-date" datetime="2026-09-07" data-champ="date de publication">September 7, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/pourquoi-site-web-lent" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a9ecd05af36ea3221a2f272_pexels-photo-2420212.jpeg" alt="" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Conseil</span><span data-champ="temps de lecture">5 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Pourquoi votre site est lent : d&#x27;où ça vient et comment y remédier ?</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Un site lent fait fuir les visiteurs et pénalise le référencement. Images, plugins WordPress, modules PrestaShop, hébergement : voici les causes réelles et comment les corriger.</p>
+            <time class="jx26-date" datetime="2026-09-07" data-champ="date de publication">September 7, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/recruter-developpeur-ou-agence-toulouse" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a9ec980def47e9f21bb60a4_pexels-cottonbro-7438098.webp" alt="" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Écosystème</span><span data-champ="temps de lecture">5 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Recruter un développeur ou faire appel à une agence web à Toulouse en 2026</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Recruter un développeur ou passer par une agence : à Toulouse, marché tendu oblige, voici les critères concrets pour trancher sans se tromper.</p>
+            <time class="jx26-date" datetime="2026-08-31" data-champ="date de publication">August 31, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/cahier-des-charges-site-web-application" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a8befbb3360ec3e2e1db9a7_6a8bef073360ec3e2e1d6f65_cover-cahier-des-charges-site-web-application.svg" alt="Cahier des charges site web ou application : comment le rédiger en 2026 — article HWS Agency" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Méthode</span><span data-champ="temps de lecture">6 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Cahier des charges site web ou application : comment le rédiger en 2026</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Un cahier des charges mal écrit coûte cher en temps et en budget. La méthode concrète pour cadrer un projet de site ou d&#x27;application avant de contacter une agence.</p>
+            <time class="jx26-date" datetime="2026-08-24" data-champ="date de publication">August 24, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/application-mobile-native-hybride-pwa" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a9ec9e6def47e9f21bbc1df_Arpad%20Pexels%203647289.webp" alt="" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Technique</span><span data-champ="temps de lecture">6 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Application mobile en 2026 : native, hybride ou PWA, comment choisir ?</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Native, hybride ou PWA : trois façons de construire une application mobile, avec des coûts et des contraintes très différents. Comment choisir selon votre projet.</p>
+            <time class="jx26-date" datetime="2026-08-17" data-champ="date de publication">August 17, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/maintenance-site-web-que-surveiller" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a7443de38598d6e18175c46_6a743f60584b9c46e549ff8f_Florian%2520Holly%2520Photo.webp" alt="Maintenance de site web : ce qu&#x27;il faut surveiller après la mise en ligne — article HWS Agency" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Conseil</span><span data-champ="temps de lecture">6 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Maintenance de site web : ce qu&#x27;il faut surveiller après la mise en ligne</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Sécurité, performance, contenu : ce qu&#x27;une maintenance de site web sérieuse doit couvrir, et comment choisir le bon niveau de suivi pour votre activité.</p>
+            <time class="jx26-date" datetime="2026-08-05" data-champ="date de publication">August 5, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/audit-site-web-methode-2026" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a73589679275115f4c7ad47_6a73585de18f1b1c2678df5a_cover-audit-site-web-methode-2026.svg" alt="Audit de site web en 2026 : la méthode pour savoir quoi faire ensuite — article HWS Agency" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Conseil</span><span data-champ="temps de lecture">5 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Audit de site web en 2026 : la méthode pour savoir quoi faire ensuite</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Avant de refondre, reprendre ou simplement maintenir votre site, un audit factuel évite de dépenser au mauvais endroit. Voici la méthode et ce qu&#x27;il faut vérifier.</p>
+            <time class="jx26-date" datetime="2026-08-05" data-champ="date de publication">August 5, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/choisir-agence-web-toulouse-2026" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a7443de38598d6e18175c43_6a743fabd16c9c5509b9689d_pexels-tbd-traveller-2149583744-30753243.webp" alt="Comment choisir son agence web à Toulouse en 2026 — article HWS Agency" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Écosystème</span><span data-champ="temps de lecture">6 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Comment choisir son agence web à Toulouse en 2026 : la checklist dirigeants</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Comment repérer la bonne agence web à Toulouse pour votre projet digital ? Les questions à poser, les signaux d&#x27;alerte et une méthode simple pour choisir.</p>
+            <time class="jx26-date" datetime="2026-07-13" data-champ="date de publication">July 13, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/outil-lighthouse" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a4bb2eb6072ec28514e0d2f_6a4bb22eed1a1cb75561ee80_coverv2-outil-lighthouse.jpeg" alt="Lighthouse — série La stack HWS" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Méthode</span><span data-champ="temps de lecture">4 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Lighthouse chez HWS : mesurer la performance web, factuellement</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Performance, SEO, accessibilité : Lighthouse transforme le ressenti en scores mesurables. Comment nous l&#x27;utilisons dans nos audits et en continu sur les projets maintenus.</p>
+            <time class="jx26-date" datetime="2026-07-06" data-champ="date de publication">July 6, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/outil-sentry" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a4bb2eb6072ec28514e0d3d_6a4bb22d558e1d221bbb5ad6_coverv2-outil-sentry.jpeg" alt="Sentry — série La stack HWS" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Technique</span><span data-champ="temps de lecture">4 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Sentry chez HWS : détecter les bugs avant vos utilisateurs</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">La plupart des erreurs web sont invisibles : vos visiteurs les subissent sans vous prévenir. Comment Sentry nous alerte en temps réel sur les sites que nous maintenons.</p>
+            <time class="jx26-date" datetime="2026-07-06" data-champ="date de publication">July 6, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/outil-typescript" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a4bb2eb6072ec28514e0d32_6a4bb22d9d874b24612fb6f5_coverv2-outil-typescript.jpeg" alt="TypeScript — série La stack HWS" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Technique</span><span data-champ="temps de lecture">5 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">TypeScript chez HWS : la fiabilité du code avant tout</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Le typage élimine toute une famille de bugs avant la mise en ligne. Pourquoi TypeScript est notre standard sur les projets sur-mesure, comment nous l&#x27;utilisons, et ses limites.</p>
+            <time class="jx26-date" datetime="2026-07-06" data-champ="date de publication">July 6, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/outil-nextjs" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a4bb2eb6072ec28514e0cf0_6a4bb22ded1a1cb75561eddd_coverv2-outil-nextjs.jpeg" alt="Next.js — série La stack HWS" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Technique</span><span data-champ="temps de lecture">4 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Next.js chez HWS : des sites sur-mesure rapides et bien référencés</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Framework au cœur de notre stack sur-mesure, Next.js nous permet de livrer des sites rapides et lisibles par Google. Usages concrets chez HWS, raisons du choix et limites honnêtes.</p>
+            <time class="jx26-date" datetime="2026-07-06" data-champ="date de publication">July 6, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/outil-nodejs" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a4bb2eb6072ec28514e0d16_6a4bb22ced1a1cb75561ed70_coverv2-outil-nodejs.jpeg" alt="Node.js — série La stack HWS" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Technique</span><span data-champ="temps de lecture">4 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Node.js chez HWS : le moteur discret de vos plateformes web</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Node.js fait tourner les back-ends de Miam Thaï ou de Side Once Skin. À quoi sert ce moteur discret, pourquoi HWS l&#x27;a choisi, et où sont ses limites : explications sans jargon.</p>
+            <time class="jx26-date" datetime="2026-07-06" data-champ="date de publication">July 6, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/outil-expo" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a4bb2eb6072ec28514e0d1d_6a4bb22c99ab0496f8946c25_coverv2-outil-expo.jpeg" alt="Expo — série La stack HWS" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Technique</span><span data-champ="temps de lecture">5 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Expo chez HWS : publier et mettre à jour vos apps mobiles sans friction</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Compiler, publier et mettre à jour une app mobile sans friction : comment HWS utilise Expo sur Henri Trip, Uroquest ou Eczema CARE+, et ce qu&#x27;il faut savoir avant de l&#x27;adopter.</p>
+            <time class="jx26-date" datetime="2026-07-06" data-champ="date de publication">July 6, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/outil-react-native" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a4bb2eb6072ec28514e0d1a_6a4bb22c8b3a54c573f9cdce_coverv2-outil-react-native.jpeg" alt="React Native — série La stack HWS" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Technique</span><span data-champ="temps de lecture">4 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">React Native chez HWS : une seule base de code pour iOS et Android</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Une seule base de code pour iOS et Android : comment HWS utilise React Native sur Henri Trip, Eczema CARE+ ou Uroquest, pourquoi ce choix, et ses limites honnêtes.</p>
+            <time class="jx26-date" datetime="2026-07-06" data-champ="date de publication">July 6, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/outil-stripe" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a4bb2eb6072ec28514e0d00_6a4bb22c783ba89b7a026331_coverv2-outil-stripe.jpeg" alt="Stripe — série La stack HWS" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Technique</span><span data-champ="temps de lecture">4 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Stripe chez HWS : encaisser en ligne sans complexité inutile</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Paiement fiable, conformité, international : pourquoi Stripe est notre choix par défaut pour encaisser en ligne sur les projets e-commerce et SaaS — et ses vraies limites.</p>
+            <time class="jx26-date" datetime="2026-07-06" data-champ="date de publication">July 6, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/outil-github" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a4bb2eb6072ec28514e0d20_6a4bb22bd4eae4570d4a1fe5_coverv2-outil-github.jpeg" alt="GitHub — série La stack HWS" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Méthode</span><span data-champ="temps de lecture">4 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">GitHub chez HWS : versioning, revue de code et déploiements sereins</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Versioning, revue de code systématique, déploiements automatisés : pourquoi tous les projets HWS vivent sur GitHub, et ce que ça change quand on reprend un projet mal parti.</p>
+            <time class="jx26-date" datetime="2026-07-06" data-champ="date de publication">July 6, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/outil-claude" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a4bb2eb6072ec28514e0d23_6a4bb22b9d874b24612fb4c7_coverv2-outil-claude.jpeg" alt="Claude — série La stack HWS" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Technique</span><span data-champ="temps de lecture">4 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Claude chez HWS : ce que l&#x27;IA d&#x27;Anthropic change dans nos projets</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Relecture de code, refactors, tests, prototypes : comment l&#x27;IA d&#x27;Anthropic s&#x27;intègre aux workflows de développement HWS — et pourquoi l&#x27;humain garde toujours la main.</p>
+            <time class="jx26-date" datetime="2026-07-06" data-champ="date de publication">July 6, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/outil-cursor" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a4bb2eb6072ec28514e0cd2_6a4bb22b9d874b24612fb4b2_coverv2-outil-cursor.jpeg" alt="Cursor — série La stack HWS" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Technique</span><span data-champ="temps de lecture">4 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Cursor chez HWS : coder avec l&#x27;IA sans sacrifier la qualité</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Éditeur de code dopé à l&#x27;IA, Cursor est au cœur de notre façon de développer. Ce qu&#x27;il fait vraiment, comment HWS l&#x27;utilise au quotidien, et ce que ça change pour vos délais.</p>
+            <time class="jx26-date" datetime="2026-07-06" data-champ="date de publication">July 6, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/outil-n8n" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a4bb2eb6072ec28514e0cf8_6a4bb22b8b3a54c573f9cce7_coverv2-outil-n8n.jpeg" alt="n8n — série La stack HWS" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Technique</span><span data-champ="temps de lecture">4 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">n8n chez HWS : l&#x27;automatisation qui connecte vos outils entre eux</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">n8n connecte vos outils et automatise les tâches répétitives. Comment notre agence l&#x27;utilise sur des projets réels, et pourquoi nous le préférons à Zapier ou Make.</p>
+            <time class="jx26-date" datetime="2026-07-06" data-champ="date de publication">July 6, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/outil-figma" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a4bb2eb6072ec28514e0cfb_6a4bb22a9d874b24612fb489_coverv2-outil-figma.jpeg" alt="Figma — série La stack HWS" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Méthode</span><span data-champ="temps de lecture">4 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Figma chez HWS : du premier atelier à la maquette validée</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Comment HWS utilise Figma pour concevoir et valider chaque maquette avec ses clients avant l&#x27;intégration : méthode, ateliers, design system et limites de l&#x27;outil.</p>
+            <time class="jx26-date" datetime="2026-07-06" data-champ="date de publication">July 6, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/outil-webflow" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a4bb2eb6072ec28514e0cdb_6a4bb22aa0e3a79066114ac8_coverv2-outil-webflow.jpeg" alt="Webflow — série La stack HWS" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Conseil</span><span data-champ="temps de lecture">4 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Webflow chez HWS : comment notre agence l&#x27;utilise (et pour quels projets)</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Pourquoi notre agence toulousaine construit la majorité de ses sites vitrines avec Webflow : usages concrets sur nos projets, avantages réels et limites honnêtes.</p>
+            <time class="jx26-date" datetime="2026-07-06" data-champ="date de publication">July 6, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/reprise-projet-web-methode" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a4bb2eb6072ec28514e0cf3_6a4bb22eed1a1cb75561eee9_coverv2-reprise-projet-web-methode.jpeg" alt="Reprise de projet web — article HWS Agency" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Méthode</span><span data-champ="temps de lecture">5 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Reprise de projet web : la méthode pour auditer et relancer un site hérité</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Un prestataire disparu, un code non documenté, une dette technique invisible : voici comment auditer, décider et sécuriser la reprise d&#x27;un projet web existant.</p>
+            <time class="jx26-date" datetime="2026-07-06" data-champ="date de publication">July 6, 2026</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/webflow-ou-developpement-sur-mesure" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a7443de38598d6e18175c4c_69de152f14edc1c051945c1f_Logo%2520Webflow.jpeg" alt="Logo Webflow — article HWS Agency comparant Webflow et le développement sur-mesure" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Conseil</span><span data-champ="temps de lecture">5 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Webflow ou développement sur-mesure : comment choisir ?</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Deux approches, deux philosophies. On démonte les idées reçues et on vous aide à faire le bon choix selon votre budget, votre délai et vos ambitions digitales.</p>
+            <time class="jx26-date" datetime="2024-03-12" data-champ="date de publication">March 12, 2024</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/mvp-en-15-jours" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a7443de38598d6e18175c49_69de1528f03a2f20a6d5222b_Image%2520Webflow%2520Pexels.jpeg" alt="MVP en 15 jours : lancer vite sans sacrifier la qualité — article HWS Agency" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Méthode</span><span data-champ="temps de lecture">7 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">MVP en 15 jours : lancer vite sans sacrifier la qualité</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Notre process éprouvé pour livrer un premier produit fonctionnel en deux semaines — du cadrage au déploiement, avec une petite équipe soudée.</p>
+            <time class="jx26-date" datetime="2024-02-28" data-champ="date de publication">February 28, 2024</time>
+          </a>
+        </div>
+        <div role="listitem" class="jx26-item w-dyn-item">
+          <a class="jx26-article" href="/blog/toulouse-hub-tech-2024" data-champ="lien vers la page de l’article">
+            <p class="s26-num jx26-num" aria-hidden="true"></p>
+            <div class="jx26-image"><img src="https://cdn.prod.website-files.com/69dcfb36fd8234c89ed6b4dc/6a7443de38598d6e18175c50_69de151e14981057e34968d0_Toulouse%2520Photo.jpeg" alt="Vue de Toulouse — article HWS Agency sur l&#x27;écosystème tech toulousain" data-champ="image principale" loading="lazy" decoding="async" width="1600" height="1000"></div>
+            <p class="s26-meta jx26-meta"><span data-champ="catégorie">Écosystème</span><span data-champ="temps de lecture">4 min</span></p>
+            <h3 class="jx26-titre" data-champ="name">Pourquoi Toulouse s&#x27;impose comme un hub tech en 2024</h3>
+            <p class="s26-texte jx26-resume" data-champ="résumé">Aéronautique, deeptech, startups — la Ville Rose tisse un réseau numérique dense. Ce que ça change pour les agences web locales et leurs clients.</p>
+            <time class="jx26-date" datetime="2024-02-05" data-champ="date de publication">February 5, 2024</time>
+          </a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta-final" class="s26 s26--suite jx26-cta" aria-labelledby="jx26-cta-titre">
+  <div class="s26-inner">
+    <div class="jx26-cta-cadre" data-s26-apparition>
+      <span class="s26-croix" style="--x:-11px;--y:-11px" aria-hidden="true"></span>
+      <span class="s26-croix" style="--x:calc(100% - 11px);--y:calc(100% - 11px)" aria-hidden="true"></span>
+      <p class="s26-label">HWS Agency · Toulouse</p>
+      <h2 class="s26-titre" id="jx26-cta-titre">Vous avez un projet <em>digital</em><span class="s26-point">&nbsp;?</span></h2>
+      <p class="s26-chapo">Discutons-en en 30 minutes. On identifie ensemble la meilleure approche pour le concrétiser, sans engagement, sans jargon.</p>
+      <div class="jx26-cta-actions">
+        <a class="s26-bouton" href="/#contact">Discutons de votre projet <svg class="s26-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="s26-lien" href="/projets-realises">Voir nos réalisations <svg class="s26-fleche" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ░░ FOOTER HWS 2026 ░░ (styles : footer-2026.css · trame : footer-2026.js) -->
+<footer class="hf26 hf26--bleu" aria-labelledby="hf26-titre">
+  <div class="hf26-trame" aria-hidden="true"><canvas></canvas></div>
+  <div class="hf26-inner">
+    <div class="hf26-top">
+      <p class="hf26-label" data-reveal>HWS Agency <span class="hf26-dot">·</span> Toulouse</p>
+      <a class="hf26-up" href="#" data-reveal>Haut de page ↑</a>
+    </div>
+
+    <h2 class="hf26-title" id="hf26-titre" data-reveal style="--d:1">Et si on donnait <em>vie</em> à votre prochaine idée<span class="hf26-q">&nbsp;?</span></h2>
+
+    <div class="hf26-contact" data-reveal style="--d:2">
+      <a class="hf26-mail" href="mailto:contact@hws.pm">contact@hws.pm <svg class="hf26-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="hf26-actions">
+        <a class="hf26-btn" href="mailto:contact@hws.pm">Réserver une visio <svg class="hf26-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+
+    <nav class="hf26-nav" aria-label="Pied de page" data-reveal style="--d:3">
+      <div class="hf26-col">
+        <p class="hf26-label">01 — Navigation</p>
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/projets-realises">Projets réalisés</a></li>
+          <li><a href="/blog">Journal</a></li>
+          <li><a href="/contact">Nous contacter</a></li>
+        </ul>
+      </div>
+      <div class="hf26-col">
+        <p class="hf26-label">02 — Expertises</p>
+        <ul class="hf26-services">
+          <li><a href="/services/sites-web-sur-mesure">Sites web sur-mesure</a></li>
+          <li><a href="/services/applications-mobiles-saas">Applications mobiles &amp; SaaS</a></li>
+          <li><a href="/services/sites-no-code-webflow">Sites No-Code &amp; Webflow</a></li>
+          <li><a href="/services/refonte-site-web">Refonte de site web</a></li>
+          <li><a href="/services/reprise-projet-web">Reprise de projet web</a></li>
+          <li><a href="/services/audit-de-site-web">Audit &amp; Cadrage</a></li>
+          <li><a href="/services/maintenance-site-web">Maintenance de site web</a></li>
+          <li><a href="/services/regie-sous-traitance">Régie &amp; Sous-traitance</a></li>
+        </ul>
+      </div>
+      <div class="hf26-col">
+        <p class="hf26-label">03 — Contact</p>
+        <address>
+          <a href="https://maps.google.com/?q=50+rue+de+Metz+Toulouse" target="_blank" rel="noopener">50 rue de Metz, 31000 Toulouse</a>
+          <a href="mailto:contact@hws.pm">contact@hws.pm</a>
+        </address>
+        <p class="hf26-social"><a href="https://www.linkedin.com/company/hws-agency" target="_blank" rel="noopener">LinkedIn</a></p>
+      </div>
+    </nav>
+
+    <div class="hf26-sign" data-reveal style="--d:4">
+      <a class="hf26-logo" href="/" aria-label="HWS Agency, retour à l’accueil"><svg viewBox="0 0 321 166" role="img" aria-hidden="true" focusable="false"><path d="M129.757 0.1875H42.2191H20.0031C4.49217 0.1875 -4.64224 17.6008 4.17444 30.3622L58.8265 109.467C66.4574 120.512 82.7685 120.543 90.4417 109.527L145.544 30.4229C154.429 17.6678 145.302 0.1875 129.757 0.1875Z" fill="#3974F7"/><path d="M215.306 0H201.104C194.821 0 188.933 3.06858 185.334 8.21936L96.7281 135.026C87.8172 147.778 96.9411 165.284 112.498 165.284H127.039C133.334 165.284 139.232 162.204 142.829 157.037L231.096 30.2301C239.975 17.4745 230.847 0 215.306 0Z" fill="#3974F7"/><path d="M301.078 0H286.882C280.598 0 274.71 3.06891 271.111 8.22015L182.514 135.027C173.604 147.779 182.728 165.284 198.285 165.284H212.82C219.117 165.284 225.014 162.203 228.611 157.036L316.869 30.2294C325.747 17.4736 316.62 0 301.078 0Z" fill="#3974F7"/></svg></a>
+      <p class="hf26-desc">Agence de développement web et mobile sur-mesure basée à Toulouse. Nous transformons vos idées en produits digitaux performants.</p>
+      <p class="hf26-label">Design <span class="hf26-dot">·</span> Développement</p>
+    </div>
+
+    <div class="hf26-bottom" data-reveal style="--d:5">
+      <p>© 2026 HWS Agency · Toulouse · Développement Web et Mobile</p>
+      <a href="/mentions-legales">Mentions légales</a>
+    </div>
+  </div>
+</footer>
+<script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=69dcdc0620ab5f37ce8bfd2c" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/js/webflow.schunk.afbd71dbb0de1b6e.js" type="text/javascript" integrity="sha384-P2JCtcLjXvLSXYzbUMP6DY8AYZJ42wFHopgUDa1modTLgJBqH3M6CjSduY6guk3X" crossorigin="anonymous"></script><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c/js/webflow.e2970141.7a50c8200835cfd6.js" type="text/javascript" integrity="sha384-OQWnh9dUfJBAHSqgmd1BrJhOquvybe3EYnn29xHg9m565Vkql7/P9FpGGznhL/b4" crossorigin="anonymous"></script><!-- ═══ HWS — Cal.com : modal de réservation sur les CTA "Réserver une visio" / "Discutons…" / "Parler de votre projet" ═══
+     Un clic sur tout <a>/<button> dont le texte matche ouvre le modal Cal (hws-agency/30min).
+     Couvre : Nav desktop/mobile, Footer, sections CTA, heros, fiches projets — sur toutes les pages. -->
+<script type="text/javascript">
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://ical.hws.pm/embed/embed.js", "init");
+Cal("init", "30min", {origin:"https://ical.hws.pm"});
+Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+
+(function () {
+  function norm(t) {
+    return (t || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/\s+/g, " ").trim();
+  }
+  /* "reserver une visio", "reservez votre visio"… + CTA commençant par "discutons" ou "parler/parlez de votre projet" */
+  var BOOKING_RE = /reserv\w*\s+(une\s+|votre\s+)?visio|^discutons|^parle[rz]\s+de\s+votre\s+projet/;
+  document.addEventListener("click", function (e) {
+    var el = e.target && e.target.closest ? e.target.closest("a, button") : null;
+    if (!el || !BOOKING_RE.test(norm(el.textContent))) return;
+    e.preventDefault();
+    e.stopPropagation();
+    Cal.ns["30min"]("modal", {
+      calLink: "hws-agency/30min",
+      config: { "layout": "month_view", "useSlotsViewOnSmallScreen": "true" }
+    });
+  }, true);
+})();
+</script>
+<script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F69ea11ca6c56536cd056b6b6%2Fnav_scroll-2.0.2.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/69dcdc0620ab5f37ce8bfd2c%2F689e5ba67671442434f3ca35%2F69ea11cb0d2835a48bca882e%2Fburger_js-2.0.2.js" type="text/javascript"></script><script>document.write('<script src="../footer-2026/footer-2026-puzzle.js?v=' + Date.now() + '" defer><\/script>');
+  document.write('<script src="../nav-2026/nav-2026.js?v=' + Date.now() + '" defer><\/script>');
+  document.write('<script src="../systeme-2026/systeme-2026.js?v=' + Date.now() + '" defer><\/script>');
+  document.write('<script src="../liens-refonte-2026.js?v=' + Date.now() + '" defer><\/script>');</script>
+</body></html>

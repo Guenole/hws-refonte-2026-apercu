@@ -1,0 +1,150 @@
+/* HWS Agency 2026 — page « Journal » (/blog).
+   Même famille que la section Journal de la home (journal-2026) et que les articles liés du gabarit d'article (.ar26-lie) :
+   image arrondie à 6 px, méta catégorie · temps de lecture, titre en serif, résumé court, filets bleus, aucune carte.
+   Construit avec deux listes de collection Blog triées par date décroissante :
+     1. « À la une » : limite 1 élément ;
+     2. « Tous les articles » : option native « sauter 1 élément » (le premier est déjà à la une).
+   Numéros 01, 02… posés par un compteur CSS ; aucun script de mise en forme. Préfixe .jx26. */
+
+.jx26 {
+  --jx26-nav: 76px;
+  --jx26-pad: clamp(20px, 2.4vw, 40px);   /* écart entre une colonne et son filet */
+  --jx26-rang: clamp(36px, 3.6vw, 56px);  /* écart entre une rangée et son filet */
+  counter-reset: jx26;
+}
+
+/* ══ Héro : titre à gauche, chapô à droite sur la même ligne de base (comme Nos réalisations) ══ */
+.jx26-hero > .s26-inner { padding-top: calc(var(--jx26-nav) + clamp(56px, 9vh, 112px)); padding-bottom: calc(var(--air) * 0.5); }
+.jx26-hero-grille { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 34%); column-gap: 6%; align-items: end; }
+.jx26-chapo { padding-bottom: 10px; }
+
+/* ══ En-tête de liste : le label posé sur un filet fort ══ */
+.jx26-entete { padding-bottom: 14px; border-bottom: 1px solid var(--c-filet-fort); }
+
+/* ══ Numéro d'article « 01 — » (compteur : la une = 01, puis 02, 03…) ══ */
+.jx26-num { counter-increment: jx26; }
+.jx26-num::before { content: counter(jx26, decimal-leading-zero); font-variant-numeric: tabular-nums; }
+
+/* Méta commune : catégorie · temps de lecture */
+.jx26-meta > * + *::before { content: "·"; margin: 0 0.7em; color: var(--c-gris); }
+.jx26-date { font-size: 13px; line-height: 1.4; letter-spacing: 0.02em; color: var(--c-gris); font-variant-numeric: tabular-nums; }
+
+.jx26-image { display: block; overflow: hidden; border-radius: 6px; background: #E8ECF6; }
+.jx26-image img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
+
+/* ══ 01 — À la une ══ */
+.jx26-une > .s26-inner { padding-bottom: calc(var(--air) * 0.62); }
+.jx26-une-lien {
+  display: grid;
+  grid-template-columns: minmax(0, 1.32fr) minmax(0, 1fr);
+  column-gap: clamp(32px, 5vw, 88px);
+  align-items: stretch;
+  padding-top: clamp(32px, 3.2vw, 48px);
+  color: var(--c-nuit);
+}
+.jx26-une .jx26-image { aspect-ratio: 16 / 10; }
+.jx26-une-texte { display: flex; flex-direction: column; min-width: 0; padding: 4px 0 6px; }
+.jx26-une .jx26-meta { margin-top: 22px; }
+.jx26-une-titre {
+  margin-top: 16px;
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: clamp(34px, 3.9vw, 62px);
+  line-height: 1;
+  letter-spacing: -0.024em;
+  color: var(--c-nuit);
+  text-wrap: balance;
+  transition: color 0.3s var(--ease);
+}
+.jx26-une-resume { margin-top: clamp(16px, 1.6vw, 24px); }
+.jx26-une-pied {
+  margin-top: auto;
+  padding-top: clamp(24px, 2.6vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+}
+/* Le lien « Lire l'article » est un texte dans le bloc lien : il prend le style du lien souligné au survol du bloc */
+.jx26-une-lien:hover .jx26-une-titre { color: var(--c-bleu); }
+.jx26-une-lien:hover .jx26-image img { transform: scale(1.025); }
+.jx26-une-lien:hover .s26-lien { color: var(--c-bleu); background-size: 0% 1px; background-position: 100% 100%; }
+.jx26-une-lien:hover .s26-fleche { transform: translateX(5px); }
+
+/* ══ 02 — Tous les articles : grille à filets, trois colonnes ══
+   Chaque article porte un filet à gauche et un filet en haut ; la liste est décalée d'un cran vers la gauche et vers le haut
+   et son cadre coupe ce qui dépasse : les filets du bord disparaissent, quel que soit le nombre de colonnes ou d'articles. */
+.jx26-tous .s26-inner { padding-bottom: calc(var(--air) * 0.7); }
+.jx26-cadre { overflow: clip; }
+.jx26-items {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: -1px calc(-1 * var(--jx26-pad)) 0 calc(-1 * var(--jx26-pad) - 1px);
+}
+.jx26-item { border-left: 1px solid var(--c-filet); border-top: 1px solid var(--c-filet); }
+.jx26-article {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--jx26-rang) var(--jx26-pad);
+  color: var(--c-nuit);
+}
+.jx26-article .s26-num { margin-bottom: 18px; }
+.jx26-article .jx26-image { aspect-ratio: 16 / 10; }
+.jx26-article .jx26-meta { margin-top: 22px; }
+.jx26-titre {
+  margin-top: 12px;
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: clamp(24px, 2.05vw, 31px);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  color: var(--c-nuit);
+  text-wrap: balance;
+  transition: color 0.3s var(--ease);
+}
+.jx26-resume {
+  margin-top: 14px;
+  max-width: 52ch;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.jx26-article .jx26-date { margin-top: auto; padding-top: 22px; }
+.jx26-article:hover .jx26-titre { color: var(--c-bleu); }
+.jx26-article:hover .jx26-image img { transform: scale(1.025); }
+
+.jx26-une-lien:focus-visible, .jx26-article:focus-visible { outline: 2px solid var(--c-bleu); outline-offset: -2px; border-radius: 6px; }
+
+/* ══ Appel final (même composant que Nos réalisations et les pages services) ══ */
+.jx26-cta .s26-inner { padding-bottom: calc(var(--air) * 0.5); }
+.jx26-cta-cadre {
+  position: relative; display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: clamp(64px, 8vw, 128px) clamp(20px, 5vw, 80px);
+  border-top: 1px solid var(--c-filet-fort); border-bottom: 1px solid var(--c-filet-fort);
+}
+.jx26-cta-cadre .s26-chapo { margin-top: var(--ecart-chapo); }
+.jx26-cta-actions { margin-top: clamp(30px, 3.4vw, 44px); display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 16px 32px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .jx26 * { transition-duration: 0.01ms !important; }
+  .jx26-une-lien:hover .jx26-image img, .jx26-article:hover .jx26-image img { transform: none; }
+}
+
+/* ══ Tablette : la une sur une colonne, la grille sur deux ══ */
+@media (max-width: 1024px) {
+  .jx26-hero-grille { grid-template-columns: minmax(0, 1fr); row-gap: 24px; }
+  .jx26-une-lien { grid-template-columns: minmax(0, 1fr); row-gap: 8px; }
+  .jx26-une-titre { max-width: 18em; }
+  .jx26-items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* ══ Mobile : une colonne, filets horizontaux seulement ══ */
+@media (max-width: 640px) {
+  .jx26 { --jx26-nav: 72px; --jx26-rang: 32px; }
+  .jx26-items { grid-template-columns: minmax(0, 1fr); }
+  .jx26-une-titre { font-size: clamp(32px, 9vw, 40px); }
+  .jx26-une-pied { flex-direction: column; align-items: flex-start; }
+  .jx26-cta-actions { flex-direction: column; gap: 18px; }
+}
