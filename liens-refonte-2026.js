@@ -3,7 +3,8 @@
  * Le HTML des pages garde les vraies adresses du site (https://www.hws.pm/… ou /…), pour être reporté tel quel
  * dans Webflow. Hors de hws.pm (serveur local, Netlify, fichier ouvert), ce script réécrit les liens au chargement :
  *  - un lien vers une page déjà refaite mène à sa version 2026 (l'ancre est conservée : /#contact, #methode…) ;
- *  - les autres liens internes en « /… » mènent à la page en ligne sur https://www.hws.pm, au lieu d'une 404 locale.
+ *  - les autres liens vers le site (en « /… » ou https://www.hws.pm/…) sont désactivés : l'aperçu ne renvoie jamais vers le site actuel
+ *    (23 oct. 2026, demande du user). Ancienne version : /tmp/qd/liens-refonte-avant-desactivation.js.
  * Les liens externes, les ancres de la page, mailto: et les chemins relatifs (../print-2026/…) ne changent pas.
  *
  * Une page vient d'être refaite ? Ajouter une ligne dans PAGES : chemin sur le site → fichier, relatif à prototypes/.
@@ -42,8 +43,21 @@
       dest.hash = u.hash;
       a.setAttribute('href', dest.href);
       a.dataset.refonte2026 = '';
-    } else if (brut.startsWith('/')) {
-      a.setAttribute('href', SITE + u.pathname + u.search + u.hash);
+    } else {
+      // Page pas encore refaite : le lien est désactivé dans l'aperçu (plus aucun renvoi vers le site actuel).
+      a.removeAttribute('href');
+      a.removeAttribute('target');
+      a.setAttribute('aria-disabled', 'true');
+      a.setAttribute('title', 'Page pas encore refaite dans cet aperçu');
+      a.dataset.refonteInactif = '';
+      // Petits liens (menu, footer, liens texte) atténués ; les grands blocs (lignes de projets, cartes d'articles) gardent leur aspect.
+      if (!a.querySelector('img, picture, video') && a.textContent.trim().length < 60) a.dataset.refonteInactif = 'attenue';
     }
   }
+  const style = document.createElement('style');
+  style.textContent = '[data-refonte-inactif]{cursor:default!important}[data-refonte-inactif] *{pointer-events:none}'
+    + '[data-refonte-inactif="attenue"]{opacity:.45}';
+  document.head.appendChild(style);
+  // Clic ou touche Entrée sur un lien désactivé : rien ne se passe
+  document.addEventListener('click', (e) => { if (e.target.closest('[data-refonte-inactif]')) e.preventDefault(); }, true);
 })();
