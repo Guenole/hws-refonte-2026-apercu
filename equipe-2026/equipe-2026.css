@@ -1,0 +1,286 @@
+/* HWS Agency 2026 — section « L'équipe » de la home, v2 « l'étendoir » (27 oct. 2026).
+   Inspiration : composant « Hanging Team » (portraits suspendus qui se balancent), adapté au système 2026 :
+   - le filet sous le titre devient la tringle ; chaque portrait y pend par un fil, à une hauteur différente ;
+   - les portraits sont des tirages photo (passe-partout blanc, prénom et rôle écrits dessous), jamais retouchés ;
+   - mouvement : un vrai pendule à deux articulations (le fil sur la tringle, le tirage sur sa pince), poussé par
+     le passage de la souris, ou par le glissement du doigt en mobile ; immobile au repos ;
+   - corail : seulement le point du titre et la croix de repère au bout de la tringle.
+   Placée juste avant « Collaboration », dont les curseurs portent les prénoms de l'équipe.
+   Physique dans equipe-2026.js ; sans script, les tirages pendent droit. Préfixe .heq26. */
+
+.heq26 {
+  --heq-bleu: #3974F7;
+  --heq-bleu-texte: #2F63DE;
+  --heq-corail: #FF5A36;
+  --heq-casse: #F7F7F4;
+  --heq-blanc: #FFFFFF;
+  --heq-nuit: #171B49;
+  --heq-gris: #5E6389;
+  --heq-filet: rgba(57, 116, 247, 0.24);
+  --heq-filet-fort: rgba(57, 116, 247, 0.45);
+  --heq-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --heq-sans: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --heq-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+  background: var(--heq-casse);
+  color: var(--heq-nuit);
+  font-family: var(--heq-sans);
+  -webkit-font-smoothing: antialiased;
+}
+.heq26, .heq26 *, .heq26 *::before, .heq26 *::after { box-sizing: border-box; }
+.heq26 :where(h2, p, ul, li, figure, figcaption) { margin: 0; padding: 0; }
+.heq26 :where(ul) { list-style: none; }
+.heq26 :where(img) { display: block; max-width: 100%; }
+
+.heq26-inner {
+  position: relative;
+  max-width: calc(var(--largeur, 1440px) + 2 * var(--gouttiere, 96px));
+  margin: 0 auto;
+  padding: var(--air, 160px) var(--gouttiere, 96px) calc(var(--air, 160px) * 0.8);
+}
+
+/* ── En-tête : titre à gauche, chapô à droite ; son filet est la tringle ── */
+.heq26-haut {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  padding-bottom: clamp(24px, 2vw, 32px);
+}
+.heq26-label { font-size: var(--t-label, 12px); font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--heq-bleu); }
+.heq26-titre {
+  margin-top: var(--ecart-label, 18px);
+  font-family: var(--heq-serif);
+  font-weight: 400;
+  font-size: var(--t-titre, clamp(48px, 6.6vw, 104px));
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.heq26-titre em { font-style: italic; color: var(--heq-bleu); letter-spacing: -0.02em; white-space: nowrap; }
+.heq26-point { color: var(--heq-corail); font-style: normal; }
+.heq26-chapo {
+  flex: 0 1 30%;
+  min-width: 260px;
+  padding-bottom: 8px;
+  font-size: var(--t-chapo, 18px);
+  line-height: 1.5;
+  color: var(--heq-gris);
+  text-wrap: pretty;
+}
+
+/* ── L'étendoir ── */
+.heq26-scene { position: relative; }
+/* La tringle : le filet de l'en-tête, prolongé d'une croix de repère corail à droite. */
+.heq26-tringle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: var(--heq-filet-fort);
+  pointer-events: none;
+}
+.heq26-tringle::after {
+  content: "";
+  position: absolute;
+  right: -11px;
+  top: -10.5px;
+  width: 22px;
+  height: 22px;
+  background:
+    linear-gradient(var(--heq-corail), var(--heq-corail)) center / 100% 1.5px no-repeat,
+    linear-gradient(var(--heq-corail), var(--heq-corail)) center / 1.5px 100% no-repeat;
+}
+
+.heq26-etendoir {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  align-items: start;
+  padding-bottom: 24px;
+}
+/* --fil : longueur du fil, propre à chaque personne (rythme des hauteurs) ; --taille : largeur du tirage dans sa colonne. */
+.heq26-membre {
+  --fil: 60px;
+  --taille: 86%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+/* L'attache sur la tringle : un petit œillet bleu. */
+.heq26-membre::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: -3px;
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  border-radius: 50%;
+  background: var(--heq-casse);
+  border: 1.5px solid var(--heq-bleu);
+}
+
+/* Ce qui pivote sur la tringle : le fil et le tirage (transform posé par le script). */
+.heq26-suspension {
+  position: relative;
+  width: var(--taille);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+.heq26-fil {
+  display: block;
+  width: 1px;
+  height: var(--fil);
+  background: var(--heq-filet-fort);
+}
+
+/* Le tirage : pivote un peu à part sur sa pince (seconde articulation). */
+.heq26-tirage {
+  position: relative;
+  width: 100%;
+  padding: 7px 7px 0;
+  border-radius: 3px;
+  background: var(--heq-blanc);
+  box-shadow: 0 1px 0 rgba(23, 27, 73, 0.04), 0 14px 28px -20px rgba(23, 27, 73, 0.32);
+  transform-origin: 50% 0;
+  will-change: transform;
+  transition: box-shadow 0.4s var(--heq-ease);
+}
+/* La pince : une petite barrette bleu nuit qui mord le haut du tirage. */
+.heq26-pince {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: -6px;
+  width: 16px;
+  height: 12px;
+  margin-left: -8px;
+  border-radius: 2px;
+  background: var(--heq-nuit);
+}
+.heq26-pince::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  top: 5px;
+  height: 1px;
+  background: rgba(247, 247, 244, 0.5);
+}
+.heq26-photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #E4E6EE;
+}
+.heq26-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  transition: transform 0.7s var(--heq-ease), filter 0.4s var(--heq-ease);
+}
+.heq26-legende {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  padding: 12px 4px 14px;
+}
+.heq26-nom {
+  font-family: var(--heq-serif);
+  font-size: clamp(22px, 1.75vw, 30px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transition: color 0.3s var(--heq-ease);
+}
+.heq26-role {
+  font-size: 10.5px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--heq-gris);
+  transition: color 0.3s var(--heq-ease);
+}
+
+/* Survol (souris) : le tirage survolé passe devant, les autres photos s'estompent un peu ; les textes restent lisibles. */
+@media (hover: hover) and (pointer: fine) {
+  .heq26-membre.is-survol { z-index: 4; }
+  .heq26-membre.is-survol .heq26-tirage { box-shadow: 0 1px 0 rgba(23, 27, 73, 0.04), 0 26px 40px -22px rgba(23, 27, 73, 0.42); }
+  .heq26-membre.is-survol .heq26-photo img { transform: scale(1.035); }
+  .heq26-membre.is-survol .heq26-nom { color: var(--heq-bleu); }
+  .heq26-membre.is-survol .heq26-role { color: var(--heq-nuit); }
+  .heq26-etendoir.a-survol .heq26-membre:not(.is-survol) .heq26-photo img { filter: saturate(0.55) brightness(1.04); }
+}
+
+/* Entrée : la légende monte au moment où la section arrive (rapide, une fois). */
+.heq26.js .heq26-legende > * { opacity: 0; transform: translateY(6px); transition: opacity 0.4s var(--heq-ease), transform 0.4s var(--heq-ease), color 0.3s var(--heq-ease); }
+.heq26.js.is-vu .heq26-legende > * { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * 60ms + 250ms); }
+.heq26.js.is-vu .heq26-legende > .heq26-role { transition-delay: calc(var(--i, 0) * 60ms + 330ms); }
+
+.heq26-consigne { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .heq26 * { transition-duration: 0.01ms !important; transition-delay: 0s !important; }
+  .heq26-suspension, .heq26-tirage { will-change: auto; }
+}
+
+/* ── Tablette : deux tringles (4 puis 3 portraits) ── */
+@media (max-width: 1100px) {
+  .heq26-haut { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .heq26-chapo { flex: none; max-width: 52ch; }
+  .heq26-etendoir { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 56px; }
+  /* Seconde tringle : chaque portrait de la 2e rangée porte son bout de filet. */
+  .heq26-membre:nth-child(n + 5) { border-top: 1px solid var(--heq-filet-fort); }
+  .heq26-membre { --taille: 80%; }
+  .heq26-nom { font-size: 24px; }
+}
+
+/* ── Mobile : une seule tringle qu'on fait défiler au doigt ; le glissement balance les portraits ── */
+@media (max-width: 640px) {
+  .heq26-inner { padding-bottom: 72px; }
+  /* La tringle et le défilement vont d'un bord à l'autre de l'écran ; le premier portrait s'aligne sur la gouttière. */
+  .heq26-scene { margin: 0 calc(-1 * var(--gouttiere, 20px)); }
+  .heq26-tringle { top: 6px; left: 0; right: 0; }
+  .heq26-tringle::after { display: none; }
+  .heq26-etendoir {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--gouttiere, 20px);
+    padding: 6px var(--gouttiere, 20px) 28px;
+    scrollbar-width: none;
+  }
+  .heq26-etendoir::-webkit-scrollbar { display: none; }
+  .heq26-etendoir:focus-visible { outline: 2px solid var(--heq-bleu); outline-offset: 4px; }
+  .heq26-membre,
+  .heq26-membre:nth-child(n + 5) { flex: 0 0 58%; border-top: 0; scroll-snap-align: start; --fil: var(--fil-m, 40px); --taille: 84%; }
+  .heq26-nom { font-size: 26px; }
+  .heq26-consigne {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 4px var(--gouttiere, 20px) 0;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--heq-gris);
+  }
+  .heq26-consigne svg { width: 14px; height: 14px; color: var(--heq-bleu); }
+}
